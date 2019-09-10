@@ -1,9 +1,13 @@
 import { Table, Avatar, Row, Col,Icon,Button} from "antd";
 import * as React from "react";
 import UserDetail from "../ViewUserDetail/UserDetail";
+import NewUser from './newuser';
 import "./subsidebar.scss";
+
 interface IState {
   userDetail: any;
+  newUser:boolean;
+  showUser:boolean;
 }
 
 const dataSource = [
@@ -55,25 +59,21 @@ const columns = [
     dataIndex: "email",
     key: "email"
   },
-
-  {
-    title: "Client",
-    dataIndex: "client",
-    key: "client"
-  },
-  {
-    title: "Department",
-    dataIndex: "department",
-    key: "department"
-  }
 ];
 
 export class SubSideBar extends React.Component<{}, IState> {
+  state = {
+    userDetail:null,
+    newUser:false,
+    showUser:false,
+  };
   public componentDidMount(): void {
     dataSource.map((item, index) => {
       if (index === 0) {
         this.setState({
-          userDetail: item
+          userDetail: item,
+          newUser:false,
+          showUser:true,
         });
       }
     });
@@ -83,21 +83,30 @@ export class SubSideBar extends React.Component<{}, IState> {
     dataSource.map((item, index) => {
       if (value === index) {
         this.setState({
-          userDetail: item
+          userDetail: item,
+          newUser:false
         });
       }
     });
   };
+
+  private handleClick = value => {
+        this.setState({
+          newUser: true,
+          showUser:false
+          // userDetail: null
+        });
+      }
+
 
   render() {
     return (
       <div>
         <Row>
           <Col lg={8}>
-            <button></button>{/* <Icon type="plus-circle" onClick={}/> */}
+            <button className="button" onClick={this.handleClick}>Add New User</button><Icon type="plus"/>
             <Table
               dataSource={dataSource}
-              // size="small"
               scroll={{x:200}}
               columns={columns}
               onRow={(record, rowIndex) => {
@@ -110,11 +119,11 @@ export class SubSideBar extends React.Component<{}, IState> {
             />
           </Col>
           <Col lg={16}>
-            {this.state !== null ? (
+            {this.state.showUser === true ? this.state.userDetail !== null ? (
               <UserDetail user={this.state.userDetail} />
-            ) : (
-              ""
-            )}
+            ) : null : this.state.newUser === true ? 
+            <NewUser />
+            :null }
           </Col>
         </Row>
       </div>
