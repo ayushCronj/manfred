@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.scss';
-<<<<<<< HEAD
 import Login from '../src/components/login/login';
 import ConfigureStore from './redux/configureStore/configureStore';
 
@@ -15,17 +14,6 @@ const App: React.FC = () => {
     
     </div>
   );
-=======
-import Layout from './components/Layout/layout';
-
-class App extends React.Component<{}, {}> {
-
-  render() {
-    return (
-      <Layout />
-    );
-  }
->>>>>>> 8a3b7918aa5b7bab155b961ed2430345ca1a5a24
 }
 
 export default App;
