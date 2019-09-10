@@ -1,16 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
-// import SubSideBar from '../src/Atoms/subSideBar'
 import './App.scss';
+import SubSideBar from './SubsideBar/subSideBar'
+
+
 
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-       
-      </header>
-    
+     {/* <SubSideBar/> */}
     </div>
   );
 }
