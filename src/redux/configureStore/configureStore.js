@@ -1,7 +1,7 @@
 import {createStore, combineReducers} from 'redux';
 import reducer from '../reducers/reducer';
 
-export const ConfigureStore = () => {
+const ConfigureStore = () => {
   const store = createStore (
         combineReducers({
             stateData : reducer
@@ -9,3 +9,5 @@ export const ConfigureStore = () => {
     );
     return store;
 }
+
+export default ConfigureStore 
