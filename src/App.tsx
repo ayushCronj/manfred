@@ -1,13 +1,20 @@
 import React from 'react';
 import './App.scss';
-import Layout from './components/Layout/layout';
-class App extends React.Component<{}, {}> {
+import Routes from "./routes/routes";
+import Login from '../src/components/login/login';
+import ConfigureStore from './redux/configureStore/configureStore';
 
-  render() {
-    return (
-        <Layout />
-    );
-  }
+const store = ConfigureStore();
+
+const App: React.FC = () => {
+  return (
+    <div className="App">
+      <header className="App-header">
+       <Routes />
+      </header>
+    
+    </div>
+  );
 }
 
 export default (App);

@@ -19,11 +19,11 @@ class layout extends React.Component<{}, Istate> {
         redirect: false
     };
 
-    public toggle = () => {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        });
-    };
+  public toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  };
 
     public handlelogout = () => {
         localStorage.removeItem('user');
