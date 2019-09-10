@@ -1,6 +1,7 @@
 import { Table, Avatar} from 'antd';
 import * as React from 'react';
 import UserDetail from '../ViewUserDetail/UserDetail';
+import UserList from '../ViewUserDetail/UserList.json'
 
 
 
@@ -103,6 +104,7 @@ export class SubSideBar extends React.Component<{},IState>{
 }
 
 render(){
+  
     return (
         
       <div>

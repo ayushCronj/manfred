@@ -14,6 +14,7 @@ interface IProps {
 
 export class UserDetail extends React.Component<IProps, {}>{
 
+
 render(){
     console.log("props--->",this.props)
     return(

@@ -1,0 +1,29 @@
+{
+    "userlist": [{
+        "key": "1",
+        "title": "Mr",
+        "name": "Petr",
+        "surname": "petr",
+        "email": "peter@gmail.com",
+        "link": "/user.png",
+        "client": "foreway",
+        "department": "sytemAdministrator",
+        "phoneNumber": "1234567890",
+        "Language": "English",
+        "TimeZone": "UTC",
+        "UnitSystem": "Metric"
+    }, {
+        "key": "2",
+        "title": "Mr",
+        "name": "John",
+        "surname": "petr",
+        "email": "john@gmail.com",
+        "link": "/user.png",
+        "client": "foreway",
+        "department": "sytemAdministrator",
+        "phoneNumber": "1234567890",
+        "Language": "English",
+        "TimeZone": "UTC",
+        "UnitSystem": "Metric"
+    }]
+}
