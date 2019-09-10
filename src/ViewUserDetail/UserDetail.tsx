@@ -62,11 +62,10 @@ render(){
         <div className="department-title">Department:</div>
         <div className="department-title-value">{this.props.user.department}</div>
          </div>
-         <div className="client">
-        <div className="client-title">PhoneNumber:</div>
-        <div className="client">{this.props.user.phoneNumber}</div>
+         <div className="phoneNumber">
+        <div className="phoneNumber-title">PhoneNumber:</div>
+        <div className="phoneNumber-title-value">{this.props.user.phoneNumber}</div>
          </div>
-
          </div> 
          <hr/>
          <div>
@@ -75,18 +74,18 @@ render(){
          </span>
          <span>Language&Religion</span>
          <p>Describes additional contact Information for user Account.The PhoneNumber is used optionally and exculsively for push notification </p>
-         <p>
-        <span>Language:</span>
-        <span>{this.props.user.Language}</span>
-         </p>
-         <p>
-        <span>TimeZone:</span>
-        <span>{this.props.user.TimeZone}</span>
-         </p>
-         <p>
-        <span>UnitSystem:</span>
-        <span>{this.props.user.UnitSystem}</span>
-         </p>
+         <div className="system">
+        <div className="system-title">Language:</div>
+        <div className="system-title-value">{this.props.user.Language}</div>
+         </div>
+         <div className="system">
+        <div className="system-title">TimeZone:</div>
+        <div className="system-title-value">{this.props.user.TimeZone}</div>
+         </div>
+         <div className="system">
+        <div className="system-title">UnitSystem:</div>
+        <div className="system-title-value">{this.props.user.UnitSystem}</div>
+         </div>
 
          </div> 
         </div>
