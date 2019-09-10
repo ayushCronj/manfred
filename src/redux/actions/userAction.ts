@@ -15,3 +15,9 @@
  export const EditUser=()=>({
      type:ActionTypes.EDIT_USER
  })
+
+ export const createUser=(user)=>({
+    type:ActionTypes.CREATE_USER,
+    payload:user
+})
+
