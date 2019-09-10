@@ -1,6 +1,7 @@
-import { Table, Avatar, Row, Col,Icon,Button} from "antd";
+import { Table, Avatar, Row, Col, Icon, Button, Pagination } from "antd";
 import * as React from "react";
 import UserDetail from "../ViewUserDetail/UserDetail";
+import { Translation } from "react-i18next";
 import "./subsidebar.scss";
 interface IState {
   userDetail: any;
@@ -39,7 +40,8 @@ const dataSource = [
 
 const columns = [
   {
-    title: "profilepic",
+    // title: "Profile Pic",
+    title: <Translation>{t => t("profile_pic")}</Translation>,
     dataIndex: "link",
     key: "link",
     render: link => <Avatar src={link} />
@@ -47,24 +49,13 @@ const columns = [
   {
     title: "Name",
     dataIndex: "name",
-    key: "name",
+    key: "name"
   },
- 
+
   {
     title: "Email",
     dataIndex: "email",
     key: "email"
-  },
-
-  {
-    title: "Client",
-    dataIndex: "client",
-    key: "client"
-  },
-  {
-    title: "Department",
-    dataIndex: "department",
-    key: "department"
   }
 ];
 
@@ -93,23 +84,24 @@ export class SubSideBar extends React.Component<{}, IState> {
     return (
       <div>
         <Row>
-          <Col lg={8}>
-            <button></button>{/* <Icon type="plus-circle" onClick={}/> */}
+          <Col lg={8} xs={12} sm={12}>
+            <button></button>
+            {/* <Icon type="plus-circle" onClick={}/> */}
             <Table
               dataSource={dataSource}
-              // size="small"
-              scroll={{x:200}}
               columns={columns}
+              pagination={{hideOnSinglePage:true}}
               onRow={(record, rowIndex) => {
                 return {
                   onClick: event => {
                     this.handleUser(rowIndex);
                   }
                 };
+                
               }}
             />
           </Col>
-          <Col lg={16}>
+          <Col lg={16} xs={12} sm={12}>
             {this.state !== null ? (
               <UserDetail user={this.state.userDetail} />
             ) : (
