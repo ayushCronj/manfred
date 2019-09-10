@@ -1,16 +1,22 @@
 import React from 'react';
 import './layout.scss';
-import Redirect from 'react-router-dom';
-import { Layout, Icon, Menu, Avatar, Button } from 'antd';
+import { Redirect } from 'react-router-dom';
+import { Layout, Icon, Menu, Avatar, Button, Dropdown } from 'antd';
+import { Translation } from 'react-i18next';
+import i18n from '../../i18n'
+
 const { Header, Sider, Content } = Layout;
 
+
 interface Istate {
-    collapsed: boolean
+    collapsed: boolean,
+    redirect?: boolean
 }
 
 class layout extends React.Component<{}, Istate> {
     state = {
         collapsed: false,
+        redirect: false
     };
 
     public toggle = () => {
@@ -23,10 +29,32 @@ class layout extends React.Component<{}, Istate> {
         localStorage.removeItem('user');
         localStorage.removeItem('pass');
         localStorage.removeItem('isLoggedIn');
-        <Redirect to="/login" />
+        this.setState({
+            redirect: true
+        })
     }
 
     public render() {
+        if (this.state.redirect) {
+            return <Redirect to='/' />
+        }
+
+        const menu = (
+            <Menu>
+                <Menu.Item
+                    onClick={() => i18n.changeLanguage('en')}
+                >
+                    Eng
+                </Menu.Item>
+                <Menu.Item
+                    className="nav_menu"
+                    onClick={() => i18n.changeLanguage('de')}
+                >
+                    De
+                </Menu.Item>
+            </Menu>
+        );
+        
         return (
             <Layout>
                 <Sider className="layout_sider" trigger={null} collapsible collapsed={this.state.collapsed}>
@@ -66,6 +94,17 @@ class layout extends React.Component<{}, Istate> {
                                     onClick={this.toggle}
                                 />
                             </Menu.Item>
+                            <Menu.Item>
+                                <Dropdown
+                                    overlay={menu}
+                                >
+                                    <a href="#">
+                                        Eng
+										<Icon type="down" />
+                                    </a>
+                                </Dropdown>
+
+                            </Menu.Item>
                             <Menu.Item className="header_item" >
                                 <Button type="primary" onClick={this.handlelogout}> Logout </Button>
                             </Menu.Item>
@@ -82,8 +121,12 @@ class layout extends React.Component<{}, Istate> {
                             minHeight: 280,
                         }}
                     >
-                        Content
-          </Content>
+                        <Translation>
+                            {
+                                (t) => <h1>{t('title')}</h1>
+                            }
+                        </Translation>
+                    </Content>
                 </Layout>
             </Layout>
         );
