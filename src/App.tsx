@@ -3,17 +3,21 @@ import './App.scss';
 import Routes from "./routes/routes";
 import Login from '../src/components/login/login';
 import ConfigureStore from './redux/configureStore/configureStore';
+import {Provider} from 'react-redux'
 
 const store = ConfigureStore();
 
 const App: React.FC = () => {
+  console.log("store ====>>>", store);
   return (
+    <Provider store={store}>
     <div className="App">
       <header className="App-header">
        <Routes />
       </header>  
     </div>
+    </Provider>
   );
 }
 
-export default App;
+export default (App);

@@ -3,12 +3,12 @@
   background:#001529;
   color: white;
   text-align: center;
-  height: 200vh;
+  min-height: 100vh;
 }
 
 .app_header {
   width: 100%;
-    background-color: #fff !important;
+    // background-color: #fff !important;
     padding: 0
 }
 
@@ -26,4 +26,17 @@ margin: 16px;
 .header_item {
     float: right;
     margin-top: 1.5% !important;
+}
+
+.layout_div {
+    float: right;
+    margin-right: 2%
+}
+
+// .header_avatar{
+//     margin-top: 4%
+// }
+
+.header_button{
+    margin-top: 10%
 }

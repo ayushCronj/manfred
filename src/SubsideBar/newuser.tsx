@@ -46,6 +46,7 @@ class NewUser extends React.Component<{}, IState> {
             }}
             onSubmit={(values: IState, actions: FormikActions<IState>) => {
               actions.setSubmitting(false);
+              // this.props.createUser(values) 
               console.log(values);
             }}
             render={(formikBag: FormikProps<IState>) => (
@@ -169,5 +170,11 @@ class NewUser extends React.Component<{}, IState> {
     );
   }
 }
+
+// function mapDispatchToProps(dispatch){
+//     return{
+//         deleteUser:values=>dispatch(createUser(values))
+//     }
+// }
 
 export default NewUser;

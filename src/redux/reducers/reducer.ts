@@ -1,24 +1,60 @@
 
-interface IAoiState {
+interface IState {
+  dataSource:any
     
   }
   
-  const initialAoiState: IAoiState = {
-   
+  const initialState: IState = {
+   dataSource:[{
+    key: "1",
+    title: "Mr.",
+    name: "Petr",
+    surname: "petr",
+    email: "peter@gmail.com",
+    link: "/user.png",
+    client: "foreway",
+    department: "sytemAdministrator",
+    phoneNumber: "1234567890",
+    Language: "English",
+    TimeZone: "UTC",
+    UnitSystem: "Metric"
+  },
+  {
+    key: "2",
+    title: "Mr",
+    name: "John",
+    surname: "petr",
+    email: "john@gmail.com",
+    link: "/user.png",
+    client: "foreway",
+    department: "sytemAdministrator",
+    phoneNumber: "1234567890",
+    Language: "English",
+    TimeZone: "UTC",
+    UnitSystem: "Metric"
+  }]
   };
 
   export default function aois(
-    state: IAoiState = initialAoiState,
+    state: IState = initialState,
     action: any
-  ): IAoiState {
+  ): IState {
     const { type, payload } = action;
   
     switch (type) {
-      case '':
-        return {
+      case 'DELETE_USER':
+      
+        // return {
+        // ...state,
+      
+        // };
+        {const newlist = [...state.dataSource];
+          newlist.splice(action.payload,1);
+          return{
           ...state,
-          loading: true
-        };
+          dataSource: newlist
+          }
+        }
     
      default:
     return state;

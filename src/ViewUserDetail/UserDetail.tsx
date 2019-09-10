@@ -1,7 +1,8 @@
 import * as React from 'react';
 import './ViewUserDetail.scss'
-
 import {Icon} from 'antd'
+import{connect} from 'react-redux'
+import {addUser,deleteUser,EditUser} from '../redux/actions/userAction'
 
 interface IProps {
     name?: string;
@@ -9,16 +10,30 @@ interface IProps {
     key?:any;
     link?:string;
     user:any;
-
+    index:number;
+    deleteUser:any;
 }
 
-export class UserDetail extends React.Component<IProps, {}>{
+interface IState {
+    data: any
+}
 
+class UserDetail extends React.Component<IProps, IState>{
+    state={
+        data: null
+    }
+    componentWillReceiveProps(){
+        this.setState({
+           data:this.props 
+        })
+    }
 render(){
     console.log("props--->",this.props)
+    console.log("state==> " , this.state.data)
     return(
        <div>
           <div>
+          <Icon type="delete" onClick={()=>this.props.deleteUser(this.props.index) }/> 
            <p className="user-name">{this.props.user.name}{this.props.user.name}</p> 
            <p className="email">{this.props.user.email}</p>  
           </div>
@@ -94,4 +109,11 @@ render(){
 }
 
 }
-export default UserDetail;
+
+function mapDispatchToProps(dispatch){
+    return{
+        deleteUser:index=>dispatch(deleteUser(index))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(UserDetail);
