@@ -58,11 +58,31 @@ export class SubSideBar extends React.Component<IProps, IState> {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    if (nextProps.dataSource.length > 0) {
+      nextProps.dataSource.map((item, index) => {
+        if (index === 0) {
+          this.setState({
+            userDetail: item,
+            index: index
+          });
+        }
+      });
+    } else {
+      this.setState({
+        userDetail: "",
+        index: 0
+      });
+    }
+  }
+
   private handleUser = value => {
     this.props.dataSource.map((item, index) => {
       if (value === index) {
         this.setState({
           userDetail: item,
+          index: index,
           newUser: false,
           showUser: true
         });
@@ -100,13 +120,15 @@ export class SubSideBar extends React.Component<IProps, IState> {
               }}
             />
           </Col>
-          <Col lg={12} xs={24} sm={24}>
+          <Col lg={16} xs={24} sm={24}>
             {this.state.showUser === true ? (
               this.state.userDetail !== null ? (
+                <div style={{border: "1px solid black", padding: "24px"}}>
                 <UserDetail
                   user={this.state.userDetail}
                   index={this.state.index}
                 />
+                </div>
               ) : null
             ) : this.state.newUser === true ? (
               <NewUser />

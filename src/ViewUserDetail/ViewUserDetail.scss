@@ -1,9 +1,8 @@
 $color: black;
 .email {
   color: skyblue;
-  font-size: 12px;
+  font-size: 13px;
 }
-
 .profile-detail {
   display: flex;
   flex-direction: row;
@@ -83,9 +82,17 @@ $color: black;
   }
 }
 
+@media (max-width:768px) {
+  .system {
+    display: flex;
+  flex-direction: column;
+  }
+}
+
 .system {
   display: flex;
   flex-direction: row;
+  flex-flow: wrap;
   padding-bottom: 8px;
   padding-top: 8px;
 

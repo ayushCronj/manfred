@@ -49,6 +49,22 @@ interface IState {
           dataSource: newlist
           }
         }
+        case 'EDIT_USER':
+            {const newlistUser = [...state.dataSource];
+              console.log("cation-->",action)
+     
+              newlistUser.forEach((items, i) => {
+                if (i === action.editindex) {
+                  newlistUser[i] = action.payload
+                  
+                }
+              })
+                console.log("newlistUser---->",newlistUser)
+              return{
+                ...state,
+                dataSource: newlistUser
+                }
+              }
         case 'CREATE_USER':
             return {...state,dataSource:[action.payload,...state.dataSource]}
 
