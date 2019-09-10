@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Layout, Icon, Menu, Avatar, Button, Dropdown } from 'antd';
 import { Translation } from 'react-i18next';
 import i18n from '../../i18n'
-
+import SubSideBar from '../../SubsideBar/subSideBar'
 const { Header, Sider, Content } = Layout;
 
 
@@ -126,6 +126,7 @@ class layout extends React.Component<{}, Istate> {
                                 (t) => <h1>{t('title')}</h1>
                             }
                         </Translation>
+                        <SubSideBar />
                     </Content>
                 </Layout>
             </Layout>
