@@ -1,14 +1,18 @@
 import { Table, Avatar, Row, Col, Icon, Button, Pagination } from "antd";
 import * as React from "react";
 import UserDetail from "../ViewUserDetail/UserDetail";
+import NewUser from "./newuser";
 import { Translation } from "react-i18next";
 import UserList from "../ViewUserDetail/UserList.json";
 import { connect } from "react-redux";
 import { addUser, deleteUser, EditUser } from "../redux/actions/userAction";
 
 import "./subsidebar.scss";
+
 interface IState {
-  userDetail?: any;
+  userDetail: any;
+  newUser: boolean;
+  showUser: boolean;
   index: number;
 }
 interface IProps {
@@ -70,6 +74,8 @@ const columns = [
 export class SubSideBar extends React.Component<IProps, IState> {
   state = {
     userDetail: "",
+    newUser: false,
+    showUser: false,
     index: 0
   };
   public componentDidMount(): void {
@@ -77,6 +83,8 @@ export class SubSideBar extends React.Component<IProps, IState> {
       if (index === 0) {
         this.setState({
           userDetail: item,
+          newUser: false,
+          showUser: true,
           index: index
         });
       }
@@ -107,9 +115,19 @@ export class SubSideBar extends React.Component<IProps, IState> {
       if (value === index) {
         this.setState({
           userDetail: item,
-          index: index
+          index: index,
+          newUser: false,
+          showUser: true
         });
       }
+    });
+  };
+
+  private handleClick = value => {
+    this.setState({
+      newUser: true,
+      showUser: false
+      // userDetail: null
     });
   };
 
@@ -119,8 +137,10 @@ export class SubSideBar extends React.Component<IProps, IState> {
       <div>
         <Row>
           <Col lg={8} xs={24} sm={24}>
-            <button></button>
-            {/* <Icon type="plus-circle" onClick={}/> */}
+            <button className="button" onClick={this.handleClick}>
+              Add New User
+            </button>
+            <Icon type="plus" />
             <Table
               dataSource={this.props.dataSource}
               // size="small"
@@ -137,14 +157,18 @@ export class SubSideBar extends React.Component<IProps, IState> {
             />
           </Col>
           <Col lg={16} xs={24} sm={24}>
-            {this.state.userDetail !== "" ? (
-              <UserDetail
-                user={this.state.userDetail}
-                index={this.state.index}
-              />
-            ) : (
-              ""
-            )}
+            {this.state.showUser === true ? (
+              this.state.userDetail !== null ? (
+                <div style={{border: "1px solid black", padding: "24px"}}>
+                <UserDetail
+                  user={this.state.userDetail}
+                  index={this.state.index}
+                />
+                </div>
+              ) : null
+            ) : this.state.newUser === true ? (
+              <NewUser />
+            ) : null}
           </Col>
         </Row>
       </div>
