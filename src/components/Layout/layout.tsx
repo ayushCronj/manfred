@@ -1,6 +1,7 @@
 import React from "react";
 import "./layout.scss";
 import { Layout, Icon, Menu, Avatar, Button } from "antd";
+import SubSideBar from '../../SubsideBar/subSideBar'
 const { Header, Sider, Content } = Layout;
 
 interface Istate {
@@ -89,7 +90,7 @@ class layout extends React.Component<{}, Istate> {
               minHeight: 280
             }}
           >
-            Content
+            <SubSideBar />
           </Content>
         </Layout>
       </Layout>

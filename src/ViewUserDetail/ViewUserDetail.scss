@@ -1,68 +1,99 @@
-$color:black;
-.email{
-    color:skyblue;
-    font-size:12px;
-    
+$color: black;
+.email {
+  color: skyblue;
+  font-size: 12px;
 }
 
-.profile-detail{
-    display:flex;
-    flex-direction: row;
-    margin-left:20px;
+.profile-detail {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
 
-    .profile-img{
-        border:1px solid black;
-        padding:20px
-    }
+  .profile-img {
+    border: 1px solid black;
+    padding: 20px;
+  }
 
-   .user-detail{
-       margin-left: 10px;
-      
-      .detail{
-          display: flex;
-          flex-direction: row;
-          padding-bottom:8px;
-          padding-top:8px;
-        .title{
-            width:100px
-        }
-        .title-value{
-        float:left;
-        color:$color;
-        }
+  .user-detail {
+    margin-left: 10px;
+
+    .detail {
+      display: flex;
+      flex-direction: row;
+      padding-bottom: 8px;
+      padding-top: 8px;
+      .title {
+        width: 100px;
       }
-   }
-   
+      .title-value {
+        float: left;
+        color: $color;
+      }
+    }
+  }
 }
-.user-name{
-    font-size:'25px';
-    margin-left:10px;
-}
-.client{
-         display: flex;
-          flex-direction: row;
-          padding-bottom:8px;
-          padding-top:8px;
-          .client-title{
-            width:100px
-          }
-          .client-title-value{
-            float:left;
-            color:$color;
-          }
-
+.user-name {
+  font-size: "25px";
+  margin-left: 10px;
 }
 
-  .department{
-          display: flex;
-          flex-direction: row;
-          padding-bottom:8px;
-          padding-top:8px; 
-          .department-title{
-             width:100px
-          }
-          .department-title-value{
-            float:left;
-            color:$color;
-          }
+.client {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 8px;
+  padding-top: 8px;
+
+  .client-title {
+    width: 100px;
+  }
+  .client-title-value {
+    float: left;
+    color: $color;
+  }
+}
+
+.department {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 8px;
+  padding-top: 8px;
+
+  .department-title {
+    width: 100px;
+  }
+
+  .department-title-value {
+    float: left;
+    color: $color;
+  }
+}
+
+.phoneNumber {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 8px;
+  padding-top: 8px;
+
+  .phoneNumber-title {
+    width: 100px;
+  }
+  .phoneNumber-title-value {
+    float: left;
+    color: $color;
+  }
+}
+
+.system {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 8px;
+  padding-top: 8px;
+
+  .system-title {
+    width: 100px;
+  }
+  .system-title-value {
+    float: left;
+    color: $color;
+  }
 }

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import './ViewUserDetail.scss'
-
 import {Icon} from 'antd'
+import{connect} from 'react-redux'
+import {addUser,deleteUser,EditUser} from '../redux/actions/userAction'
 
 interface IProps {
     name?: string;
@@ -9,17 +10,30 @@ interface IProps {
     key?:any;
     link?:string;
     user:any;
-
+    index:number;
+    deleteUser:any;
 }
 
-export class UserDetail extends React.Component<IProps, {}>{
+interface IState {
+    data: any
+}
 
-
+class UserDetail extends React.Component<IProps, IState>{
+    state={
+        data: null
+    }
+    componentWillReceiveProps(){
+        this.setState({
+           data:this.props 
+        })
+    }
 render(){
     console.log("props--->",this.props)
+    console.log("state==> " , this.state.data)
     return(
        <div>
           <div>
+          <Icon type="delete" onClick={()=>this.props.deleteUser(this.props.index) }/> 
            <p className="user-name">{this.props.user.name}{this.props.user.name}</p> 
            <p className="email">{this.props.user.email}</p>  
           </div>
@@ -63,11 +77,10 @@ render(){
         <div className="department-title">Department:</div>
         <div className="department-title-value">{this.props.user.department}</div>
          </div>
-         <div className="client">
-        <div className="client-title">PhoneNumber:</div>
-        <div className="client">{this.props.user.phoneNumber}</div>
+         <div className="phoneNumber">
+        <div className="phoneNumber-title">PhoneNumber:</div>
+        <div className="phoneNumber-title-value">{this.props.user.phoneNumber}</div>
          </div>
-
          </div> 
          <hr/>
          <div>
@@ -76,18 +89,18 @@ render(){
          </span>
          <span>Language&Religion</span>
          <p>Describes additional contact Information for user Account.The PhoneNumber is used optionally and exculsively for push notification </p>
-         <p>
-        <span>Language:</span>
-        <span>{this.props.user.Language}</span>
-         </p>
-         <p>
-        <span>TimeZone:</span>
-        <span>{this.props.user.TimeZone}</span>
-         </p>
-         <p>
-        <span>UnitSystem:</span>
-        <span>{this.props.user.UnitSystem}</span>
-         </p>
+         <div className="system">
+        <div className="system-title">Language:</div>
+        <div className="system-title-value">{this.props.user.Language}</div>
+         </div>
+         <div className="system">
+        <div className="system-title">TimeZone:</div>
+        <div className="system-title-value">{this.props.user.TimeZone}</div>
+         </div>
+         <div className="system">
+        <div className="system-title">UnitSystem:</div>
+        <div className="system-title-value">{this.props.user.UnitSystem}</div>
+         </div>
 
          </div> 
         </div>
@@ -96,4 +109,11 @@ render(){
 }
 
 }
-export default UserDetail;
+
+function mapDispatchToProps(dispatch){
+    return{
+        deleteUser:index=>dispatch(deleteUser(index))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(UserDetail);
