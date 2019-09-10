@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import Routes from "./routes/routes";
 import Login from '../src/components/login/login';
 import ConfigureStore from './redux/configureStore/configureStore';
 
@@ -9,7 +10,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-       <Login />
+       <Routes />
       </header>
     
     </div>
