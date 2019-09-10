@@ -2,17 +2,16 @@ import { Table, Avatar, Row, Col, Icon, Button, Pagination } from "antd";
 import * as React from "react";
 import UserDetail from "../ViewUserDetail/UserDetail";
 import { Translation } from "react-i18next";
-import UserList from '../ViewUserDetail/UserList.json';
+import UserList from "../ViewUserDetail/UserList.json";
 import { connect } from "react-redux";
-import {addUser,deleteUser,EditUser} from '../redux/actions/userAction'
+import { addUser, deleteUser, EditUser } from "../redux/actions/userAction";
 
 import "./subsidebar.scss";
 interface IState {
-  userDetail: any;
-  index:number;
-  data: any;
+  userDetail?: any;
+  index: number;
 }
-interface IProps{
+interface IProps {
   dataSource: any;
 }
 
@@ -69,60 +68,80 @@ const columns = [
 ];
 
 export class SubSideBar extends React.Component<IProps, IState> {
+  state = {
+    userDetail: "",
+    index: 0
+  };
   public componentDidMount(): void {
-   this.props.dataSource.map((item, index) => {
+    this.props.dataSource.map((item, index) => {
       if (index === 0) {
         this.setState({
           userDetail: item,
-          index:index
+          index: index
         });
       }
     });
   }
 
-  componentWillReceiveProps() {
-    this.setState({
-      data: this.props
-    })
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    if (nextProps.dataSource.length > 0) {
+      nextProps.dataSource.map((item, index) => {
+        if (index === 0) {
+          this.setState({
+            userDetail: item,
+            index: index
+          });
+        }
+      });
+    } else {
+      this.setState({
+        userDetail: "",
+        index: 0
+      });
+    }
   }
 
   private handleUser = value => {
     this.props.dataSource.map((item, index) => {
       if (value === index) {
         this.setState({
-          userDetail: item
+          userDetail: item,
+          index: index
         });
       }
     });
   };
 
   render() {
-    console.log("thiside---",this.props)
+    console.log("thiside---", this.props);
     return (
       <div>
         <Row>
-          <Col lg={8} xs={12} sm={12}>
+          <Col lg={8} xs={24} sm={24}>
             <button></button>
             {/* <Icon type="plus-circle" onClick={}/> */}
             <Table
               dataSource={this.props.dataSource}
               // size="small"
-              
+
               columns={columns}
-              pagination={{hideOnSinglePage:true}}
+              pagination={{ hideOnSinglePage: true }}
               onRow={(record, rowIndex) => {
                 return {
                   onClick: event => {
                     this.handleUser(rowIndex);
                   }
                 };
-                
               }}
             />
           </Col>
-          <Col lg={16} xs={12} sm={12}>
-            {this.state !== null ? (
-              <UserDetail user={this.state.userDetail} index={this.state.index}/>
+          <Col lg={16} xs={24} sm={24}>
+            {this.state.userDetail !== "" ? (
+              <UserDetail
+                user={this.state.userDetail}
+                index={this.state.index}
+              />
             ) : (
               ""
             )}
@@ -134,6 +153,6 @@ export class SubSideBar extends React.Component<IProps, IState> {
 }
 
 function mapStateToProps(state: any) {
-  return { dataSource : state.stateData.dataSource }
+  return { dataSource: state.stateData.dataSource };
 }
-  export default connect(mapStateToProps)(SubSideBar);
+export default connect(mapStateToProps)(SubSideBar);
