@@ -3,6 +3,7 @@ import './ViewUserDetail.scss'
 import {Icon} from 'antd'
 import{connect} from 'react-redux'
 import {addUser,deleteUser,EditUser} from '../redux/actions/userAction'
+import EditModal from '../../src/components/EditModal'
 
 interface IProps {
     name?: string;
@@ -12,19 +13,30 @@ interface IProps {
     user:any;
     index:number;
     deleteUser:any;
+    userEditDetail:any;
+    editindex:number;
+    EditUser:any;
 }
 
 interface IState {
-    data: any
+    data: any;
+    visible:boolean;
 }
 
 class UserDetail extends React.Component<IProps, IState>{
     state={
-        data: null
+        data: null,
+        visible:false,
     }
     componentWillReceiveProps(){
         this.setState({
            data:this.props 
+        })
+    }
+
+    handleModal=()=>{
+        this.setState({
+          visible:true  
         })
     }
 render(){
@@ -33,6 +45,9 @@ render(){
     return(
        <div>
           <div>
+         
+          <EditModal  userEditDetail={this.props.user} editindex={this.props.index}/>
+
           <Icon type="delete" onClick={()=>this.props.deleteUser(this.props.index) }/> 
            <p className="user-name">{this.props.user.name}{this.props.user.name}</p> 
            <p className="email">{this.props.user.email}</p>  

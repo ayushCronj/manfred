@@ -8,10 +8,12 @@
  });
 
  export const addUser=()=>({
-    type:ActionTypes.ADD_USER 
+    type:ActionTypes.ADD_USER ,
 
  })
 
- export const EditUser=()=>({
-     type:ActionTypes.EDIT_USER
+ export const EditUser=(values,editindex)=>({
+     type:ActionTypes.EDIT_USER,
+     payload:values,
+     editindex:editindex
  })

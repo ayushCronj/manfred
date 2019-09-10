@@ -44,10 +44,6 @@ interface IState {
     switch (type) {
       case 'DELETE_USER':
       
-        // return {
-        // ...state,
-      
-        // };
         {const newlist = [...state.dataSource];
           newlist.splice(action.payload,1);
           return{
@@ -55,7 +51,23 @@ interface IState {
           dataSource: newlist
           }
         }
-    
+        case 'EDIT_USER':
+            {const newlistUser = [...state.dataSource];
+              console.log("cation-->",action)
+     
+              newlistUser.forEach((items, i) => {
+                if (i === action.editindex) {
+                  newlistUser[i] = action.payload
+                  
+                }
+              })
+                console.log("newlistUser---->",newlistUser)
+              return{
+                ...state,
+                dataSource: newlistUser
+                }
+              }
+
      default:
     return state;
     
