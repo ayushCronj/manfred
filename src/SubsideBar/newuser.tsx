@@ -1,5 +1,7 @@
 import * as React from "react";
 import { Redirect } from "react-router-dom";
+import{connect} from 'react-redux'
+import {createUser} from '../redux/actions/userAction'
 import "./subsidebar.scss";
 import {
   Formik,
@@ -15,6 +17,10 @@ interface IState {
   email: string;
   password: string;
 }
+
+interface IProps{
+  createUser:any
+}
 function validateEmail(value: string) {
   let error;
   if (!value) {
@@ -25,7 +31,7 @@ function validateEmail(value: string) {
   return error;
 }
 
-class NewUser extends React.Component<{}, IState> {
+class NewUser extends React.Component<IProps, IState> {
   state = {
     email: "",
     password: ""
@@ -46,15 +52,14 @@ class NewUser extends React.Component<{}, IState> {
             }}
             onSubmit={(values: IState, actions: FormikActions<IState>) => {
               actions.setSubmitting(false);
-               //this.props.editUser(values) 
-              
+              this.props.createUser(values) 
               console.log(values);
             }}
             render={(formikBag: FormikProps<IState>) => (
               <Form className="user-form">
                 <h3 className="heading">Create New User</h3>
                 <Field
-                  name="firstname"
+                  name="name"
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
@@ -70,7 +75,7 @@ class NewUser extends React.Component<{}, IState> {
                   )}
                 />
                 <Field
-                  name="lastname"
+                  name="surname"
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
@@ -104,7 +109,7 @@ class NewUser extends React.Component<{}, IState> {
                         className="field"
                         {...field}
                         placeholder="Client"
-                        value="client"
+          
                       />
                     </div>
                   )}
@@ -123,7 +128,7 @@ class NewUser extends React.Component<{}, IState> {
                   )}
                 />
                  <Field
-                  name="language"
+                  name="Language"
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
@@ -136,20 +141,20 @@ class NewUser extends React.Component<{}, IState> {
                   )}
                 />
                  <Field
-                  name="password"
+                  name="TimeZone"
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
                         type="text"
                         className="field"
                         {...field}
-                        placeholder="UTC"
+                        placeholder="TimeZone"
                       />
                     </div>
                   )}
                 />
                  <Field
-                  name="unit"
+                  name="UnitSystem"
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
@@ -157,6 +162,19 @@ class NewUser extends React.Component<{}, IState> {
                         className="field"
                         {...field}
                         placeholder="Unit System"
+                      />
+                    </div>
+                  )}
+                />
+                  <Field
+                  name="phoneNumber"
+                  render={({ field, form }: FieldProps<IState>) => (
+                    <div>
+                      <input
+                        type="text"
+                        className="field"
+                        {...field}
+                        placeholder="Phone Number"
                       />
                     </div>
                   )}
@@ -173,10 +191,11 @@ class NewUser extends React.Component<{}, IState> {
   }
 }
 
-// function mapDispatchToProps(dispatch){
-//     return{
-//         deleteUser:values=>dispatch(createUser(values))
-//     }
-// }
+function mapDispatchToProps(dispatch){
+    return{
+        createUser:values=>dispatch(createUser(values))
+    }
+}
 
-export default NewUser;
+export default connect(null,mapDispatchToProps)(NewUser);
+

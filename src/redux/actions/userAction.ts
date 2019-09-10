@@ -17,3 +17,9 @@
      payload:values,
      editindex:editindex
  })
+
+ export const createUser=(user)=>({
+    type:ActionTypes.CREATE_USER,
+    payload:user
+})
+

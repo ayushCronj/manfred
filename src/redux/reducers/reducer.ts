@@ -1,7 +1,6 @@
 
 interface IState {
-  dataSource:any
-    
+  dataSource:any  
   }
   
   const initialState: IState = {
@@ -43,7 +42,6 @@ interface IState {
   
     switch (type) {
       case 'DELETE_USER':
-      
         {const newlist = [...state.dataSource];
           newlist.splice(action.payload,1);
           return{
@@ -67,10 +65,11 @@ interface IState {
                 dataSource: newlistUser
                 }
               }
+        case 'CREATE_USER':
+            return {...state,dataSource:[action.payload,...state.dataSource]}
+
 
      default:
     return state;
-    
-
   }
 }
