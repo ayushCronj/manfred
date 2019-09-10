@@ -13,6 +13,51 @@
   background-color: rgb(245, 245, 255);
 }
 
+@media (max-width:320px){
+  .field{
+    width: 170px !important
+  }
+  .Usercontainer{
+    margin-left: -36px !important
+  }
+  .heading {
+    font-size: 24px !important;
+  }
+  .submit {
+    margin-left: 40px !important;
+  }
+}
+
+@media (max-width:375px) and (min-width:321px){
+  .field{
+    width: 259px !important
+  }
+  .Usercontainer{
+    margin-left: -36px !important
+  }
+  .heading {
+    font-size: 24px !important;
+  }
+  .submit {
+    margin-left: 78px !important;
+  }
+}
+
+@media (max-width:425px) and (min-width:376px){
+  .field{
+    width: 259px !important
+  }
+  .Usercontainer{
+    margin-left: -4px !important
+  }
+  .heading {
+    font-size: 29px !important;
+  }
+  .submit {
+    margin-left: 78px !important;
+  }
+}
+
 .heading {
   font-size: 37px;
   margin-left: 17px;

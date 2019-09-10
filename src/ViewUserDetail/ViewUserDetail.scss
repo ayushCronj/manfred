@@ -7,7 +7,7 @@ $color: black;
 .profile-detail {
   display: flex;
   flex-direction: row;
-  margin-left: 20px;
+}
 
   .profile-img {
     border: 1px solid black;
@@ -31,7 +31,7 @@ $color: black;
       }
     }
   }
-}
+
 .user-name {
   font-size: "25px";
   margin-left: 10px;

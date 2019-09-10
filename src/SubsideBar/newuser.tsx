@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Redirect } from "react-router-dom";
-import{connect} from 'react-redux'
-import {createUser} from '../redux/actions/userAction'
+import { connect } from "react-redux";
+import { createUser } from "../redux/actions/userAction";
 import "./subsidebar.scss";
 import {
   Formik,
@@ -14,13 +14,19 @@ import {
 import * as yup from "yup";
 
 interface IState {
+  name: string;
+  surname: string;
+  client: string;
   email: string;
-  password: string;
+  department: string;
+  TimeZone: string;
+  phoneNumber: string;
 }
 
-interface IProps{
-  createUser:any
+interface IProps {
+  createUser: any;
 }
+
 function validateEmail(value: string) {
   let error;
   if (!value) {
@@ -31,29 +37,47 @@ function validateEmail(value: string) {
   return error;
 }
 
+function validatePhone(value: string) {
+  let error;
+  if (!value) {
+    error = "Required";
+    console.log(value)
+    console.log(value.length)
+  } else if (value.length! == 10) {
+    console.log("here")
+    error = "Phone Number must be of 10 digit";
+  }
+  return error;
+}
+
 class NewUser extends React.Component<IProps, IState> {
   state = {
+    name: "",
+    surname: "",
+    client: "",
     email: "",
-    password: ""
+    department: "",
+    TimeZone: "",
+    phoneNumber: ""
   };
 
   public render(): React.ReactNode {
     return (
-    <div className="mainUser">
+      <div className="mainUser">
         <div className="Usercontainer">
           <Formik
             initialValues={{
+              name: "",
+              surname: "",
+              client: "",
               email: "",
-              password: "",
-              rememberMe: "",
-              isloggedIn: false,
-              login: false,
-              redirect: false
+              department: "",
+              TimeZone: "",
+              phoneNumber: ""
             }}
             onSubmit={(values: IState, actions: FormikActions<IState>) => {
               actions.setSubmitting(false);
-              this.props.createUser(values) 
-              console.log(values);
+              this.props.createUser(values);
             }}
             render={(formikBag: FormikProps<IState>) => (
               <Form className="user-form">
@@ -68,9 +92,6 @@ class NewUser extends React.Component<IProps, IState> {
                         {...field}
                         placeholder="First Name"
                       />
-                      {form.touched.email &&
-                        form.errors.email &&
-                        form.errors.email}
                     </div>
                   )}
                 />
@@ -89,6 +110,7 @@ class NewUser extends React.Component<IProps, IState> {
                 />
                 <Field
                   name="email"
+                  validate={validateEmail}
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
@@ -97,6 +119,9 @@ class NewUser extends React.Component<IProps, IState> {
                         {...field}
                         placeholder="Email"
                       />
+                      {form.touched.email &&
+                        form.errors.email &&
+                        form.errors.email}
                     </div>
                   )}
                 />
@@ -113,7 +138,7 @@ class NewUser extends React.Component<IProps, IState> {
                     </div>
                   )}
                 />
-                 <Field
+                <Field
                   name="department"
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
@@ -126,7 +151,7 @@ class NewUser extends React.Component<IProps, IState> {
                     </div>
                   )}
                 />
-                 <Field
+                <Field
                   name="Language"
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
@@ -139,7 +164,7 @@ class NewUser extends React.Component<IProps, IState> {
                     </div>
                   )}
                 />
-                 <Field
+                <Field
                   name="TimeZone"
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
@@ -152,7 +177,7 @@ class NewUser extends React.Component<IProps, IState> {
                     </div>
                   )}
                 />
-                 <Field
+                <Field
                   name="UnitSystem"
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
@@ -165,8 +190,9 @@ class NewUser extends React.Component<IProps, IState> {
                     </div>
                   )}
                 />
-                  <Field
+                <Field
                   name="phoneNumber"
+                  validate={validatePhone}
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
@@ -175,6 +201,9 @@ class NewUser extends React.Component<IProps, IState> {
                         {...field}
                         placeholder="Phone Number"
                       />
+                      {form.touched.phoneNumber &&
+                        form.errors.phoneNumber &&
+                        form.errors.phoneNumber}
                     </div>
                   )}
                 />
@@ -185,16 +214,18 @@ class NewUser extends React.Component<IProps, IState> {
             )}
           />
         </div>
-     </div>
+      </div>
     );
   }
 }
 
-function mapDispatchToProps(dispatch){
-    return{
-        createUser:values=>dispatch(createUser(values))
-    }
+function mapDispatchToProps(dispatch) {
+  return {
+    createUser: values => dispatch(createUser(values))
+  };
 }
 
-export default connect(null,mapDispatchToProps)(NewUser);
-
+export default connect(
+  null,
+  mapDispatchToProps
+)(NewUser);

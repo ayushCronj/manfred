@@ -28,32 +28,19 @@ class UserDetail extends React.Component<IProps, IState>{
         })
     }
 render(){
-    console.log("props--->",this.props)
-    console.log("state==> " , this.state.data)
     return(
        <div>
           <div>
           <Icon type="delete" onClick={()=>this.props.deleteUser(this.props.index) }/> 
-           <p className="user-name">{this.props.user.name}{this.props.user.name}</p> 
+           <p className="user-name">{this.props.user.name}{" "+this.props.user.surname}</p> 
            <p className="email">{this.props.user.email}</p>  
           </div>
           <hr/>
           <div className="profile-detail">
-          <div className="profile-img">
-              <img src={this.props.user.link}/>
-              </div> 
               <div className="user-detail">
                   <div className='detail'>
-                  <div className="title">Title</div>  
-                  <div className="title-value">{this.props.user.title}</div>   
-                  </div>
-                  <div className='detail'>
                   <div className="title">Name</div>  
-                  <div className="title-value">{this.props.user.name}</div>   
-                  </div>
-                  <div className='detail'>
-                  <div className="title">SurName</div>  
-                  <div className="title-value">{this.props.user.surname}</div>   
+                  <div className="title-value">{this.props.user.name+" "+this.props.user.surname}</div>   
                   </div>
                   <div className='detail'>
                   <div className="title">Email</div>  
@@ -68,7 +55,6 @@ render(){
          <Icon type="contacts" />  
          </span>
          <span>Company&Contact</span>
-         <p>Describes additional contact Information for user Account.The PhoneNumber is used optionally and exculsively for push notification </p>
          <div className="client">
         <div className="client-title">Client:</div>
         <div className="client-title-value">{this.props.user.client}</div>
@@ -88,7 +74,6 @@ render(){
          <Icon type="contacts" />  
          </span>
          <span>Language&Religion</span>
-         <p>Describes additional contact Information for user Account.The PhoneNumber is used optionally and exculsively for push notification </p>
          <div className="system">
         <div className="system-title">Language:</div>
         <div className="system-title-value">{this.props.user.Language}</div>

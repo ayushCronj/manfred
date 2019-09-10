@@ -20,12 +20,12 @@ class layout extends React.Component<{}, Istate> {
     language: "Eng"
   };
 
-  componentDidMount() {
-    // if (localStorage.getItem('isLoggedIn') !== "true") {
-    //     this.setState({
-    //         redirect: true
-    //     })
-    // }
+  public componentDidMount(): void {
+    if(localStorage.getItem('user') === null){
+      this.setState({
+        redirect: true
+      });
+    }
   }
 
   onCollapse = collapsed => {

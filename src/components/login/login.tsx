@@ -69,7 +69,6 @@ class Login extends React.Component<{}, IState> {
               redirect: false
             }}
             onSubmit={(values: IState, actions: FormikActions<IState>) => {
-              console.log({ values, actions });
               let username = localStorage.getItem("admin");
               let password = localStorage.getItem("adminpass");
               if (config.user.email ===values.email && config.user.password === values.password) {
