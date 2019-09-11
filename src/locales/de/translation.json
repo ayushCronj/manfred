@@ -19,5 +19,7 @@
   "addnewuser": "Neuen Benutzer hinzufügen",
   "createnewuser": "Neuen Benutzer anlegen",
   "contactinfo": "Kontaktinformation",
-  "submit": "einreichen"
+  "submit": "einreichen",
+  "edituser": "Benutzer bearbeiten",
+  "firstname" : "Vorname"
 }

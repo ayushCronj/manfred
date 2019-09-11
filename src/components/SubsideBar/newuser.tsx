@@ -1,6 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { createUser } from "../../redux/actions/userAction";
+import languages from '../../utils/language.json'
+import TimeZone from '../../utils/timezone.json'
+import units from '../../utils/unit.json'
+import { validateEmail , validatePhone} from '../../utils/validation'
 import "./subsidebar.scss";
 import { Translation } from "react-i18next";
 import {
@@ -24,27 +28,7 @@ interface IState {
 
 interface IProps {
   createUser: any;
-  HandleSubmit: any;
-}
-
-function validateEmail(value: string) {
-  let error;
-  if (!value) {
-    error = "Required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    error = "Invalid email address";
-  }
-  return error;
-}
-
-function validatePhone(value: string) {
-  let error;
-  if (!value) {
-    error = "Required";
-  } else if (value.length !== 10) {
-    error = "Phone Number must be of 10 digit";
-  }
-  return error;
+  HandleSubmit:any;
 }
 
 class NewUser extends React.Component<IProps, IState> {
@@ -189,9 +173,8 @@ class NewUser extends React.Component<IProps, IState> {
                   className="select"
                   placeholder="Language"
                 >
-                  <option value="English">English</option>
-                  <option value="German">German</option>
-                  <option value="Russian">Russian</option>
+                 <option value="">Select Language</option>
+                 {languages.map(language => <option value={language.name}>{language.name}</option>)}
                 </Field>
                 <Field
                   name="TimeZone"
@@ -199,21 +182,20 @@ class NewUser extends React.Component<IProps, IState> {
                   className="select"
                   placeholder="Language"
                 >
-                  <option value="English">UTC</option>
+                   <option value="">Select Timezone</option>
+                   {TimeZone.map(timeZone => <option value={timeZone.abbr}>{timeZone.abbr}</option>)}         
                 </Field>
                 <Field
                   name="UnitSystem"
-                  render={({ field, form }: FieldProps<IState>) => (
-                    <div>
-                      <input
-                        type="text"
-                        className="field"
-                        {...field}
-                        placeholder="Unit System"
-                      />
-                    </div>
-                  )}
-                />
+                  component="select"
+                  className="select"
+                  placeholder="Unit System"
+                >
+                 <option value="">Select Unit</option>
+                 {units.map(unit => <option value={unit.unit}>{unit.unit}</option>)}
+                </Field>
+                <br></br>
+                <br></br>
                 <button type="submit" className="submit">
                   <Translation>{t => t("submit")}</Translation>
                 </button>

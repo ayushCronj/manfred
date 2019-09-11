@@ -72,13 +72,10 @@ class UserDetail extends React.Component<IProps, {}> {
         <div>
           <span className="spanItem">
             <Icon type="contacts" />
-            {/* </span>
-          <span> */}{" "}
             <Translation>{t => t("company")}</Translation>{" "}
           </span>
           <p>
             {" "}
-            {/* <Translation>{t => t("content")}</Translation> */}
           </p>
           <div className="client">
             <div className="client-title">
@@ -107,13 +104,10 @@ class UserDetail extends React.Component<IProps, {}> {
         <div>
           <span className="spanItem">
             <Icon type="info" />
-            {/* </span>
-          <span> */}{" "}
             <Translation>{t => t("language&religion")}</Translation>{" "}
           </span>
           <p>
             {" "}
-            {/* <Translation>{t => t("content")}</Translation>{" "} */}
           </p>
           <div className="system">
             <div className="system-title">

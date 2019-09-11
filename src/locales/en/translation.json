@@ -8,7 +8,7 @@
   "phone_number": "Phone Number",
   "title1": "Tite",
   "name": "Name",
-  "surname": "SurName",
+  "surname": "Last Name",
   "language": "language",
   "email": "Email",
   "timezone": "Time Zone",
@@ -17,7 +17,9 @@
   "company": "Company & Contact",
   "language&religion": "Language & Religion",
   "addnewuser": "Add New User",
-  "createnewuser" : "Create New User",
+  "createnewuser": "Create New User",
   "contactinfo": "Contact Information",
-  "submit": "Submit"
+  "submit": "Submit",
+  "edituser": "Edit User",
+  "firstname" :"First Name"
 }

@@ -19,7 +19,7 @@ interface IProps {
 
 const columns = [
   {
-    title: "Profile Pic",
+    title:   <Translation>{t => t("profile_pic")}</Translation>,
     key: "avatar",
     render: (link) => <Avatar src="/avatar.png" />
   },
@@ -134,7 +134,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
           </Col>
           <Col lg={16} xs={24} sm={24} >
             {this.state.showUser === true ? (
-              this.state.userDetail !== null ? (
+              this.state.userDetail ? (
                 <div style={{ border: "1px solid black", padding: "24px" }}>
                   <UserDetail
                     user={this.state.userDetail}
