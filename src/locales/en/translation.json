@@ -2,5 +2,18 @@
   "title": "Welcome to react",
   "show_users": "Show Users",
   "logout": "Logout",
-  "profile_pic" : "Profile Pic"
+  "profile_pic": "Profile Pic",
+  "client": "Client",
+  "department": "Department",
+  "phone_number": "Phone Number",
+  "title1": "Tite",
+  "name": "Name",
+  "surname": "SurName",
+  "language": "language",
+  "email": "Email",
+  "timezone": "Time Zone",
+  "unitSystem": "Unit System",
+  "content": "Describes Additional Contact Information For User Account. The PhoneNumber is used optionally and exculsively for push notification",
+  "company": "Company & Contact",
+  "language&religion": "Language & Religion"
 }

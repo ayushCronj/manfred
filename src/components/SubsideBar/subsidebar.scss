@@ -1,0 +1,172 @@
+.userlist {
+  display: flex;
+}
+
+.mainUser {
+  background-color:rgb(235, 237, 239);
+  border: 1px solid black;
+  height:1000px
+}
+.mainUserDetail{
+  background-color:rgb(235, 237, 239);
+  border: 1px solid black;
+  height:714px
+}
+.user-form1{
+  margin-left: 95px;
+}
+
+@media (max-width:320px) and (max-width:424px){
+  .field{
+    width: 170px !important
+  }
+  .select{
+    width: 170px !important
+  }
+  .Usercontainer{
+    margin-left: -36px !important
+  }
+  .heading {
+    font-size: 22px !important;
+  }
+  .submit {
+    margin-left: 40px !important;
+  }
+  .user-form{
+    margin-left: 28px !important;
+  }
+  .mainUser {
+    background-color:rgb(235, 237, 239);
+    border: 0.5px solid rgb(235, 237, 239) !important;
+    height:1000px
+  }
+  .user-form1{
+    margin-left: 36px !important
+  }
+}
+
+@media (max-width:375px) and (min-width:321px){
+  .field{
+    width: 259px !important
+  }
+  .select{
+    width: 259px !important
+  }
+  .user-form{
+    margin-left: -29px !important;
+  }
+  .heading {
+    font-size: 24px !important;
+    margin-left: 44px !important;
+  }
+  .submit {
+    margin-left: 78px !important;
+  }
+  .mainUser {
+    border: 0.5px solid rgb(235, 237, 239) !important;
+  }
+  .user-form1{
+    margin-left: 18px !important;
+  }
+  
+}
+
+@media (max-width:425px) and (min-width:376px){
+  .field{
+    width: 259px !important
+  }
+  .select{
+    width: 259px !important
+  }
+ .user-form{
+  margin-left: -9px !important;
+ }
+  .heading {
+    font-size: 29px !important;
+    margin-left: 30px !important;
+  }
+  .submit {
+    margin-left: 78px !important;
+  }
+  .mainUser {
+    border: 0.5px solid rgb(235, 237, 239) !important;
+  }
+  .user-form1{
+    margin-left: 36px !important;
+  }
+}
+
+.userTable{
+ margin-top:20px
+}
+
+.hr{
+  width: 672px;
+  margin-top: 23px;
+  margin-left: -175px;
+}
+
+.heading {
+  font-size: 38px;
+  margin-top: 35px;
+  margin-left: 13px;
+  color: #313031;
+}
+
+.user-form {
+  margin-left:195px
+}
+
+@media(max-width:1024px) and (min-width:768px){
+  .user-form{
+    margin-left:102px
+  }
+  .hr{
+    width: 488px !important;
+    margin-top: 23px;
+    margin-left: -102px !important;
+  }
+}
+
+@media(max-width:1024) and (min-width:767px){
+  .user-form {
+    margin-left: 112px;
+}
+}
+
+.button {
+  background-color: #EBEDEF;
+  border: 2px solid #EBEDEF;
+  color: 2px black;
+  color: black;
+  font-size: 20px;
+}
+
+.field {
+  width: 271px;
+  height: 36px;
+  border: 1px solid #ebedef !important;
+  background-color: white !important;
+  border-radius: 4px;
+  margin-top: 19px;
+  margin-left: 12px;
+  padding: 13px;
+}
+
+.select {
+  width: 271px;
+  height: 36px;
+  border: 1px solid #ebedef !important;
+  background-color: white !important;
+  border-radius: 4px;
+  margin-top: 19px;
+  margin-left: 12px;
+}
+
+.formItem{
+  color: #85C1E9;
+  margin-left: 37px;
+  margin-top: 32px;
+  font-size: 22px;
+}
+

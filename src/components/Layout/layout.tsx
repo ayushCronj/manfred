@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { Layout, Icon, Menu, Avatar, Button, Dropdown } from "antd";
 import { Translation } from "react-i18next";
 import i18n from "../../i18n";
-import SubSideBar from "../../SubsideBar/subSideBar";
+import SubSideBar from "../SubsideBar/subSideBar";
 const { Header, Sider, Content } = Layout;
 
 interface Istate {
@@ -20,12 +20,12 @@ class layout extends React.Component<{}, Istate> {
     language: "Eng"
   };
 
-  componentDidMount() {
-    // if (localStorage.getItem('isLoggedIn') !== "true") {
-    //     this.setState({
-    //         redirect: true
-    //     })
-    // }
+  public componentDidMount(): void {
+    if (localStorage.getItem("user") === null) {
+      this.setState({
+        redirect: true
+      });
+    }
   }
 
   onCollapse = collapsed => {
@@ -120,7 +120,7 @@ class layout extends React.Component<{}, Istate> {
             style={{
               margin: "24px 16px",
               padding: 24,
-              background: "#fff",
+              background: "#EBEDEF",
               minHeight: 280
             }}
           >

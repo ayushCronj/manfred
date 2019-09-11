@@ -1,7 +1,10 @@
 import * as React from "react";
-import { Redirect } from "react-router-dom";
-import{connect} from 'react-redux'
-import {createUser} from '../redux/actions/userAction'
+import { connect } from "react-redux";
+import { createUser } from "../../redux/actions/userAction";
+import languages from '../../utils/language.json'
+import TimeZone from '../../utils/timezone.json'
+import units from '../../utils/unit.json'
+import { validateEmail , validatePhone} from '../../utils/validation'
 import "./subsidebar.scss";
 import {
   Formik,
@@ -11,53 +14,62 @@ import {
   Field,
   FieldProps
 } from "formik";
-import * as yup from "yup";
+import Item from "antd/lib/list/Item";
 
 interface IState {
+  name: string;
+  surname: string;
+  client: string;
   email: string;
-  password: string;
+  department: string;
+  TimeZone: string;
+  phoneNumber: string;
 }
 
-interface IProps{
-  createUser:any
-}
-function validateEmail(value: string) {
-  let error;
-  if (!value) {
-    error = "Required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    error = "Invalid email address";
-  }
-  return error;
+interface IProps {
+  createUser: any;
+  HandleSubmit:any;
 }
 
 class NewUser extends React.Component<IProps, IState> {
   state = {
+    name: "",
+    surname: "",
+    client: "",
     email: "",
-    password: ""
+    department: "",
+    TimeZone: "",
+    phoneNumber: ""
   };
+
+  // handleCloseModal=()=>{
+  //   this.props.handleCancel()
+  // }
 
   public render(): React.ReactNode {
     return (
-    <div className="mainUser">
+      <div className="mainUser">
         <div className="Usercontainer">
           <Formik
+            enableReinitialize={true}
             initialValues={{
+              name: "",
+              surname: "",
+              client: "",
               email: "",
-              password: "",
-              rememberMe: "",
-              isloggedIn: false,
-              login: false,
-              redirect: false
+              department: "",
+              TimeZone: "",
+              phoneNumber: ""
             }}
             onSubmit={(values: IState, actions: FormikActions<IState>) => {
               actions.setSubmitting(false);
-              this.props.createUser(values) 
-              console.log(values);
+              this.props.HandleSubmit()
+              this.props.createUser(values);
             }}
             render={(formikBag: FormikProps<IState>) => (
               <Form className="user-form">
                 <h3 className="heading">Create New User</h3>
+                <h3 className="formItem">Contact Information</h3>
                 <Field
                   name="name"
                   render={({ field, form }: FieldProps<IState>) => (
@@ -68,9 +80,6 @@ class NewUser extends React.Component<IProps, IState> {
                         {...field}
                         placeholder="First Name"
                       />
-                      {form.touched.email &&
-                        form.errors.email &&
-                        form.errors.email}
                     </div>
                   )}
                 />
@@ -89,6 +98,7 @@ class NewUser extends React.Component<IProps, IState> {
                 />
                 <Field
                   name="email"
+                  validate={validateEmail}
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
@@ -97,9 +107,31 @@ class NewUser extends React.Component<IProps, IState> {
                         {...field}
                         placeholder="Email"
                       />
+                      {form.touched.email &&
+                        form.errors.email &&
+                        form.errors.email}
                     </div>
                   )}
                 />
+                <Field
+                  name="phoneNumber"
+                  validate={validatePhone}
+                  render={({ field, form }: FieldProps<IState>) => (
+                    <div>
+                      <input
+                        type="text"
+                        className="field"
+                        {...field}
+                        placeholder="Phone Number"
+                      />
+                      {form.touched.phoneNumber &&
+                        form.errors.phoneNumber &&
+                        form.errors.phoneNumber}
+                    </div>
+                  )}
+                />
+                <hr className="hr" />
+                <h3 className="formItem">Company & Contact</h3>
                 <Field
                   name="client"
                   render={({ field, form }: FieldProps<IState>) => (
@@ -109,12 +141,11 @@ class NewUser extends React.Component<IProps, IState> {
                         className="field"
                         {...field}
                         placeholder="Client"
-          
                       />
                     </div>
                   )}
                 />
-                 <Field
+                <Field
                   name="department"
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
@@ -127,58 +158,37 @@ class NewUser extends React.Component<IProps, IState> {
                     </div>
                   )}
                 />
-                 <Field
+                <hr className="hr" />
+                <h3 className="formItem"> Language & Religion</h3>
+                <Field
                   name="Language"
-                  render={({ field, form }: FieldProps<IState>) => (
-                    <div>
-                      <input
-                        type="text"
-                        className="field"
-                        {...field}
-                        placeholder="Language"
-                      />
-                    </div>
-                  )}
-                />
-                 <Field
+                  component="select"
+                  className="select"
+                  placeholder="Language"
+                >
+                 <option value="">Select Language</option>
+                 {languages.map(language => <option value={language.name}>{language.name}</option>)}
+                </Field>
+                <Field
                   name="TimeZone"
-                  render={({ field, form }: FieldProps<IState>) => (
-                    <div>
-                      <input
-                        type="text"
-                        className="field"
-                        {...field}
-                        placeholder="TimeZone"
-                      />
-                    </div>
-                  )}
-                />
-                 <Field
+                  component="select"
+                  className="select"
+                  placeholder="Language"
+                >
+                   <option value="">Select Timezone</option>
+                   {TimeZone.map(timeZone => <option value={timeZone.abbr}>{timeZone.abbr}</option>)}         
+                </Field>
+                <Field
                   name="UnitSystem"
-                  render={({ field, form }: FieldProps<IState>) => (
-                    <div>
-                      <input
-                        type="text"
-                        className="field"
-                        {...field}
-                        placeholder="Unit System"
-                      />
-                    </div>
-                  )}
-                />
-                  <Field
-                  name="phoneNumber"
-                  render={({ field, form }: FieldProps<IState>) => (
-                    <div>
-                      <input
-                        type="text"
-                        className="field"
-                        {...field}
-                        placeholder="Phone Number"
-                      />
-                    </div>
-                  )}
-                />
+                  component="select"
+                  className="select"
+                  placeholder="Unit System"
+                >
+                 <option value="">Select Unit</option>
+                 {units.map(unit => <option value={unit.unit}>{unit.unit}</option>)}
+                </Field>
+                <br></br>
+                <br></br>
                 <button type="submit" className="submit">
                   Submit
                 </button>
@@ -186,16 +196,18 @@ class NewUser extends React.Component<IProps, IState> {
             )}
           />
         </div>
-     </div>
+      </div>
     );
   }
 }
 
-function mapDispatchToProps(dispatch){
-    return{
-        createUser:values=>dispatch(createUser(values))
-    }
+function mapDispatchToProps(dispatch) {
+  return {
+    createUser: values => dispatch(createUser(values))
+  };
 }
 
-export default connect(null,mapDispatchToProps)(NewUser);
-
+export default connect(
+  null,
+  mapDispatchToProps
+)(NewUser);

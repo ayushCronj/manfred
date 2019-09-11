@@ -1,40 +1,37 @@
-import React from 'react'
-import { Modal, Button ,Icon} from 'antd';
-import NewUser from  '../SubsideBar/newuser'
-import EditUserDetail from '../SubsideBar/EditUserDetail';
+import React from "react";
+import { Modal, Icon } from "antd";
+import EditUserDetail from "./SubsideBar/EditUserDetail";
 
-interface IState{
-    visible:boolean
+interface IState {
+  visible: boolean;
 }
- interface IProps{
-     userEditDetail:any,
-     editindex:number,
-     EditUser?:any
- }
+interface IProps {
+  userEditDetail: any;
+  editindex: number;
+  EditUser?: any;
+}
 
- class EditModal extends React.Component<IProps ,IState> {
-   state={
-     visible:false
-   }
+class EditModal extends React.Component<IProps, IState> {
+  state = {
+    visible: false
+  };
 
-   showModal = () => {
+  showModal = () => {
     this.setState({
-      visible: true,
+      visible: true
     });
   };
 
-
- public handleCancel = e => {
-    console.log(e);
+  handleCancel = e => {
     this.setState({
-      visible: false,
+      visible: false
     });
   };
 
-   render(){
-       return(
-           <div>
-        <Icon type="edit" onClick={this.showModal} />
+  render() {
+    return (
+      <div>
+        <Icon type="edit" style={{ float: "right", fontSize: "25px" }} onClick={this.showModal} />
         <Modal
           visible={this.state.visible}
           onCancel={this.handleCancel}
@@ -47,4 +44,4 @@ interface IState{
    }
 
 }
-export default  EditModal;
+export default EditModal;

@@ -1,6 +1,6 @@
 
 .layout_sider {
-  background:#001529;
+  background:#17202A;
   color: white;
   text-align: center;
   min-height: 100vh;
@@ -8,8 +8,8 @@
 
 .app_header {
   width: 100%;
-    // background-color: #fff !important;
-    padding: 0
+    padding: 0;
+    background-color: #17202A !important;
 }
 
 .layout_icon {
@@ -19,7 +19,6 @@
 
 .logo{
 height: 32px;
-background: rgba(255, 255, 255, 0.2);
 margin: 16px;
 }
 
@@ -33,9 +32,6 @@ margin: 16px;
     margin-right: 2%
 }
 
-// .header_avatar{
-//     margin-top: 4%
-// }
 
 .header_button{
     margin-top: 10%
