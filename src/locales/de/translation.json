@@ -15,5 +15,9 @@
   "unitSystem": "Einheitssystem",
   "content": "Beschreibt Zusätzliche Kontaktinformationen Für Benutzerkonto. Die Telefonnummer wird Optional und ausschließlich für push-Benachrichtigung verwendet",
   "company": "Unternehmen & Kontakt",
-  "language&religion": "Sprache & Religion"
+  "language&religion": "Sprache & Religion",
+  "addnewuser": "Neuen Benutzer hinzufügen",
+  "createnewuser": "Neuen Benutzer anlegen",
+  "contactinfo": "Kontaktinformation",
+  "submit": "einreichen"
 }

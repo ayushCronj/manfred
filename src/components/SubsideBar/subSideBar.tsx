@@ -1,8 +1,9 @@
-import { Table, Row, Col, Icon } from "antd";
+import { Table, Row, Col, Icon, Avatar } from "antd";
 import * as React from "react";
 import UserDetail from "../ViewUserDetail/UserDetail";
 import NewUser from "./newuser";
 import { connect } from "react-redux";
+import { Translation } from "react-i18next";
 
 import "./subsidebar.scss";
 
@@ -17,6 +18,11 @@ interface IProps {
 }
 
 const columns = [
+  {
+    title: "Profile Pic",
+    key: "avatar",
+    render: (link) => <Avatar src="/avatar.png" />
+  },
   {
     title: "Name",
     dataIndex: "name",
@@ -108,7 +114,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
         <Row>
           <Col lg={8} xs={24} sm={24}>
             <button className="button" onClick={this.handleClick}>
-              Add New User
+            <Translation>{t => t("addnewuser")}</Translation>
               <Icon type="plus" />
             </button>
             <Table

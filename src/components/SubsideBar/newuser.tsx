@@ -2,6 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { createUser } from "../../redux/actions/userAction";
 import "./subsidebar.scss";
+import { Translation } from "react-i18next";
 import {
   Formik,
   FormikActions,
@@ -23,7 +24,7 @@ interface IState {
 
 interface IProps {
   createUser: any;
-  HandleSubmit:any
+  HandleSubmit: any;
 }
 
 function validateEmail(value: string) {
@@ -73,13 +74,19 @@ class NewUser extends React.Component<IProps, IState> {
             }}
             onSubmit={(values: IState, actions: FormikActions<IState>) => {
               actions.setSubmitting(false);
-              this.props.HandleSubmit()
+              this.props.HandleSubmit();
               this.props.createUser(values);
             }}
             render={(formikBag: FormikProps<IState>) => (
               <Form className="user-form">
-                <h3 className="heading">Create New User</h3>
-                <h3 className="formItem">Contact Information</h3>
+                <h3 className="heading">
+                  {" "}
+                  <Translation>{t => t("createnewuser")}</Translation>
+                </h3>
+                <h3 className="formItem">
+                  {" "}
+                  <Translation>{t => t("contactinfo")}</Translation>
+                </h3>
                 <Field
                   name="name"
                   render={({ field, form }: FieldProps<IState>) => (
@@ -141,7 +148,10 @@ class NewUser extends React.Component<IProps, IState> {
                   )}
                 />
                 <hr className="hr" />
-                <h3 className="formItem">Company & Contact</h3>
+                <h3 className="formItem">
+                  {" "}
+                  <Translation>{t => t("company")}</Translation>
+                </h3>
                 <Field
                   name="client"
                   render={({ field, form }: FieldProps<IState>) => (
@@ -169,7 +179,10 @@ class NewUser extends React.Component<IProps, IState> {
                   )}
                 />
                 <hr className="hr" />
-                <h3 className="formItem"> Language & Religion</h3>
+                <h3 className="formItem">
+                  {" "}
+                  <Translation>{t => t("language&religion")}</Translation>
+                </h3>
                 <Field
                   name="Language"
                   component="select"
@@ -202,7 +215,7 @@ class NewUser extends React.Component<IProps, IState> {
                   )}
                 />
                 <button type="submit" className="submit">
-                  Submit
+                  <Translation>{t => t("submit")}</Translation>
                 </button>
               </Form>
             )}

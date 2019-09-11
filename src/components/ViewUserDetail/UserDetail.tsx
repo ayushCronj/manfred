@@ -129,7 +129,7 @@ class UserDetail extends React.Component<IProps, {}> {
           </div>
           <div className="system">
             <div className="system-title">
-              <Translation>{t => t("unitsystem")}</Translation>:
+              <Translation>{t => t("unitSystem")}</Translation>:
             </div>
             <div className="system-title-value">
               {this.props.user.UnitSystem}

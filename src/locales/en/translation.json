@@ -15,5 +15,9 @@
   "unitSystem": "Unit System",
   "content": "Describes Additional Contact Information For User Account. The PhoneNumber is used optionally and exculsively for push notification",
   "company": "Company & Contact",
-  "language&religion": "Language & Religion"
+  "language&religion": "Language & Religion",
+  "addnewuser": "Add New User",
+  "createnewuser" : "Create New User",
+  "contactinfo": "Contact Information",
+  "submit": "Submit"
 }

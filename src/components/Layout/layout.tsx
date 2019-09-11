@@ -5,6 +5,8 @@ import { Layout, Icon, Menu, Avatar, Button, Dropdown } from "antd";
 import { Translation } from "react-i18next";
 import i18n from "../../i18n";
 import SubSideBar from "../SubsideBar/subSideBar";
+import { useDrop } from "react-dnd";
+import { DragItem } from "./interface";
 const { Header, Sider, Content } = Layout;
 
 interface Istate {
@@ -13,7 +15,10 @@ interface Istate {
   language?: string;
 }
 
-class layout extends React.Component<{}, Istate> {
+interface IProps {
+  onDrop: (item: any) => void;
+}
+class layout extends React.Component<IProps, Istate> {
   state = {
     collapsed: false,
     redirect: false,
@@ -46,6 +51,19 @@ class layout extends React.Component<{}, Istate> {
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }
+
+    // const [{ isOver, canDrop }, drop] = useDrop({
+    //   accept: ["Colors.YELLOW, Colors.BLUE"],
+    //   drop(item: DragItem) {
+    //     onDrop(item.type);
+    //     return undefined;
+    //   },
+    //   collect: monitor => ({
+    //     isOver: monitor.isOver(),
+    //     canDrop: monitor.canDrop(),
+    //     draggingColor: monitor.getItemType() as string
+    //   })
+    // });
 
     const menu = (
       <Menu>
