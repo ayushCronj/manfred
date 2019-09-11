@@ -117,20 +117,8 @@ export class SubSideBar extends React.Component<IProps, IState> {
               <Translation>{t => t("addnewuser")}</Translation>
               <Icon type="plus" />
             </button>
-
-            {this.props.dataSource.map((item, index) => {
-              return (
-                <DragDropContainer targetKey="foo" dragData={{ id: index }}>
-                  {" "}
-                  <div onClick={() => this.handleUser(index)}>
-                    {" "}
-                    Row Details{" "}
-                  </div>
-                </DragDropContainer>
-              );
-            })}
-            <Table
-              className="userTable"
+            {/* <Table
+            className="userTable"
               dataSource={this.props.dataSource}
               scroll={{ x: 200 }}
               columns={columns}
@@ -142,7 +130,30 @@ export class SubSideBar extends React.Component<IProps, IState> {
                   }
                 };
               }}
-            />
+            /> */}
+            <div>
+              <table id="customers">
+                <tr>
+                  <th>Email</th>
+                  <th>Name</th>
+                  <th>ProfilePic</th>
+                </tr>
+                {this.props.dataSource.map((item1, index1) => {
+                  return (
+                    <DragDropContainer dragData={{ item1 }} targetKey="foo">
+                      <tr key={index1} onClick={() => this.handleUser(index1)}>
+                        <td>{item1.email}</td>
+                        <td>{item1.name}</td>
+
+                        <td>
+                          <Avatar src={item1.link} />
+                        </td>
+                      </tr>
+                    </DragDropContainer>
+                  );
+                })}
+              </table>
+            </div>
           </Col>
           <Col lg={16} xs={24} sm={24}>
             {this.state.showUser === true ? (

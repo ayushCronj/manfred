@@ -15,6 +15,7 @@ interface Istate {
   collapsed: boolean;
   redirect?: boolean;
   language?: string;
+  data?: any;
 }
 
 interface IProps {
@@ -24,7 +25,8 @@ class layout extends React.Component<IProps, Istate> {
   state = {
     collapsed: false,
     redirect: false,
-    language: "Eng"
+    language: "Eng",
+    data: []
   };
 
   public componentDidMount(): void {
@@ -40,7 +42,10 @@ class layout extends React.Component<IProps, Istate> {
   };
 
   dropped = ev => {
-    console.log(ev.dragData);
+    // console.log(ev.dragData);
+    this.setState({
+      data: [...this.state.data, ev.dragData]
+    });
   };
 
   public handlelogout = () => {
@@ -107,6 +112,7 @@ class layout extends React.Component<IProps, Istate> {
           onCollapse={this.onCollapse}
           breakpoint="lg"
         >
+          {console.log(this.state.data)}
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
