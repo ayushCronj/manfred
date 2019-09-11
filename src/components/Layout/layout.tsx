@@ -5,6 +5,8 @@ import { Layout, Icon, Menu, Avatar, Button, Dropdown } from "antd";
 import { Translation } from "react-i18next";
 import i18n from "../../i18n";
 import SubSideBar from "../SubsideBar/subSideBar";
+import { DragDropContainer, DropTarget } from "react-drag-drop-container";
+
 // import { useDrop } from "react-dnd";
 // import { DragItem } from "./interface";
 const { Header, Sider, Content } = Layout;
@@ -35,6 +37,10 @@ class layout extends React.Component<IProps, Istate> {
 
   onCollapse = collapsed => {
     this.setState({ collapsed });
+  };
+
+  dropped = ev => {
+    console.log(ev.dragData);
   };
 
   public handlelogout = () => {
@@ -108,6 +114,12 @@ class layout extends React.Component<IProps, Istate> {
               <span>
                 <Translation>{t => t("show_users")}</Translation>
               </span>
+            </Menu.Item>
+            <Menu.Item>
+              <DropTarget targetKey="foo" onHit={this.dropped}>
+                <Icon type="info" />
+                <span>Group 1</span>
+              </DropTarget>
             </Menu.Item>
           </Menu>
         </Sider>
