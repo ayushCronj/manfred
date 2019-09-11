@@ -1,7 +1,10 @@
 import * as React from "react";
 import { EditUser } from "../../redux/actions/userAction";
 import { connect } from "react-redux";
+import languages from '../../utils/language.json'
+import TimeZone from '../../utils/timezone.json'
 import "./subsidebar.scss";
+
 import {
   Formik,
   FormikActions,
@@ -26,6 +29,7 @@ interface IProps {
   userEditDetail: any;
   editindex: number;
   EditUser?: any;
+  handleCancel:any;
 }
 
 class EditUserDetail extends React.Component<IProps, IState> {
@@ -40,12 +44,20 @@ class EditUserDetail extends React.Component<IProps, IState> {
     UnitSystem: "",
     phoneNumber: ""
   };
+  handleCloseModal=()=>{
+    this.props.handleCancel()
+  }
+  onkeyDown=(keyEvent)=>{
+    if ((keyEvent.charCode || keyEvent.keyCode) === 13) { keyEvent.preventDefault(); }
+
+  }
 
   public render(): React.ReactNode {
     return (
       <div className="mainUser">
         <div className="Usercontainer1">
           <Formik
+            enableReinitialize={true}
             initialValues={{
               email: this.props.userEditDetail.email,
               surname: this.props.userEditDetail.surname,
@@ -62,8 +74,9 @@ class EditUserDetail extends React.Component<IProps, IState> {
               this.props.EditUser(values, this.props.editindex);
             }}
             render={(formikBag: FormikProps<IState>) => (
-              <Form className="user-form">
-                <h3 className="heading">Create New User</h3>
+              <Form className="user-form1" onKeyDown={this.onkeyDown}>
+                <h3 className="heading">EDIT USER</h3>
+                <h3 className="formItem">Contact Information</h3>
                 <Field
                   name="name"
                   render={({ field, form }: FieldProps<IState>) => (
@@ -106,6 +119,21 @@ class EditUserDetail extends React.Component<IProps, IState> {
                     </div>
                   )}
                 />
+                 <Field
+                  name="phoneNumber"
+                  render={({ field, form }: FieldProps<IState>) => (
+                    <div>
+                      <input
+                        type="text"
+                        className="field"
+                        {...field}
+                        placeholder="phoneNumber"
+                      />
+                    </div>
+                  )}
+                />
+               
+                 <h3 className="formItem">Company & Contact</h3>
                 <Field
                   name="client"
                   render={({ field, form }: FieldProps<IState>) => (
@@ -132,47 +160,29 @@ class EditUserDetail extends React.Component<IProps, IState> {
                     </div>
                   )}
                 />
+              
+                <h3 className="formItem"> Language & Religion</h3>
                 <Field
                   name="Language"
-                  render={({ field, form }: FieldProps<IState>) => (
-                    <div>
-                      <input
-                        type="text"
-                        className="field"
-                        {...field}
-                        placeholder="Language"
-                      />
-                    </div>
-                  )}
-                />
+                  component="select"
+                  className="select"
+                  placeholder="Language"
+                >
+                 <option value="">Select Language</option>
+                 {languages.map(language => <option value={language.name}>{language.name}</option>)}
+                </Field>
                 <Field
                   name="TimeZone"
-                  render={({ field, form }: FieldProps<IState>) => (
-                    <div>
-                      <input
-                        type="text"
-                        className="field"
-                        {...field}
-                        placeholder="UTC"
-                      />
-                    </div>
-                  )}
-                />
+                  component="select"
+                  className="select"
+                  placeholder="Language"
+                >
+                   <option value="">Select Timezone</option>
+                   {TimeZone.map(timeZone => <option value={timeZone.abbr}>{timeZone.abbr}</option>)}         
+                </Field>
 
-                <Field
-                  name="phoneNumber"
-                  render={({ field, form }: FieldProps<IState>) => (
-                    <div>
-                      <input
-                        type="text"
-                        className="field"
-                        {...field}
-                        placeholder="phoneNumber"
-                      />
-                    </div>
-                  )}
-                />
-                <button type="submit" className="submit">
+               
+                <button type="submit" className="submit"  onClick={this.handleCloseModal}>
                   Submit
                 </button>
               </Form>

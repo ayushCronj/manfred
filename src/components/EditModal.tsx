@@ -33,19 +33,15 @@ class EditModal extends React.Component<IProps, IState> {
       <div>
         <Icon type="edit" className="iconContainer" onClick={this.showModal} />
         <Modal
-          title="Basic Modal"
           visible={this.state.visible}
           onCancel={this.handleCancel}
           footer={null}
-          style={{ width: "100px" }}
         >
-          <EditUserDetail
-            userEditDetail={this.props.userEditDetail}
-            editindex={this.props.editindex}
-          />
-        </Modal>
-      </div>
-    );
-  }
+         <EditUserDetail userEditDetail={this.props.userEditDetail} editindex={this.props.editindex} handleCancel={this.handleCancel}/>
+          </Modal>
+           </div>
+       )
+   }
+
 }
 export default EditModal;

@@ -43,10 +43,6 @@ class UserDetail extends React.Component<IProps, {}> {
         <div className="profile-detail">
           <div className="user-detail">
             <div className="detail">
-              <div className="title">
-                <Translation>{t => t("title1")}</Translation>
-              </div>
-              <div className="title-value">{this.props.user.title}</div>
             </div>
             <div className="detail">
               <div className="title">

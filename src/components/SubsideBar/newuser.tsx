@@ -42,11 +42,16 @@ class NewUser extends React.Component<IProps, IState> {
     phoneNumber: ""
   };
 
+  // handleCloseModal=()=>{
+  //   this.props.handleCancel()
+  // }
+
   public render(): React.ReactNode {
     return (
       <div className="mainUser">
         <div className="Usercontainer">
           <Formik
+            enableReinitialize={true}
             initialValues={{
               name: "",
               surname: "",
