@@ -3,6 +3,7 @@ import { EditUser } from "../../redux/actions/userAction";
 import { connect } from "react-redux";
 import languages from '../../utils/language.json'
 import TimeZone from '../../utils/timezone.json'
+import units from '../../utils/unit.json'
 import { Translation } from "react-i18next";
 import "./subsidebar.scss";
 
@@ -55,7 +56,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
 
   public render(): React.ReactNode {
     return (
-      <div className="mainUser">
+      <div className="mainUserEdit">
         <div className="Usercontainer1">
           <Formik
             enableReinitialize={true}
@@ -76,8 +77,8 @@ class EditUserDetail extends React.Component<IProps, IState> {
             }}
             render={(formikBag: FormikProps<IState>) => (
               <Form className="user-form1" onKeyDown={this.onkeyDown}>
-                <h3 className="heading"><Translation>{t => t("edituser")}</Translation></h3>
-                <h3 className="formItem"><Translation>{t => t("contactinfo")}</Translation></h3>
+                <h3 className="headingEdit"><Translation>{t => t("edituser")}</Translation></h3>
+                <h3 className="editItem"><Translation>{t => t("contactinfo")}</Translation></h3>
                 <Field
                   name="name"
                   render={({ field, form }: FieldProps<IState>) => (
@@ -134,7 +135,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
                   )}
                 />
                
-                 <h3 className="formItem"><Translation>{t => t("company")}</Translation></h3>
+                 <h3 className="editItem"><Translation>{t => t("company")}</Translation></h3>
                 <Field
                   name="client"
                   render={({ field, form }: FieldProps<IState>) => (
@@ -162,7 +163,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
                   )}
                 />
               
-                <h3 className="formItem"> <Translation>{t => t("language&religion")}</Translation></h3>
+                <h3 className="editItem"> <Translation>{t => t("language&religion")}</Translation></h3>
                 <Field
                   name="Language"
                   component="select"
@@ -181,7 +182,17 @@ class EditUserDetail extends React.Component<IProps, IState> {
                    <option value="">Select Timezone</option>
                    {TimeZone.map(timeZone => <option value={timeZone.abbr}>{timeZone.abbr}</option>)}         
                 </Field>
-
+                <Field
+                  name="UnitSystem"
+                  component="select"
+                  className="select"
+                  placeholder="Unit System"
+                >
+                 <option value="">Select Unit</option>
+                 {units.map(unit => <option value={unit.unit}>{unit.unit}</option>)}
+                </Field>
+                <br></br>
+                <br></br>
                
                 <button type="submit" className="submit"  onClick={this.handleCloseModal}>
                 <Translation>{t => t("submit")}</Translation>
