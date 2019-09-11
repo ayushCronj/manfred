@@ -1,11 +1,8 @@
-import { Table, Avatar, Row, Col, Icon, Button, Pagination } from "antd";
+import { Table, Row, Col, Icon } from "antd";
 import * as React from "react";
 import UserDetail from "../ViewUserDetail/UserDetail";
 import NewUser from "./newuser";
-import { Translation } from "react-i18next";
-import UserList from "../ViewUserDetail/UserList.json";
 import { connect } from "react-redux";
-import { addUser, deleteUser, EditUser } from "../redux/actions/userAction";
 
 import "./subsidebar.scss";
 
@@ -45,6 +42,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
     showUser: false,
     index: 0
   };
+
   public componentDidMount(): void {
     this.props.dataSource.map((item, index) => {
       if (index === 0) {
@@ -58,8 +56,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+  public componentWillReceiveProps(nextProps) {
     if (nextProps.dataSource.length > 0) {
       nextProps.dataSource.map((item, index) => {
         if (index === 0) {
@@ -123,11 +120,11 @@ export class SubSideBar extends React.Component<IProps, IState> {
           <Col lg={16} xs={24} sm={24}>
             {this.state.showUser === true ? (
               this.state.userDetail !== null ? (
-                <div style={{border: "1px solid black", padding: "24px"}}>
-                <UserDetail
-                  user={this.state.userDetail}
-                  index={this.state.index}
-                />
+                <div style={{ border: "1px solid black", padding: "24px" }}>
+                  <UserDetail
+                    user={this.state.userDetail}
+                    index={this.state.index}
+                  />
                 </div>
               ) : null
             ) : this.state.newUser === true ? (
@@ -140,7 +137,8 @@ export class SubSideBar extends React.Component<IProps, IState> {
   }
 }
 
-function mapStateToProps(state: any) {
+const mapStateToProps = (state: any) => {
   return { dataSource: state.stateData.dataSource };
-}
+};
+
 export default connect(mapStateToProps)(SubSideBar);
