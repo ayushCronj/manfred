@@ -117,7 +117,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
             <Translation>{t => t("addnewuser")}</Translation>
               <Icon type="plus" />
             </button>
-            <Table
+            {/* <Table
             className="userTable"
               dataSource={this.props.dataSource}
               scroll={{ x: 200 }}
@@ -130,7 +130,24 @@ export class SubSideBar extends React.Component<IProps, IState> {
                   }
                 };
               }}
-            />
+            /> */}
+            <div>
+              <table id="customers">
+                <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>ProfilePic</th></tr>
+             {this.props.dataSource.map((item1,index1)=>{
+              return(
+                <tr key={index1} onClick={()=>this.handleUser(index1)}>
+                 <td>{item1.email}</td>
+                 <td>{item1.name}</td>
+               <td><Avatar src ={item1.link}/></td> 
+                  </tr>
+              ) 
+             })}
+             </table> 
+            </div>
           </Col>
           <Col lg={16} xs={24} sm={24} >
             {this.state.showUser === true ? (
@@ -157,3 +174,4 @@ const mapStateToProps = (state: any) => {
 };
 
 export default connect(mapStateToProps)(SubSideBar);
+

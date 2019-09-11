@@ -42,9 +42,6 @@ class NewUser extends React.Component<IProps, IState> {
     phoneNumber: ""
   };
 
-  // handleCloseModal=()=>{
-  //   this.props.handleCancel()
-  // }
 
   public render(): React.ReactNode {
     return (

@@ -16,13 +16,13 @@ class EditModal extends React.Component<IProps, IState> {
     visible: false
   };
 
-  showModal = () => {
+ private showModal = () => {
     this.setState({
       visible: true
     });
   };
 
-  handleCancel = e => {
+ public handleCancel = e => {
     this.setState({
       visible: false
     });
@@ -36,6 +36,7 @@ class EditModal extends React.Component<IProps, IState> {
           visible={this.state.visible}
           onCancel={this.handleCancel}
           footer={null}
+         
         >
          <EditUserDetail userEditDetail={this.props.userEditDetail} editindex={this.props.editindex} handleCancel={this.handleCancel}/>
           </Modal>
