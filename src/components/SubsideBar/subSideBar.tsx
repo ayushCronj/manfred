@@ -94,6 +94,14 @@ export class SubSideBar extends React.Component<IProps, IState> {
     });
   };
 
+  private HandleSubmit = value => {
+    this.setState({
+      newUser: !this.state.newUser,
+      showUser: true
+    });
+  };
+ 
+
   render() {
     return (
       <div>
@@ -101,9 +109,10 @@ export class SubSideBar extends React.Component<IProps, IState> {
           <Col lg={8} xs={24} sm={24}>
             <button className="button" onClick={this.handleClick}>
               Add New User
+              <Icon type="plus" />
             </button>
-            <Icon type="plus" />
             <Table
+            className="userTable"
               dataSource={this.props.dataSource}
               scroll={{ x: 200 }}
               columns={columns}
@@ -117,7 +126,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
               }}
             />
           </Col>
-          <Col lg={16} xs={24} sm={24}>
+          <Col lg={16} xs={24} sm={24} >
             {this.state.showUser === true ? (
               this.state.userDetail !== null ? (
                 <div style={{ border: "1px solid black", padding: "24px" }}>
@@ -128,7 +137,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
                 </div>
               ) : null
             ) : this.state.newUser === true ? (
-              <NewUser />
+              <NewUser HandleSubmit={this.HandleSubmit}/>
             ) : null}
           </Col>
         </Row>

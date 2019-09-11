@@ -33,11 +33,9 @@ class UserDetail extends React.Component<IProps, {}> {
             style={{ float: "right", fontSize: "25px" }}
             onClick={() => this.props.deleteUser(this.props.index)}
           />
-          {/* <p className="user-name"> */}
           <h2>
             {this.props.user.name}&nbsp;{this.props.user.surname}
           </h2>
-          {/* </p> */}
           <p className="email">{this.props.user.email}</p>
         </div>
         <hr />
@@ -72,7 +70,7 @@ class UserDetail extends React.Component<IProps, {}> {
         <hr />
 
         <div>
-          <span>
+          <span className="spanItem">
             <Icon type="contacts" />
             {/* </span>
           <span> */}{" "}
@@ -80,7 +78,7 @@ class UserDetail extends React.Component<IProps, {}> {
           </span>
           <p>
             {" "}
-            <Translation>{t => t("content")}</Translation>
+            {/* <Translation>{t => t("content")}</Translation> */}
           </p>
           <div className="client">
             <div className="client-title">
@@ -107,7 +105,7 @@ class UserDetail extends React.Component<IProps, {}> {
         </div>
         <hr />
         <div>
-          <span>
+          <span className="spanItem">
             <Icon type="info" />
             {/* </span>
           <span> */}{" "}
@@ -115,7 +113,7 @@ class UserDetail extends React.Component<IProps, {}> {
           </span>
           <p>
             {" "}
-            <Translation>{t => t("content")}</Translation>{" "}
+            {/* <Translation>{t => t("content")}</Translation>{" "} */}
           </p>
           <div className="system">
             <div className="system-title">
