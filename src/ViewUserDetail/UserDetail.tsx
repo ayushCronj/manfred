@@ -2,21 +2,21 @@ import * as React from "react";
 import "./ViewUserDetail.scss";
 import { Icon } from "antd";
 import { Translation } from "react-i18next";
-import{connect} from 'react-redux'
-import {addUser,deleteUser,EditUser} from '../redux/actions/userAction'
-import EditModal from '../../src/components/EditModal'
+import { connect } from "react-redux";
+import { addUser, deleteUser, EditUser } from "../redux/actions/userAction";
+import EditModal from "../../src/components/EditModal";
 
 interface IProps {
   name?: string;
-  address?:  string;
-  key?:any;
-  link?:string;
-  user:any;
-  index:number;
-  deleteUser:any;
-  userEditDetail:any;
-  editindex:number;
-  EditUser:any;
+  address?: string;
+  key?: any;
+  link?: string;
+  user: any;
+  index: number;
+  deleteUser: any;
+  userEditDetail: any;
+  editindex: number;
+  EditUser: any;
 }
 
 class UserDetail extends React.Component<IProps, {}> {
@@ -24,17 +24,18 @@ class UserDetail extends React.Component<IProps, {}> {
     return (
       <div>
         <div>
-        <EditModal  userEditDetail={this.props.user} editindex={this.props.index}/>
+          <EditModal
+            userEditDetail={this.props.user}
+            editindex={this.props.index}
+          />
           <Icon
             type="delete"
-            style={{ float: "right" , fontSize:"25px" }}
+            style={{ float: "right", fontSize: "25px" }}
             onClick={() => this.props.deleteUser(this.props.index)}
           />
-          {/* <p className="user-name"> */}
-            <h2>
-              {this.props.user.name}&nbsp;{this.props.user.surname}
-            </h2>
-          {/* </p> */}
+          <h2>
+            {this.props.user.name}&nbsp;{this.props.user.surname}
+          </h2>
           <p className="email">{this.props.user.email}</p>
         </div>
         <hr />
@@ -69,7 +70,7 @@ class UserDetail extends React.Component<IProps, {}> {
         <hr />
 
         <div>
-          <span>
+          <span className="spanItem">
             <Icon type="contacts" />
             {/* </span>
           <span> */}{" "}
@@ -77,7 +78,7 @@ class UserDetail extends React.Component<IProps, {}> {
           </span>
           <p>
             {" "}
-            <Translation>{t => t("content")}</Translation>
+            {/* <Translation>{t => t("content")}</Translation> */}
           </p>
           <div className="client">
             <div className="client-title">
@@ -104,7 +105,7 @@ class UserDetail extends React.Component<IProps, {}> {
         </div>
         <hr />
         <div>
-          <span>
+          <span className="spanItem">
             <Icon type="info" />
             {/* </span>
           <span> */}{" "}
@@ -112,7 +113,7 @@ class UserDetail extends React.Component<IProps, {}> {
           </span>
           <p>
             {" "}
-            <Translation>{t => t("content")}</Translation>{" "}
+            {/* <Translation>{t => t("content")}</Translation>{" "} */}
           </p>
           <div className="system">
             <div className="system-title">

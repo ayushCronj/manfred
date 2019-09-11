@@ -24,6 +24,7 @@ interface IState {
   UnitSystem:string;
   phoneNumber:string;
 }
+
 interface IProps{
     userEditDetail:any,
     editindex:number,
@@ -50,8 +51,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
     Language:"",
     TimeZone:"",
     UnitSystem:"",
-    phoneNumber:"",
-    
+    phoneNumber:"",  
   };
 
   public render(): React.ReactNode {
@@ -68,8 +68,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
               Language:this.props.userEditDetail.Language,
               TimeZone:this.props.userEditDetail.TimeZone,
               UnitSystem:this.props.userEditDetail.UnitSystem,
-              phoneNumber:this.props.userEditDetail.phoneNumber
-             
+              phoneNumber:this.props.userEditDetail.phoneNumber            
             }}
             onSubmit={(values: IState, actions: FormikActions<IState>) => {
               actions.setSubmitting(false);
@@ -200,7 +199,6 @@ class EditUserDetail extends React.Component<IProps, IState> {
     );
   }
 }
-
 
 function mapDispatchToProps(dispatch){
     return{

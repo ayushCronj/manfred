@@ -120,7 +120,7 @@ class layout extends React.Component<{}, Istate> {
             style={{
               margin: "24px 16px",
               padding: 24,
-              background: "#fff",
+              background: "#EBEDEF",
               minHeight: 280
             }}
           >
