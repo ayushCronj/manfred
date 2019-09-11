@@ -119,7 +119,6 @@ export class SubSideBar extends React.Component<IProps, IState> {
         <Row>
           <Col lg={8} xs={12} sm={12}>
              <button className="button" onClick={this.handleClick}>Add New User</button><Icon type="plus"/>
-            {/* <Icon type="plus-circle" onClick={}/> */}
             <Table
               dataSource={this.props.dataSource}
               scroll={{x:200}}

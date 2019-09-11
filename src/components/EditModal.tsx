@@ -23,14 +23,8 @@ interface IState{
     });
   };
 
-//   handleOk = e => {
-//     console.log(e);
-//     this.setState({
-//       visible: false,
-//     });
-//   };
 
-  handleCancel = e => {
+ public handleCancel = e => {
     console.log(e);
     this.setState({
       visible: false,
@@ -40,16 +34,13 @@ interface IState{
    render(){
        return(
            <div>
-             <Icon type="edit" onClick={this.showModal} />
+        <Icon type="edit" onClick={this.showModal} />
         <Modal
-          title="Basic Modal"
           visible={this.state.visible}
-        //   onOk={this.handleOk}
           onCancel={this.handleCancel}
-        footer={null}
-        style={{width:'100px'}}
+          footer={null}
         >
-         <EditUserDetail userEditDetail={this.props.userEditDetail} editindex={this.props.editindex}/>
+         <EditUserDetail userEditDetail={this.props.userEditDetail} editindex={this.props.editindex} handleCancel={this.handleCancel}/>
           </Modal>
            </div>
        )

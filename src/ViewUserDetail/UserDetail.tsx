@@ -28,11 +28,11 @@ class UserDetail extends React.Component<IProps, IState>{
         data: null,
         visible:false,
     }
-    componentWillReceiveProps(){
-        this.setState({
-           data:this.props 
-        })
-    }
+    // componentWillReceiveProps(){
+    //     this.setState({
+    //        data:this.props 
+    //     })
+    // }
 
     handleModal=()=>{
         this.setState({

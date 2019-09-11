@@ -23,11 +23,13 @@ interface IState {
   TimeZone:string;
   UnitSystem:string;
   phoneNumber:string;
+  
 }
 interface IProps{
     userEditDetail:any,
     editindex:number,
     EditUser?:any,
+    handleCancel?:any
 }
 
 function validateEmail(value: string) {
@@ -50,16 +52,25 @@ class EditUserDetail extends React.Component<IProps, IState> {
     Language:"",
     TimeZone:"",
     UnitSystem:"",
-    phoneNumber:"",
+    phoneNumber:""
+   
     
   };
 
+  handleCloseModal=()=>{
+    this.props.handleCancel()
+  }
+
   public render(): React.ReactNode {
       console.log("this.props.userDetail---->",this.props.userEditDetail)
+
+  
     return (
     <div className="mainUser">
-        <div className="Usercontainer">
+        <div className="Usercontainer1">
+          {console.log("cdddd---->",this.props.userEditDetail)}
           <Formik
+            enableReinitialize={true}
             initialValues={{
               email:this.props.userEditDetail.email,
               surname:this.props.userEditDetail.surname,
@@ -69,17 +80,18 @@ class EditUserDetail extends React.Component<IProps, IState> {
               Language:this.props.userEditDetail.Language,
               TimeZone:this.props.userEditDetail.TimeZone,
               UnitSystem:this.props.userEditDetail.UnitSystem,
-              phoneNumber:this.props.userEditDetail.phoneNumber
+              phoneNumber:this.props.userEditDetail.phoneNumber,
+          
              
             }}
-            onSubmit={(values: IState, actions: FormikActions<IState>) => {
-              actions.setSubmitting(false);
+            onSubmit={(values:IState, actions: FormikActions<IState>) => {
+               actions.setSubmitting(false);
               this.props.EditUser(values,this.props.editindex) 
               console.log(values);
             }}
             render={(formikBag: FormikProps<IState>) => (
               <Form className="user-form">
-                <h3 className="heading">Create New User</h3>
+                <h3 className="heading">EDIT USER</h3>
                 <Field
                   name="name"
                   render={({ field, form }: FieldProps<IState>) => (
@@ -91,9 +103,9 @@ class EditUserDetail extends React.Component<IProps, IState> {
                         placeholder="First Name"
                       
                       />
-                      {form.touched.email &&
+                      {/* {form.touched.email &&
                         form.errors.email &&
-                        form.errors.email}
+                        form.errors.email} */}
                     </div>
                   )}
                 />
@@ -190,7 +202,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
                     </div>
                   )}
                 />
-                <button type="submit" className="submit">
+                <button type="submit" className="submit" onClick={this.handleCloseModal}  >
                   Submit
                 </button>
               </Form>
