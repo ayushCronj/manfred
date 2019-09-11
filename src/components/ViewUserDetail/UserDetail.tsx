@@ -2,21 +2,21 @@ import * as React from "react";
 import "./ViewUserDetail.scss";
 import { Icon } from "antd";
 import { Translation } from "react-i18next";
-import{connect} from 'react-redux'
-import {addUser,deleteUser,EditUser} from '../redux/actions/userAction'
-import EditModal from '../../src/components/EditModal'
+import { connect } from "react-redux";
+import { deleteUser } from "../../redux/actions/userAction";
+import EditModal from "../EditModal";
 
 interface IProps {
   name?: string;
-  address?:  string;
-  key?:any;
-  link?:string;
-  user:any;
-  index:number;
-  deleteUser:any;
-  userEditDetail:any;
-  editindex:number;
-  EditUser:any;
+  address?: string;
+  key?: any;
+  link?: string;
+  user: any;
+  index: number;
+  deleteUser: any;
+  userEditDetail: any;
+  editindex: number;
+  EditUser: any;
 }
 
 class UserDetail extends React.Component<IProps, {}> {
@@ -24,16 +24,19 @@ class UserDetail extends React.Component<IProps, {}> {
     return (
       <div>
         <div>
-        <EditModal  userEditDetail={this.props.user} editindex={this.props.index}/>
+          <EditModal
+            userEditDetail={this.props.user}
+            editindex={this.props.index}
+          />
           <Icon
             type="delete"
-            style={{ float: "right" , fontSize:"25px" }}
+            style={{ float: "right", fontSize: "25px" }}
             onClick={() => this.props.deleteUser(this.props.index)}
           />
           {/* <p className="user-name"> */}
-            <h2>
-              {this.props.user.name}&nbsp;{this.props.user.surname}
-            </h2>
+          <h2>
+            {this.props.user.name}&nbsp;{this.props.user.surname}
+          </h2>
           {/* </p> */}
           <p className="email">{this.props.user.email}</p>
         </div>
@@ -140,11 +143,11 @@ class UserDetail extends React.Component<IProps, {}> {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return {
     deleteUser: index => dispatch(deleteUser(index))
   };
-}
+};
 
 export default connect(
   null,
