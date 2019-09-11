@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Redirect } from "react-router-dom";
-import config from '../../config/config'
+import config from "../../config/config";
 import {
   Formik,
   FormikActions,
@@ -9,7 +9,6 @@ import {
   Field,
   FieldProps
 } from "formik";
-import * as yup from "yup";
 import "./login.scss";
 
 interface IState {
@@ -71,7 +70,10 @@ class Login extends React.Component<{}, IState> {
             onSubmit={(values: IState, actions: FormikActions<IState>) => {
               let username = localStorage.getItem("admin");
               let password = localStorage.getItem("adminpass");
-              if (config.user.email ===values.email && config.user.password === values.password) {
+              if (
+                config.user.email === values.email &&
+                config.user.password === values.password
+              ) {
                 localStorage.setItem("user", values.email);
                 localStorage.setItem("pass", values.password);
                 localStorage.setItem("isLoggedIn", values.rememberMe);

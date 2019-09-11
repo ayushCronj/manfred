@@ -1,7 +1,6 @@
 import * as React from "react";
-import { Redirect } from "react-router-dom";
+import { EditUser } from "../../redux/actions/userAction";
 import { connect } from "react-redux";
-import { createUser } from "../redux/actions/userAction";
 import "./subsidebar.scss";
 import {
   Formik,
@@ -11,75 +10,60 @@ import {
   Field,
   FieldProps
 } from "formik";
-import * as yup from "yup";
 
 interface IState {
+  email: string;
   name: string;
   surname: string;
   client: string;
-  email: string;
   department: string;
+  Language: string;
   TimeZone: string;
+  UnitSystem: string;
   phoneNumber: string;
 }
-
 interface IProps {
-  createUser: any;
-  HandleSubmit:any
+  userEditDetail: any;
+  editindex: number;
+  EditUser?: any;
 }
 
-function validateEmail(value: string) {
-  let error;
-  if (!value) {
-    error = "Required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    error = "Invalid email address";
-  }
-  return error;
-}
-
-function validatePhone(value: string) {
-  let error;
-  if (!value) {
-    error = "Required";
-  }
-  return error;
-}
-
-class NewUser extends React.Component<IProps, IState> {
+class EditUserDetail extends React.Component<IProps, IState> {
   state = {
+    email: "",
     name: "",
     surname: "",
     client: "",
-    email: "",
     department: "",
+    Language: "",
     TimeZone: "",
+    UnitSystem: "",
     phoneNumber: ""
   };
 
   public render(): React.ReactNode {
     return (
       <div className="mainUser">
-        <div className="Usercontainer">
+        <div className="Usercontainer1">
           <Formik
             initialValues={{
-              name: "",
-              surname: "",
-              client: "",
-              email: "",
-              department: "",
-              TimeZone: "",
-              phoneNumber: ""
+              email: this.props.userEditDetail.email,
+              surname: this.props.userEditDetail.surname,
+              name: this.props.userEditDetail.name,
+              client: this.props.userEditDetail.client,
+              department: this.props.userEditDetail.department,
+              Language: this.props.userEditDetail.Language,
+              TimeZone: this.props.userEditDetail.TimeZone,
+              UnitSystem: this.props.userEditDetail.UnitSystem,
+              phoneNumber: this.props.userEditDetail.phoneNumber
             }}
             onSubmit={(values: IState, actions: FormikActions<IState>) => {
               actions.setSubmitting(false);
-              this.props.HandleSubmit()
-              this.props.createUser(values);
+              this.props.EditUser(values, this.props.editindex);
             }}
             render={(formikBag: FormikProps<IState>) => (
               <Form className="user-form">
                 <h3 className="heading">Create New User</h3>
-                <h3 className="formItem">Contact Information</h3>
                 <Field
                   name="name"
                   render={({ field, form }: FieldProps<IState>) => (
@@ -90,6 +74,9 @@ class NewUser extends React.Component<IProps, IState> {
                         {...field}
                         placeholder="First Name"
                       />
+                      {form.touched.email &&
+                        form.errors.email &&
+                        form.errors.email}
                     </div>
                   )}
                 />
@@ -108,7 +95,6 @@ class NewUser extends React.Component<IProps, IState> {
                 />
                 <Field
                   name="email"
-                  validate={validateEmail}
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
@@ -117,31 +103,9 @@ class NewUser extends React.Component<IProps, IState> {
                         {...field}
                         placeholder="Email"
                       />
-                      {form.touched.email &&
-                        form.errors.email &&
-                        form.errors.email}
                     </div>
                   )}
                 />
-                <Field
-                  name="phoneNumber"
-                  validate={validatePhone}
-                  render={({ field, form }: FieldProps<IState>) => (
-                    <div>
-                      <input
-                        type="text"
-                        className="field"
-                        {...field}
-                        placeholder="Phone Number"
-                      />
-                      {form.touched.phoneNumber &&
-                        form.errors.phoneNumber &&
-                        form.errors.phoneNumber}
-                    </div>
-                  )}
-                />
-                <hr className="hr" />
-                <h3 className="formItem">Company & Contact</h3>
                 <Field
                   name="client"
                   render={({ field, form }: FieldProps<IState>) => (
@@ -168,35 +132,42 @@ class NewUser extends React.Component<IProps, IState> {
                     </div>
                   )}
                 />
-                <hr className="hr" />
-                <h3 className="formItem"> Language & Religion</h3>
                 <Field
                   name="Language"
-                  component="select"
-                  className="select"
-                  placeholder="Language"
-                >
-                  <option value="English">English</option>
-                  <option value="German">German</option>
-                  <option value="Russian">Russian</option>
-                </Field>
-                <Field
-                  name="TimeZone"
-                  component="select"
-                  className="select"
-                  placeholder="Language"
-                >
-                  <option value="English">UTC</option>
-                </Field>
-                <Field
-                  name="UnitSystem"
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
                         type="text"
                         className="field"
                         {...field}
-                        placeholder="Unit System"
+                        placeholder="Language"
+                      />
+                    </div>
+                  )}
+                />
+                <Field
+                  name="TimeZone"
+                  render={({ field, form }: FieldProps<IState>) => (
+                    <div>
+                      <input
+                        type="text"
+                        className="field"
+                        {...field}
+                        placeholder="UTC"
+                      />
+                    </div>
+                  )}
+                />
+
+                <Field
+                  name="phoneNumber"
+                  render={({ field, form }: FieldProps<IState>) => (
+                    <div>
+                      <input
+                        type="text"
+                        className="field"
+                        {...field}
+                        placeholder="phoneNumber"
                       />
                     </div>
                   )}
@@ -215,11 +186,11 @@ class NewUser extends React.Component<IProps, IState> {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createUser: values => dispatch(createUser(values))
+    EditUser: (values, index) => dispatch(EditUser(values, index))
   };
 }
 
 export default connect(
   null,
   mapDispatchToProps
-)(NewUser);
+)(EditUserDetail);

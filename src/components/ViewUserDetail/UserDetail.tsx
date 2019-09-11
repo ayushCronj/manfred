@@ -3,8 +3,8 @@ import "./ViewUserDetail.scss";
 import { Icon } from "antd";
 import { Translation } from "react-i18next";
 import { connect } from "react-redux";
-import { addUser, deleteUser, EditUser } from "../redux/actions/userAction";
-import EditModal from "../../src/components/EditModal";
+import { deleteUser } from "../../redux/actions/userAction";
+import EditModal from "../EditModal";
 
 interface IProps {
   name?: string;
@@ -141,11 +141,11 @@ class UserDetail extends React.Component<IProps, {}> {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return {
     deleteUser: index => dispatch(deleteUser(index))
   };
-}
+};
 
 export default connect(
   null,

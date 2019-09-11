@@ -3,6 +3,7 @@ $color: black;
   color: skyblue;
   font-size: 13px;
 }
+
 .profile-detail {
   display: flex;
   flex-direction: row;
@@ -21,9 +22,11 @@ $color: black;
       flex-direction: row;
       padding-bottom: 8px;
       padding-top: 8px;
+
       .title {
         width: 100px;
       }
+
       .title-value {
         float: left;
         color: $color;
@@ -50,6 +53,7 @@ $color: black;
   .client-title {
     width: 100px;
   }
+
   .client-title-value {
     float: left;
     color: $color;
@@ -81,6 +85,7 @@ $color: black;
   .phoneNumber-title {
     width: 100px;
   }
+  
   .phoneNumber-title-value {
     float: left;
     color: $color;
@@ -104,6 +109,7 @@ $color: black;
   .system-title {
     width: 100px;
   }
+  
   .system-title-value {
     float: left;
     color: $color;
