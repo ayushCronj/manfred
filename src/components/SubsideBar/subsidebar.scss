@@ -36,6 +36,28 @@
 .user-form1{
   margin-left: 95px;
 }
+#userList {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#userList td, #userList th {
+  padding: 8px;
+  color:black
+}
+
+#userList tr:nth-child(even){background-color: #f2f2f2;}
+
+#userLists tr:hover {background-color: #ddd;}
+
+#userList th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #ddd;
+  color:black
+}
 
 .editItem{
   color: #85C1E9;
@@ -105,6 +127,7 @@
     font-size: 24px !important;
     margin-left: 44px !important;
   }
+  
   .submit {
     margin-left: 78px !important;
   }

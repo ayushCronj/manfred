@@ -99,6 +99,7 @@ class layout extends React.Component<IProps, Istate> {
           collapsible
           collapsed={this.state.collapsed}
           onCollapse={this.onCollapse}
+          breakpoint="lg"
         >
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>

@@ -19,9 +19,9 @@ interface IProps {
 
 const columns = [
   {
-    title:   <Translation>{t => t("profile_pic")}</Translation>,
+    title: <Translation>{t => t("profile_pic")}</Translation>,
     key: "avatar",
-    render: (link) => <Avatar src="/avatar.png" />
+    render: link => <Avatar src="/avatar.png" />
   },
   {
     title: "Name",
@@ -106,7 +106,6 @@ export class SubSideBar extends React.Component<IProps, IState> {
       showUser: true
     });
   };
- 
 
   render() {
     return (
@@ -114,10 +113,10 @@ export class SubSideBar extends React.Component<IProps, IState> {
         <Row>
           <Col lg={8} xs={24} sm={24}>
             <button className="button" onClick={this.handleClick}>
-            <Translation>{t => t("addnewuser")}</Translation>
+              <Translation>{t => t("addnewuser")}</Translation>
               <Icon type="plus" />
             </button>
-            <Table
+            {/* <Table
             className="userTable"
               dataSource={this.props.dataSource}
               scroll={{ x: 200 }}
@@ -130,9 +129,31 @@ export class SubSideBar extends React.Component<IProps, IState> {
                   }
                 };
               }}
-            />
+            /> */}
+            <div>
+              <table id="userList">
+                <tr>
+                  <th>Email</th>
+                  <th>Name</th>
+                  <th>ProfilePic</th>
+                  <th></th>
+                </tr>
+                {this.props.dataSource.map((item1, index1) => {
+                  return (
+                    <tr key={index1} onClick={() => this.handleUser(index1)}>
+                      <td>
+                        <Avatar src={item1.link} />
+                      </td>
+                      <td>{item1.email}</td>
+                      <td>{item1.name}</td>
+                     <td><Icon type="arrow-right" /></td> 
+                    </tr>
+                  );
+                })}
+              </table>
+            </div>
           </Col>
-          <Col lg={16} xs={24} sm={24} >
+          <Col lg={16} xs={24} sm={24}>
             {this.state.showUser === true ? (
               this.state.userDetail ? (
                 <div className="userContents">
@@ -143,7 +164,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
                 </div>
               ) : null
             ) : this.state.newUser === true ? (
-              <NewUser HandleSubmit={this.HandleSubmit}/>
+              <NewUser HandleSubmit={this.HandleSubmit} />
             ) : null}
           </Col>
         </Row>
