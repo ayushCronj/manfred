@@ -1,12 +1,25 @@
 $color: black;
 .email {
   color: skyblue;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .profile-detail {
   display: flex;
   flex-direction: row;
+}
+.iconContainer{
+  float: right;
+  font-size: 25px;
+  margin-left: 26px;
+  margin-top: 39px;
+}
+
+@media(max-width:425px){
+  .iconContainer{
+  margin-left: -2px;
+  margin-top: 39px;
+  }
 }
 
   .profile-img {
@@ -31,6 +44,12 @@ $color: black;
         float: left;
         color: $color;
       }
+    }
+  }
+
+  @media(max-width:320px){
+    .title-value{
+      margin-left: -17px;
     }
   }
 

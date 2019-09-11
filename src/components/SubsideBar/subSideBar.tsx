@@ -129,7 +129,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
           <Col lg={16} xs={24} sm={24} >
             {this.state.showUser === true ? (
               this.state.userDetail !== null ? (
-                <div style={{ border: "1px solid black", padding: "24px" }}>
+                <div className="userContents">
                   <UserDetail
                     user={this.state.userDetail}
                     index={this.state.index}

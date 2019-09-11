@@ -31,7 +31,7 @@ class EditModal extends React.Component<IProps, IState> {
   render() {
     return (
       <div>
-        <Icon type="edit" style={{ float: "right", fontSize: "25px" }} onClick={this.showModal} />
+        <Icon type="edit" className="iconContainer" onClick={this.showModal} />
         <Modal
           title="Basic Modal"
           visible={this.state.visible}

@@ -30,12 +30,13 @@ class UserDetail extends React.Component<IProps, {}> {
           />
           <Icon
             type="delete"
-            style={{ float: "right", fontSize: "25px" }}
+            className="iconContainer"
             onClick={() => this.props.deleteUser(this.props.index)}
           />
-          <h2>
-            {this.props.user.name}&nbsp;{this.props.user.surname}
-          </h2>
+          <div>
+          <img style={{height:'100px'}} src="/avatar.png" />
+         <h2> &nbsp;{this.props.user.name}&nbsp;{this.props.user.surname}</h2>
+          </div>
           <p className="email">{this.props.user.email}</p>
         </div>
         <hr />
@@ -74,9 +75,7 @@ class UserDetail extends React.Component<IProps, {}> {
             <Icon type="contacts" />
             <Translation>{t => t("company")}</Translation>{" "}
           </span>
-          <p>
-            {" "}
-          </p>
+          <p> </p>
           <div className="client">
             <div className="client-title">
               <Translation>{t => t("client")}</Translation>:
@@ -106,9 +105,7 @@ class UserDetail extends React.Component<IProps, {}> {
             <Icon type="info" />
             <Translation>{t => t("language&religion")}</Translation>{" "}
           </span>
-          <p>
-            {" "}
-          </p>
+          <p> </p>
           <div className="system">
             <div className="system-title">
               <Translation>{t => t("language")}</Translation>:
