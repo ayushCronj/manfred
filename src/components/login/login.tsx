@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Redirect } from "react-router-dom";
 import config from "../../config/config";
+import { validateEmail } from "../../utils/validation";
 import {
   Formik,
   FormikActions,
@@ -18,15 +19,6 @@ interface IState {
   isloggedIn: boolean;
   login: boolean;
   redirect: boolean;
-}
-function validateEmail(value: string) {
-  let error;
-  if (!value) {
-    error = "Required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    error = "Invalid email address";
-  }
-  return error;
 }
 
 class Login extends React.Component<{}, IState> {
@@ -101,9 +93,11 @@ class Login extends React.Component<{}, IState> {
                         {...field}
                         placeholder="Email"
                       />
-                      {form.touched.email &&
-                        form.errors.email &&
-                        form.errors.email}
+                      <div className="validate">
+                        {form.touched.email &&
+                          form.errors.email &&
+                          form.errors.email}
+                      </div>
                     </div>
                   )}
                 />

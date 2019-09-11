@@ -7,6 +7,14 @@
   border: 1px solid black;
   height:1000px
 }
+.mainUserDetail{
+  background-color:rgb(235, 237, 239);
+  border: 1px solid black;
+  height:714px
+}
+.user-form1{
+  margin-left: 95px;
+}
 
 @media (max-width:320px) and (max-width:424px){
   .field{
@@ -32,6 +40,14 @@
     border: 0.5px solid rgb(235, 237, 239) !important;
     height:1000px
   }
+  .userContents{
+    border: 0.5px solid rgb(235, 237, 239) !important;
+    margin-left: -21px;
+    padding: 0px!important;
+}
+  .user-form1{
+    margin-left: 36px !important
+  }
 }
 
 @media (max-width:375px) and (min-width:321px){
@@ -54,6 +70,13 @@
   .mainUser {
     border: 0.5px solid rgb(235, 237, 239) !important;
   }
+  .userContents{
+    border: 0.5px solid rgb(235, 237, 239) !important;
+  }
+  .user-form1{
+    margin-left: 18px !important;
+  }
+  
 }
 
 @media (max-width:425px) and (min-width:376px){
@@ -75,6 +98,9 @@
   }
   .mainUser {
     border: 0.5px solid rgb(235, 237, 239) !important;
+  }
+  .user-form1{
+    margin-left: 36px !important;
   }
 }
 
@@ -152,3 +178,7 @@
   font-size: 22px;
 }
 
+.userContents{
+  border: 1px solid black;
+   padding: 24px; 
+}
