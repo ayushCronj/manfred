@@ -21,5 +21,11 @@
   "contactinfo": "Contact Information",
   "submit": "Submit",
   "edituser": "Edit User",
-  "firstname" :"First Name"
+  "firstname": "First Name",
+  "more": "More",
+  "avatar": "Avatar",
+  "group1": "Group 1",
+  "group2": "Group 2",
+  "added": "Added to Group Successfully..!!",
+  "error": "Someone is Already in Group..!!"
 }

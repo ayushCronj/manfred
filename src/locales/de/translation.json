@@ -21,5 +21,11 @@
   "contactinfo": "Kontaktinformation",
   "submit": "einreichen",
   "edituser": "Benutzer bearbeiten",
-  "firstname" : "Vorname"
+  "firstname" : "Vorname",
+  "more" : "Mehr",
+  "avatar" : "Benutzerbild",
+  "group1" : "Gruppe 1",
+  "group2" : "Gruppe 2",
+  "added" : "Erfolgreich zur Gruppe hinzugefügt..!!",
+  "error" : "Jemand ist bereits in der Gruppe"
 }

@@ -17,8 +17,9 @@ interface Istate {
   showAll: boolean;
   showGroup: boolean;
   dropMessage: boolean;
-  groupName:string;
-  visible:boolean;
+  groupName: string;
+  visible: boolean;
+  visible1: boolean;
 }
 
 class layout extends React.Component<{}, Istate> {
@@ -40,7 +41,8 @@ class layout extends React.Component<{}, Istate> {
     showAll: true,
     showGroup: false,
     dropMessage: true,
-    visible:false
+    visible: false,
+    visible1: false
   };
 
   public componentDidMount(): void {
@@ -56,20 +58,29 @@ class layout extends React.Component<{}, Istate> {
   };
 
   handleOk = e => {
-    console.log(e);
     this.setState({
       visible: false,
     });
   };
 
   handleCancel = e => {
-    console.log(e);
     this.setState({
       visible: false,
     });
   };
 
-  //selecting menu options
+  handleOk1 = e => {
+    this.setState({
+      visible1: false
+    });
+  };
+
+  handleCancel1 = e => {
+    this.setState({
+      visible1: false
+    });
+  };
+
   menuClicked = key => {
     if (key.key === "1") {
       this.setState({
@@ -97,14 +108,19 @@ class layout extends React.Component<{}, Istate> {
     this.state.data.map((item: any) => {
       if (item.groupName === groupName){
         ev.dragData.arr.map((val: any) => {
-          item.users.push(val);
-          console.log(item)
-        })
+          if (item.users.find(x => x.key === val.key) === undefined) {
+            item.users.push(val);
+            this.setState({
+              visible: true
+            });
+          } else {
+            this.setState({
+              visible1: true
+            });
+          }
+        });
       }
-    })
-    this.setState({
-      visible:true
-     });
+    });
   };
 
   //for log out
@@ -164,10 +180,30 @@ class layout extends React.Component<{}, Istate> {
           footer={[
             <Button key="ok" type="primary" onClick={this.handleOk}>
                 Ok
-            </Button>
-        ]}
-        ><h3>User Added to group</h3></Modal>
-          {console.log(this.state.data)}
+              </Button>
+            ]}
+          >
+            <h3 style={{ color: "#4F8A10" }}>
+              {" "}
+              <Translation>{t => t("added")}</Translation>{" "}
+            </h3>
+          </Modal>
+
+          <Modal
+            visible={this.state.visible1}
+            onCancel={this.handleCancel1}
+            footer={[
+              <Button key="ok" type="primary" onClick={this.handleOk1}>
+                Ok
+              </Button>
+            ]}
+          >
+            <h3 style={{ color: "#cc0000" }}>
+              {" "}
+              <Translation>{t => t("error")}</Translation>{" "}
+            </h3>
+          </Modal>
+
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item
@@ -189,9 +225,10 @@ class layout extends React.Component<{}, Istate> {
             >
               <DropTarget targetKey="foo" onHit={(ev) => {this.dropped(ev, "group1")}}>
                 <Icon type="info" />
-                <span>Group 1</span>
+                <span>
+                <Translation>{t => t("group1")}</Translation>
+                </span>
               </DropTarget>
-              {this.state.dropMessage === true ? <h1>Added</h1> : null}
             </Menu.Item>
             <Menu.Item
               key="3"
@@ -201,9 +238,10 @@ class layout extends React.Component<{}, Istate> {
             >
               <DropTarget targetKey="foo" onHit={(ev) => {this.dropped(ev, "group2")}}>
                 <Icon type="info" />
-                <span>Group 2</span>
+                <span>
+                <Translation>{t => t("group2")}</Translation>
+                </span>
               </DropTarget>
-              {this.state.dropMessage === true ? <h1>Added</h1> : null}
             </Menu.Item>
           </Menu>
         </Sider>

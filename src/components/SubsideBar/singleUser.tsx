@@ -1,5 +1,7 @@
 import * as React from "react";
-import { Table, Row, Col, Icon, Avatar } from "antd";
+import { Table } from "antd";
+import { Translation } from "react-i18next";
+
 interface IState {}
 
 interface IProps {
@@ -19,12 +21,12 @@ const columns = [
     key: "email"
   },
   {
-    title: "Department",
+    title: <Translation>{t => t("department")}</Translation>,
     dataIndex: "department",
     key: "department"
   },
   {
-    title: "Phone",
+    title: <Translation>{t => t("phone_number")}</Translation>,
     dataIndex: "phoneNumber",
     key: "phoneNumber"
   }
@@ -43,7 +45,6 @@ class Single extends React.Component<IProps, IState> {
             columns={columns}
             pagination={{ hideOnSinglePage: true }}
           />
-          
         </div>
       </div>
     );

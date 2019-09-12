@@ -35,7 +35,7 @@ class UserDetail extends React.Component<IProps, {}> {
             onClick={() => this.props.deleteUser(this.props.index)}
           />
           <div>
-            <img style={{ height: "100px" }} src="/avatar.png" />
+            <img style={{ height: "100px" }} src="/avatar.png" alt="Avatar"/>
             <h2>
               {" "}
               &nbsp;{this.props.user.name}&nbsp;{this.props.user.surname}

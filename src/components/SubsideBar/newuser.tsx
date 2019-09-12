@@ -1,12 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { createUser } from "../../redux/actions/userAction";
-import languages from '../../utils/language.json'
-import TimeZone from '../../utils/timezone.json'
-import units from '../../utils/unit.json'
-import { validateEmail , validatePhone} from '../../utils/validation'
+import languages from "../../utils/language.json";
+import TimeZone from "../../utils/timezone.json";
+import units from "../../utils/unit.json";
+import { validateEmail, validatePhone } from "../../utils/validation";
 import "./subsidebar.scss";
 import { Translation } from "react-i18next";
+import uuid from 'uuidv4';
 import {
   Formik,
   FormikActions,
@@ -28,7 +29,7 @@ interface IState {
 
 interface IProps {
   createUser: any;
-  HandleSubmit:any;
+  HandleSubmit: any;
 }
 
 class NewUser extends React.Component<IProps, IState> {
@@ -59,6 +60,7 @@ class NewUser extends React.Component<IProps, IState> {
             }}
             onSubmit={(values: IState, actions: FormikActions<IState>) => {
               actions.setSubmitting(false);
+              values["key"] = uuid();
               this.props.HandleSubmit();
               this.props.createUser(values);
             }}
@@ -173,19 +175,22 @@ class NewUser extends React.Component<IProps, IState> {
                   component="select"
                   className="select"
                   placeholder="Language"
-                  style={{display:"block"}}
-              >
-                 <option value="" className="option">Select Language</option>
-                 {languages.map(language => <option value={language.name}>{language.name}</option>)}
-                 </Field>
+                >
+                  <option value="">Select Language</option>
+                  {languages.map(language => (
+                    <option value={language.name}>{language.name}</option>
+                  ))}
+                </Field>
                 <Field
                   name="TimeZone"
                   component="select"
                   className="select"
                   placeholder="Language"
                 >
-                   <option value="">Select Timezone</option>
-                   {TimeZone.map(timeZone => <option value={timeZone.abbr}>{timeZone.abbr}</option>)}         
+                  <option value="">Select Timezone</option>
+                  {TimeZone.map(timeZone => (
+                    <option value={timeZone.abbr}>{timeZone.abbr}</option>
+                  ))}
                 </Field>
                 <Field
                   name="UnitSystem"
@@ -193,8 +198,10 @@ class NewUser extends React.Component<IProps, IState> {
                   className="select"
                   placeholder="Unit System"
                 >
-                 <option value="">Select Unit</option>
-                 {units.map(unit => <option value={unit.unit}>{unit.unit}</option>)}
+                  <option value="">Select Unit</option>
+                  {units.map(unit => (
+                    <option value={unit.unit}>{unit.unit}</option>
+                  ))}
                 </Field>
                 <br></br>
                 <br></br>
