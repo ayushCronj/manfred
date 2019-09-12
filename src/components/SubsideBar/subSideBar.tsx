@@ -191,7 +191,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
               >
                 <table className="userList">
                   <tr>
-                    <th> Checkbox </th>
+                    <th></th>
                     <th> Avatar</th>
                     <th> Name </th>
                     <th> Email </th>
