@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Icon } from "antd";
 import EditUserDetail from "./SubsideBar/EditUserDetail";
+import { validate } from "@babel/types";
 
 interface IState {
   visible: boolean;
@@ -9,6 +10,7 @@ interface IProps {
   userEditDetail: any;
   editindex: number;
   EditUser?: any;
+ 
 }
 
 class EditModal extends React.Component<IProps, IState> {
@@ -26,7 +28,8 @@ class EditModal extends React.Component<IProps, IState> {
     this.setState({
       visible: false
     });
-  };
+
+}
 
   render() {
     return (
