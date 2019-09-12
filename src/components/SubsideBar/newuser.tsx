@@ -177,8 +177,8 @@ class NewUser extends React.Component<IProps, IState> {
                   placeholder="Language"
                 >
                   <option value="">Select Language</option>
-                  {languages.map(language => (
-                    <option value={language.name}>{language.name}</option>
+                  {languages.map((language,index) => (
+                    <option key={index} value={language.name}>{language.name}</option>
                   ))}
                 </Field>
                 <Field
@@ -188,8 +188,8 @@ class NewUser extends React.Component<IProps, IState> {
                   placeholder="Language"
                 >
                   <option value="">Select Timezone</option>
-                  {TimeZone.map(timeZone => (
-                    <option value={timeZone.abbr}>{timeZone.abbr}</option>
+                  {TimeZone.map((timeZone,index) => (
+                    <option key={index} value={timeZone.abbr}>{timeZone.abbr}</option>
                   ))}
                 </Field>
                 <Field
@@ -199,8 +199,8 @@ class NewUser extends React.Component<IProps, IState> {
                   placeholder="Unit System"
                 >
                   <option value="">Select Unit</option>
-                  {units.map(unit => (
-                    <option value={unit.unit}>{unit.unit}</option>
+                  {units.map((unit,index )=> (
+                    <option  key={index} value={unit.unit}>{unit.unit}</option>
                   ))}
                 </Field>
                 <br></br>

@@ -194,7 +194,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
                   placeholder="Language"
                 >
                  <option value="">{this.props.userEditDetail.Language}</option>
-                 {languages.map(language => <option value={language.name}>{language.name}</option>)}
+                 {languages.map((language,index) => <option  key={index} value={language.name}>{language.name}</option>)}
                 </Field>
                 <Field
                   name="TimeZone"
@@ -203,7 +203,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
                   placeholder="Language"
                 >
                    <option value="">{this.props.userEditDetail.TimeZone}</option>
-                   {TimeZone.map(timeZone => <option value={timeZone.abbr}>{timeZone.abbr}</option>)}         
+                   {TimeZone.map((timeZone,index) => <option key={index} value={timeZone.abbr}>{timeZone.abbr}</option>)}         
                 </Field>
                 <Field
                   name="UnitSystem"
@@ -212,7 +212,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
                   placeholder="Unit System"
                 >
                  <option value="" >{this.props.userEditDetail.UnitSystem}</option>
-                 {units.map(unit => <option value={unit.unit}>{unit.unit}</option>)}
+                 {units.map((unit,index) => <option key ={index} value={unit.unit}>{unit.unit}</option>)}
                 </Field>
                 <br></br>
                 <br></br>

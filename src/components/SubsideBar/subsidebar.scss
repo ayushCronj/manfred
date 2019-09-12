@@ -46,7 +46,7 @@
   padding: 8px;
   color:black;
   width:300px;
-  // border:1px solid black;
+  
 }
 
 .error-msg{
@@ -268,10 +268,13 @@ margin-top: 50px;
 }
 
 .user-form {
-  margin-left:195px
+  margin-left: 120px;
 }
 
 @media(max-width:1024px) and (min-width:768px){
+  .user-form{
+    margin-left: 45px;
+  }
   .hr{
     width: 488px !important;
     margin-top: 23px;
