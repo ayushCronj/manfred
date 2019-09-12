@@ -6,7 +6,7 @@ import { Translation } from "react-i18next";
 import i18n from "../../i18n";
 import SingleUser from "../SubsideBar/singleUser";
 import SubSideBar from "../SubsideBar/subSideBar";
-import { DragDropContainer, DropTarget } from "react-drag-drop-container";
+import { DropTarget } from "react-drag-drop-container";
 const { Header, Sider, Content } = Layout;
 
 interface Istate {
@@ -21,10 +21,7 @@ interface Istate {
   visible:boolean;
 }
 
-interface IProps {
-  onDrop: (item: any) => void;
-}
-class layout extends React.Component<IProps, Istate> {
+class layout extends React.Component<{}, Istate> {
   state = {
     collapsed: false,
     redirect: false,
@@ -256,17 +253,3 @@ class layout extends React.Component<IProps, Istate> {
 }
 
 export default layout;
-
-
-
-
-// data = [
-//   {
-//     groupName: "",
-//     users: []
-//   },
-//   {
-//     groupName: "",
-//     users: []
-//   },
-// ] 
