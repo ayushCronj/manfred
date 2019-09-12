@@ -122,7 +122,8 @@ class layout extends React.Component<IProps, Istate> {
               </span>
             </Menu.Item>
             <Menu.Item>
-              <DropTarget targetKey="foo" onHit={this.dropped}>
+              <DropTarget targetKey="foo" onHit={this.dropped}
+              >
                 <Icon type="info" />
                 <span>Group 1</span>
               </DropTarget>
@@ -169,5 +170,8 @@ class layout extends React.Component<IProps, Istate> {
     );
   }
 }
+// const mapStateToProps = (state: any) => {
+//   return { dataSource: state.stateData.dataSource };
+// };
 
 export default layout;

@@ -13,10 +13,14 @@ interface IState {
   newUser: boolean;
   showUser: boolean;
   index: number;
+  options:any;
+  checkboxesValues:boolean;
 }
 interface IProps {
   dataSource: any;
 }
+
+
 
 const columns = [
   {
@@ -47,7 +51,11 @@ export class SubSideBar extends React.Component<IProps, IState> {
     userDetail: "",
     newUser: false,
     showUser: false,
-    index: 0
+    index: 0,
+    options:[],
+    checkboxesValues:false
+    
+   
   };
 
   public componentDidMount(): void {
@@ -94,6 +102,8 @@ export class SubSideBar extends React.Component<IProps, IState> {
     });
   };
 
+
+
   private handleClick = value => {
     this.setState({
       newUser: !this.state.newUser,
@@ -107,6 +117,10 @@ export class SubSideBar extends React.Component<IProps, IState> {
       showUser: true
     });
   };
+
+
+
+  
 
   render() {
     return (
@@ -137,9 +151,11 @@ export class SubSideBar extends React.Component<IProps, IState> {
                   <th>Email</th>
                   <th>Name</th>
                   <th>ProfilePic</th>
+       
                 </tr>
                 {this.props.dataSource.map((item1, index1) => {
                   return (
+                    
                     <DragDropContainer dragData={{ item1 }} targetKey="foo">
                       <tr key={index1} onClick={() => this.handleUser(index1)}>
                         <td>{item1.email}</td>

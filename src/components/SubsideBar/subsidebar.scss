@@ -38,7 +38,7 @@
   color: white;
 }
 
-@media (max-width:320px) and (max-width:424px){
+@media (max-width:320px) and (max-width:425px){
   .field{
     width: 170px !important
   }
@@ -62,6 +62,7 @@
     border: 0.5px solid rgb(235, 237, 239) !important;
     height:1000px
   }
+ 
   .userContents{
     border: 0.5px solid rgb(235, 237, 239) !important;
     margin-left: -21px;
@@ -75,6 +76,10 @@
 @media (max-width:375px) and (min-width:321px){
   .field{
     width: 259px !important
+  }
+  .editicon{
+    margin-bottom: 10px;
+    margin-left: 242px;
   }
   .select{
     width: 259px !important
