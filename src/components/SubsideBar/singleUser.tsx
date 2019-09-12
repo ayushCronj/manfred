@@ -9,52 +9,41 @@ interface IProps {
 const columns = [
   {
     title: "Name",
-    dataIndex: "item1.name",
+    dataIndex: "name",
     key: "name"
   },
 
   {
     title: "Email",
-    dataIndex: "item1.email",
+    dataIndex: "email",
     key: "email"
   },
   {
     title: "Department",
-    dataIndex:"item1.department",
+    dataIndex: "department",
     key: "department"
   },
   {
     title: "Phone",
-    dataIndex:"item1.phoneNumber",
+    dataIndex: "phoneNumber",
     key: "phoneNumber"
   }
 ];
 
-
 class Single extends React.Component<IProps, IState> {
   state = {};
   public render(): React.ReactNode {
-    // let member = this.props.members.map((item ,index )=> {
-    //   return <GroupList user={item} />;
-    // });
     return (
       <div>
         <div>
-              {/* {member} */}
-                <Table
+          <Table
             className="userTable"
-              dataSource={this.props.members}
-              scroll={{ x: 200 }}
-              columns={columns}
-              pagination={{ hideOnSinglePage: true }}
-              // onRow={(record, rowIndex) => {
-              //   return {
-              //     onClick: event => {
-              //       this.handleUser(rowIndex);
-              //     }
-              //   };
-              // }}
-            />
+            dataSource={this.props.members}
+            scroll={{ x: 200 }}
+            columns={columns}
+            pagination={{ hideOnSinglePage: true }}
+          />
+          
         </div>
       </div>
     );

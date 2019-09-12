@@ -17,6 +17,7 @@ interface Istate {
   showAll: boolean;
   showGroup: boolean;
   dropMessage: boolean;
+  groupName:string
 }
 
 interface IProps {
@@ -27,7 +28,17 @@ class layout extends React.Component<IProps, Istate> {
     collapsed: false,
     redirect: false,
     language: "Eng",
-    data: [],
+    groupName:"",
+    data: [
+      {
+        groupName: "group1",
+        users: []
+      },
+      {
+        groupName: "group2",
+        users: []
+      }
+    ],
     showAll: true,
     showGroup: false,
     dropMessage: true
@@ -54,17 +65,42 @@ class layout extends React.Component<IProps, Istate> {
     } else if (key.key === "2") {
       this.setState({
         showAll: false,
-        showGroup: true
+        showGroup: true,
+        groupName:"group1",
+      });
+    }
+    else if (key.key === "3") {
+      this.setState({
+        showAll: false,
+        showGroup: true,
+        groupName:"group2",
       });
     }
   };
 
-  dropped = ev => {
+  dropped = (ev, groupName) => {
+    console.log(ev.dragData)
+    // const dummy : any = [...this.state.data] 
+    // ev.dragData.arr.map((item: any) => {
+    //   dummy.push(item);
+    // })
+    console.log("old data ===>>>", this.state.data)
+
+    this.state.data.map((item: any) => {
+      if (item.groupName === groupName){
+        ev.dragData.arr.map((val: any) => {
+          item.users.push(val);
+          console.log(item)
+        })
+      }
+    })
+
     alert("Added!!");
-    this.setState({
-      data: [...this.state.data, ev.dragData],
-      dropMessage: true
-    });
+    console.log("new data ===>>>", this.state.data)
+    // this.setState({
+    //   data: dummy,
+    //   dropMessage: true
+    // });
   };
 
   public handlelogout = () => {
@@ -137,9 +173,21 @@ class layout extends React.Component<IProps, Istate> {
                 this.menuClicked(key);
               }}
             >
-              <DropTarget targetKey="foo" onHit={this.dropped}>
+              <DropTarget targetKey="foo" onHit={(ev) => {this.dropped(ev, "group1")}}>
                 <Icon type="info" />
                 <span>Group 1</span>
+              </DropTarget>
+              {this.state.dropMessage === true ? <h1>Added</h1> : null}
+            </Menu.Item>
+            <Menu.Item
+              key="3"
+              onClick={key => {
+                this.menuClicked(key);
+              }}
+            >
+              <DropTarget targetKey="foo" onHit={(ev) => {this.dropped(ev, "group2")}}>
+                <Icon type="info" />
+                <span>Group 2</span>
               </DropTarget>
               {this.state.dropMessage === true ? <h1>Added</h1> : null}
             </Menu.Item>
@@ -181,8 +229,11 @@ class layout extends React.Component<IProps, Istate> {
             {this.state.showAll === true ? (
               <SubSideBar />
             ) : (
-              <SingleUser members={this.state.data} />
-            )}
+              <div>
+          {this.state.groupName === "group1" ? 
+              <SingleUser members={this.state.data[0].users} />
+              :  <SingleUser members={this.state.data[1].users} /> }
+            </div>) }
           </Content>
         </Layout>
       </Layout>
@@ -191,3 +242,17 @@ class layout extends React.Component<IProps, Istate> {
 }
 
 export default layout;
+
+
+
+
+// data = [
+//   {
+//     groupName: "",
+//     users: []
+//   },
+//   {
+//     groupName: "",
+//     users: []
+//   },
+// ] 
