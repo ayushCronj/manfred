@@ -58,6 +58,32 @@
   background-color: #ddd;
   color:black
 }
+.details{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-top: 50px;
+  border: 1px solid black;
+  width: 1000px;
+  height:300px
+}
+
+.card{
+width:400px;
+height:100px;
+margin-left:50px;
+margin-top: 50px;
+}
+
+.userItem{
+  margin-top: 20px;
+  font-size:19px
+}
+
+.company{
+  margin-left: 260px;
+  margin-top: -166px;
+}
 
 .editItem{
   color: #85C1E9;
@@ -110,6 +136,19 @@
     margin-left: 23px !important;
     margin-top: 32px;
     font-size: 16px !important;
+  }
+  .details{
+    flex-wrap:wrap !important;
+    height:700px !important;
+    border:none !important;
+    width:320px !important;
+  }
+  #userList{
+    margin-left: -44px !important;
+  }
+  .card{
+    margin-left: -12px !important;
+
   }
 }
 

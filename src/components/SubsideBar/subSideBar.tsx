@@ -4,6 +4,7 @@ import UserDetail from "../ViewUserDetail/UserDetail";
 import NewUser from "./newuser";
 import { connect } from "react-redux";
 import { Translation } from "react-i18next";
+import { DragDropContainer, DropTarget } from "react-drag-drop-container";
 
 import "./subsidebar.scss";
 
@@ -132,22 +133,26 @@ export class SubSideBar extends React.Component<IProps, IState> {
             /> */}
             <div>
               <table id="userList">
-                <tr>
+                {/* <tr>
+                <th></th>
                   <th>Email</th>
                   <th>Name</th>
-                  <th>ProfilePic</th>
                   <th></th>
-                </tr>
+                </tr> */}
+                <br></br>
+                <br></br>
                 {this.props.dataSource.map((item1, index1) => {
                   return (
-                    <tr key={index1} onClick={() => this.handleUser(index1)}>
+                    <DragDropContainer dragData={{ item1 }} targetKey="foo">
+                      <tr key={index1} onClick={() => this.handleUser(index1)}>
                       <td>
-                        <Avatar src={item1.link} />
-                      </td>
-                      <td>{item1.email}</td>
-                      <td>{item1.name}</td>
-                     <td><Icon type="arrow-right" /></td> 
-                    </tr>
+                          <Avatar src={item1.link} />
+                        </td>
+                        <td>{item1.email}</td>
+                        <td>{item1.name}</td>
+                        <td><Icon type="arrow-right" /></td>                       
+                      </tr>
+                    </DragDropContainer>
                   );
                 })}
               </table>

@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { deleteUser } from "../../redux/actions/userAction";
 import EditModal from "../EditModal";
 
+
 interface IProps {
   name?: string;
   address?: string;
@@ -34,16 +35,18 @@ class UserDetail extends React.Component<IProps, {}> {
             onClick={() => this.props.deleteUser(this.props.index)}
           />
           <div>
-          <img style={{height:'100px'}} src="/avatar.png" />
-         <h2> &nbsp;{this.props.user.name}&nbsp;{this.props.user.surname}</h2>
+            <img style={{ height: "100px" }} src="/avatar.png" />
+            <h2>
+              {" "}
+              &nbsp;{this.props.user.name}&nbsp;{this.props.user.surname}
+            </h2>
           </div>
           <p className="email">{this.props.user.email}</p>
         </div>
         <hr />
         <div className="profile-detail">
           <div className="user-detail">
-            <div className="detail">
-            </div>
+            <div className="detail"></div>
             <div className="detail">
               <div className="title">
                 <Translation>{t => t("name")}</Translation>
