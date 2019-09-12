@@ -173,10 +173,11 @@ class NewUser extends React.Component<IProps, IState> {
                   component="select"
                   className="select"
                   placeholder="Language"
-                >
-                 <option value="">Select Language</option>
+                  style={{display:"block"}}
+              >
+                 <option value="" className="option">Select Language</option>
                  {languages.map(language => <option value={language.name}>{language.name}</option>)}
-                </Field>
+                 </Field>
                 <Field
                   name="TimeZone"
                   component="select"

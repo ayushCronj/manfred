@@ -138,10 +138,10 @@ export class SubSideBar extends React.Component<IProps, IState> {
     return (
       <div>
         <Row>
-          <Col lg={8} md={12} xs={24} sm={24} style={{ paddingRight: "22px" }}>
+          <Col lg={8} md={12} xs={24} sm={24} className="list">
             <button className="button" onClick={this.handleClick}>
               <Translation>{t => t("addnewuser")}</Translation>
-              <Icon type="plus" />
+              <Icon type="plus" style={{marginLeft:'11px'}}/>
             </button>
             <div>
               {this.state.option.length > 1 ? (
@@ -153,6 +153,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
                   })}
                 </div>
               ) : null}
+              <div className="test">
               {this.state.option.length > 1 ? (
                 <div
                   style={{
@@ -182,6 +183,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
                               </td>
                               <td>{item.name}</td>
                               <td>{item.email}</td>
+                              <td>{"  "}</td>
                             </tr>
                           );
                         }
@@ -231,6 +233,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
                   })}
                 </table>
               </div>
+            </div>
             </div>
           </Col>
           <Col lg={16} md={12} xs={24} sm={24}>

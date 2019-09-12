@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal, Icon } from "antd";
 import EditUserDetail from "./SubsideBar/EditUserDetail";
-import { validate } from "@babel/types";
 
 interface IState {
   visible: boolean;
@@ -39,9 +38,7 @@ class EditModal extends React.Component<IProps, IState> {
           visible={this.state.visible}
           onCancel={this.handleCancel}
           footer={null} 
-        
         >
-         
          <EditUserDetail userEditDetail={this.props.userEditDetail} editindex={this.props.editindex} handleCancel={this.handleCancel}/>
           </Modal>
            </div>
