@@ -45,7 +45,7 @@
 .userList td, .userList th {
   padding: 8px;
   color:black;
-  width:245px;
+  width:300px;
   // border:1px solid black;
 }
 
@@ -285,6 +285,11 @@ margin-top: 50px;
   padding: 13px;
 }
 
+.list{
+  padding-right: 22px;
+   max-height:700px ;
+   overflow: auto;
+  }
 .select {
   width: 271px;
   height: 36px;
@@ -293,7 +298,16 @@ margin-top: 50px;
   border-radius: 4px;
   margin-top: 19px;
   margin-left: 12px;
+  // max-height:100px;
+  // overflow:scroll;
+  // overflow-y: scroll;
 }
+
+// .option{
+//   height:40px;
+//   overflow:scroll;
+
+// }
 
 .formItem{
   color: #85C1E9;

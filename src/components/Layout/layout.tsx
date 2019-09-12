@@ -163,7 +163,7 @@ class layout extends React.Component<{}, Istate> {
                 Ok
             </Button>
         ]}
-        ></Modal>
+        ><h3>User Added to group</h3></Modal>
           {console.log(this.state.data)}
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
