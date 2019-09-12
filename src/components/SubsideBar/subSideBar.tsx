@@ -111,10 +111,14 @@ export class SubSideBar extends React.Component<IProps, IState> {
     });
   };
 
+  private handleDrop = () => {
+    this.setState({
+      option: [-1]
+    });
+  };
+
   onChange(e) {
-    console.log(e.target.value);
     const option = this.state.option;
-    // const option : string[] = [];
     let index;
     if (e.target.checked) {
       option.push(+e.target.value);
@@ -122,12 +126,10 @@ export class SubSideBar extends React.Component<IProps, IState> {
       index = option.indexOf(+e.target.value);
       option.splice(index, 1);
     }
-
     this.setState({ option: option });
   }
 
   render() {
-    console.log(this.state.option);
     let arr = [] as any;
     return (
       <div>
@@ -158,6 +160,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
                     dragData={{ arr }}
                     targetKey="foo"
                     dragClone="true"
+                    onDrop={this.handleDrop}
                   >
                     <table className="userList">
                       {this.props.dataSource.map((item, index) => {
@@ -195,7 +198,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
                     <th> Avatar</th>
                     <th> Name </th>
                     <th> Email </th>
-                    <th> View More </th>
+                    <th> More </th>
                   </tr>
                   {this.props.dataSource.map((item1, index1) => {
                     return (
@@ -214,7 +217,6 @@ export class SubSideBar extends React.Component<IProps, IState> {
                         <td>
                           <Avatar src="/avatar.png" />
                         </td>
-
                         <td>{item1.email}</td>
                         <td>{item1.name}</td>
                         <td>
