@@ -1,7 +1,7 @@
 import React from "react";
 import "./layout.scss";
 import { Redirect } from "react-router-dom";
-import { Layout, Icon, Menu, Avatar, Button, Dropdown } from "antd";
+import { Layout, Icon, Menu, Avatar, Button, Dropdown, Modal } from "antd";
 import { Translation } from "react-i18next";
 import i18n from "../../i18n";
 import SingleUser from "../SubsideBar/singleUser";
@@ -17,7 +17,8 @@ interface Istate {
   showAll: boolean;
   showGroup: boolean;
   dropMessage: boolean;
-  groupName:string
+  groupName:string;
+  visible:boolean;
 }
 
 interface IProps {
@@ -41,7 +42,8 @@ class layout extends React.Component<IProps, Istate> {
     ],
     showAll: true,
     showGroup: false,
-    dropMessage: true
+    dropMessage: true,
+    visible:false
   };
 
   public componentDidMount(): void {
@@ -54,6 +56,20 @@ class layout extends React.Component<IProps, Istate> {
 
   onCollapse = collapsed => {
     this.setState({ collapsed });
+  };
+
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
   };
 
   menuClicked = key => {
@@ -87,7 +103,9 @@ class layout extends React.Component<IProps, Istate> {
         })
       }
     })
-    alert("Added!!");
+    this.setState({
+      visible:true
+     });
   };
 
   public handlelogout = () => {
@@ -140,6 +158,15 @@ class layout extends React.Component<IProps, Istate> {
           onCollapse={this.onCollapse}
           breakpoint="lg"
         >
+          <Modal
+          visible={this.state.visible}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button key="ok" type="primary" onClick={this.handleOk}>
+                Ok
+            </Button>
+        ]}
+        ></Modal>
           {console.log(this.state.data)}
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
