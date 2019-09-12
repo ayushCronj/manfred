@@ -51,7 +51,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
     
   };
 
-   handleCloseModal=()=>{
+  handleCloseModal=()=>{
     this.props.handleCancel()
   
   }
