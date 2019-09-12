@@ -62,7 +62,6 @@ class EditUserDetail extends React.Component<IProps, IState> {
   }
 
   public render(): React.ReactNode {
-    
     return (
       <div className="mainUserEdit">
         <div className="Usercontainer1">

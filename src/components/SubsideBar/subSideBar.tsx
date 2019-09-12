@@ -99,12 +99,14 @@ export class SubSideBar extends React.Component<IProps, IState> {
       option.push(+e.target.value);
     } else {
       index = option.indexOf(+e.target.value);
-      option.splice(index, 1);
+      if (index !== -1) {
+        option.splice(index, 1);
+      }
     }
     this.setState({ option: option });
   }
 
-  render() {
+  public render(): React.ReactNode {
     let arr = [] as any;
     return (
       <div>

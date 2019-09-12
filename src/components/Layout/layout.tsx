@@ -134,7 +134,7 @@ class layout extends React.Component<{}, Istate> {
     });
   };
 
-  public render() {
+  public render(): React.ReactNode {
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }

@@ -30,7 +30,7 @@ class EditModal extends React.Component<IProps, IState> {
 
 }
 
-  render() {
+public render(): React.ReactNode {
     return (
       <div>
         <Icon type="edit" className="iconContainer" onClick={this.showModal} />

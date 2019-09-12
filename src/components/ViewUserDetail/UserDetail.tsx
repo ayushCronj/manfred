@@ -21,7 +21,7 @@ interface IProps {
 }
 
 class UserDetail extends React.Component<IProps, {}> {
-  render() {
+  public render(): React.ReactNode {
     return (
       <div>
         <div>
