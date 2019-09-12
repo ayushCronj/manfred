@@ -79,13 +79,6 @@ class layout extends React.Component<IProps, Istate> {
   };
 
   dropped = (ev, groupName) => {
-    console.log(ev.dragData)
-    // const dummy : any = [...this.state.data] 
-    // ev.dragData.arr.map((item: any) => {
-    //   dummy.push(item);
-    // })
-    console.log("old data ===>>>", this.state.data)
-
     this.state.data.map((item: any) => {
       if (item.groupName === groupName){
         ev.dragData.arr.map((val: any) => {
@@ -94,13 +87,7 @@ class layout extends React.Component<IProps, Istate> {
         })
       }
     })
-
     alert("Added!!");
-    console.log("new data ===>>>", this.state.data)
-    // this.setState({
-    //   data: dummy,
-    //   dropMessage: true
-    // });
   };
 
   public handlelogout = () => {

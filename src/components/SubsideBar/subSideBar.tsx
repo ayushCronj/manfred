@@ -111,6 +111,12 @@ export class SubSideBar extends React.Component<IProps, IState> {
     });
   };
 
+  private handleDrop = () => {
+    this.setState({
+      option:[-1]
+    })
+  }
+
   onChange(e) {
     console.log(e.target.value);
     const option = this.state.option;
@@ -149,11 +155,11 @@ export class SubSideBar extends React.Component<IProps, IState> {
               ) : null}
               {this.state.option.length > 1 ? (
                 <div>
-                   <DragDropContainer dragData={{ arr}} targetKey="foo" dragClone ="true">
+                   <DragDropContainer dragData={{ arr}} targetKey="foo" dragClone ="true" onDrop={() => this.handleDrop()}>
                   <table className="userList">
                     {this.props.dataSource.map((item, index) => {
                       if(this.state.option.includes(index)){
-                      return (<tr key={index} style={{border:'1px solid black', backgroundColor:'skyblue'}}>
+                      return (<tr key={index} className="dropTr">
                         <td>
                           <Avatar src="avatar.png" />
                         </td>
@@ -176,16 +182,16 @@ export class SubSideBar extends React.Component<IProps, IState> {
                   return (
                     // <DragDropContainer dragData={{ item1 }} targetKey="foo">
                       <tr key={index1} onClick={() => this.handleUser(index1)} style={{border:'1px solid black'}}>
-                          <td>
+                        <td>
+                          <Avatar src="/avatar.png" />
+                        </td>
+                        <td>
                           <input
                             type="checkbox"
                             value={index1}
                             onChange={this.onChange.bind(this)}
                           />
-                        </td><td>
-                          <Avatar src="/avatar.png" />
                         </td>
-            
                         <td>{item1.email}</td>
                         <td>{item1.name}</td>
                         <td>
