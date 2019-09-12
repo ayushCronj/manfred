@@ -122,7 +122,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
     let index;
     if (e.target.checked) {
       option.push(+e.target.value);
-    } else {
+    } else if (option[0] !== -1) {
       index = option.indexOf(+e.target.value);
       option.splice(index, 1);
     }
@@ -137,6 +137,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
           <Col lg={8} md={12} xs={24} sm={24} style={{ paddingRight: "22px" }}>
             <button className="button" onClick={this.handleClick}>
               <Translation>{t => t("addnewuser")}</Translation>
+              &nbsp;&nbsp;
               <Icon type="plus" />
             </button>
             <div>
@@ -163,25 +164,27 @@ export class SubSideBar extends React.Component<IProps, IState> {
                     onDrop={this.handleDrop}
                   >
                     <table className="userList">
-                      {this.props.dataSource.map((item, index) => {
-                        if (this.state.option.includes(index)) {
-                          return (
-                            <tr
-                              key={index}
-                              style={{
-                                border: "1px solid black",
-                                backgroundColor: "skyblue"
-                              }}
-                            >
-                              <td>
-                                <Avatar src="avatar.png" />
-                              </td>
-                              <td>{item.name}</td>
-                              <td>{item.email}</td>
-                            </tr>
-                          );
-                        }
-                      })}
+                      <tbody>
+                        {this.props.dataSource.map((item, index) => {
+                          if (this.state.option.includes(index)) {
+                            return (
+                              <tr
+                                key={index}
+                                style={{
+                                  border: "1px solid black",
+                                  backgroundColor: "skyblue"
+                                }}
+                              >
+                                <td>
+                                  <Avatar src="avatar.png" />
+                                </td>
+                                <td>{item.name}</td>
+                                <td>{item.email}</td>
+                              </tr>
+                            );
+                          }
+                        })}
+                      </tbody>
                     </table>
                   </DragDropContainer>
                 </div>
@@ -193,38 +196,44 @@ export class SubSideBar extends React.Component<IProps, IState> {
                 }}
               >
                 <table className="userList">
-                  <tr>
-                    <th></th>
-                    <th> Avatar</th>
-                    <th> Name </th>
-                    <th> Email </th>
-                    <th> More </th>
-                  </tr>
-                  {this.props.dataSource.map((item1, index1) => {
-                    return (
-                      <tr
-                        key={index1}
-                        onClick={() => this.handleUser(index1)}
-                        style={{ border: "1px solid black" }}
-                      >
-                        <td>
-                          <input
-                            type="checkbox"
-                            value={index1}
-                            onChange={this.onChange.bind(this)}
-                          />
-                        </td>
-                        <td>
-                          <Avatar src="/avatar.png" />
-                        </td>
-                        <td>{item1.name}</td>
-                        <td>{item1.email}</td>
-                        <td>
-                          <Icon type="arrow-right" />
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  <tbody>
+                    <tr>
+                      <th> </th>
+                      <th>
+                        <Translation>{t => t("avatar")}</Translation>
+                      </th>
+                      <th> Name </th>
+                      <th> Email </th>
+                      <th>
+                        <Translation>{t => t("more")}</Translation>
+                      </th>
+                    </tr>
+                    {this.props.dataSource.map((item1, index1) => {
+                      return (
+                        <tr
+                          key={index1}
+                          onClick={() => this.handleUser(index1)}
+                          style={{ border: "1px solid black" }}
+                        >
+                          <td>
+                            <input
+                              type="checkbox"
+                              value={index1}
+                              onChange={this.onChange.bind(this)}
+                            />
+                          </td>
+                          <td>
+                            <Avatar src="/avatar.png" />
+                          </td>
+                          <td>{item1.name}</td>
+                          <td>{item1.email}</td>
+                          <td>
+                            <Icon type="arrow-right" />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
                 </table>
               </div>
             </div>
