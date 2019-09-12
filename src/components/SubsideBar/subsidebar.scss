@@ -2,6 +2,27 @@
   display: flex;
 }
 
+.headingEdit{
+  font-size: 38px;
+  margin-top: 35px;
+  margin-left: 64px;
+  color: #313031;
+}
+
+.submitEdit{
+  background-color: #ebedef;
+  border: 1px solid black;
+  height: 1000px;
+  margin-top: 62px;
+}
+
+.mainUserEdit{
+  background-color: #ebedef;
+  border: 1px solid black;
+  height: 886px;
+  margin-top: 20px;
+}
+
 .mainUser {
   background-color:rgb(235, 237, 239);
   border: 1px solid black;
@@ -15,27 +36,62 @@
 .user-form1{
   margin-left: 95px;
 }
-#customers {
+.userList {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-#customers td, #customers th {
-  border: 1px solid #ddd;
+.userList td, .userList th {
   padding: 8px;
+  color:black;
+  width:245px;
+  // border:1px solid black;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+.userList tr:nth-child(even){background-color: #f2f2f2;}
 
-#customers tr:hover {background-color: #ddd;}
+.userList tr:hover {background-color: #ddd;}
 
-#customers th {
+.userList th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #ddd;
+  color:black
+}
+.details{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-top: 50px;
+  border: 1px solid black;
+  width: 1000px;
+  height:300px
+}
+
+.card{
+width:400px;
+height:100px;
+margin-left:50px;
+margin-top: 50px;
+}
+
+.userItem{
+  margin-top: 20px;
+  font-size:19px
+}
+
+.company{
+  margin-left: 260px;
+  margin-top: -166px;
+}
+
+.editItem{
+  color: #85C1E9;
+    margin-left: 60px;
+    margin-top: 32px;
+    font-size: 18px;
 }
 
 @media (max-width:320px) and (max-width:425px){
@@ -71,6 +127,36 @@
   .user-form1{
     margin-left: 36px !important
   }
+  .headingEdit{
+    font-size: 28px !important;
+    margin-left: 35px !important;
+  }
+  .mainUserEdit{
+    height: 937px !important;
+  }
+  .editItem{
+    color: #85C1E9;
+    margin-left: 23px !important;
+    margin-top: 32px;
+    font-size: 16px !important;
+  }
+  .details{
+    flex-wrap:wrap !important;
+    height:700px !important;
+    border:none !important;
+    width:320px !important;
+  }
+  .userList{
+    margin-left: -44px !important;
+  }
+  .card{
+    margin-left: -12px !important;
+
+  }
+  .userList td, .userList th {
+    font-size: 10px !important;
+    // border:1px solid black;
+}
 }
 
 @media (max-width:375px) and (min-width:321px){
@@ -104,6 +190,9 @@
   .user-form1{
     margin-left: 18px !important;
   }
+  .editItem{
+    margin-left: 56px !important;
+  }
   
 }
 
@@ -129,6 +218,9 @@
   }
   .user-form1{
     margin-left: 36px !important;
+  }
+  .editItem{
+    margin-left: 62px !important;
   }
 }
 

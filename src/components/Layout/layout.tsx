@@ -4,11 +4,12 @@ import { Redirect } from "react-router-dom";
 import { Layout, Icon, Menu, Avatar, Button, Dropdown } from "antd";
 import { Translation } from "react-i18next";
 import i18n from "../../i18n";
+import SingleUser from "../SubsideBar/singleUser";
 import SubSideBar from "../SubsideBar/subSideBar";
 import { DragDropContainer, DropTarget } from "react-drag-drop-container";
+import DragModal from "./DragModal"
+import { Modal } from 'antd';
 
-// import { useDrop } from "react-dnd";
-// import { DragItem } from "./interface";
 const { Header, Sider, Content } = Layout;
 
 interface Istate {
@@ -16,6 +17,11 @@ interface Istate {
   redirect?: boolean;
   language?: string;
   data?: any;
+  showAll: boolean;
+  showGroup: boolean;
+  dropMessage: boolean;
+  groupName:string;
+  visible:boolean
 }
 
 interface IProps {
@@ -26,7 +32,21 @@ class layout extends React.Component<IProps, Istate> {
     collapsed: false,
     redirect: false,
     language: "Eng",
-    data: []
+    groupName:"",
+    visible:false,
+    data: [
+      {
+        groupName: "group1",
+        users: []
+      },
+      {
+        groupName: "group2",
+        users: []
+      }
+    ],
+    showAll: true,
+    showGroup: false,
+    dropMessage: true
   };
 
   public componentDidMount(): void {
@@ -41,10 +61,64 @@ class layout extends React.Component<IProps, Istate> {
     this.setState({ collapsed });
   };
 
-  dropped = ev => {
-    // console.log(ev.dragData);
+  handleshow=()=>{
     this.setState({
-      data: [...this.state.data, ev.dragData]
+      visible:true
+    })
+  }
+ 
+  menuClicked = key => {
+    if (key.key === "1") {
+      this.setState({
+        showAll: true,
+        showGroup: false
+      });
+    } else if (key.key === "2") {
+      this.setState({
+        showAll: false,
+        showGroup: true,
+        groupName:"group1",
+      });
+    }
+    else if (key.key === "3") {
+      this.setState({
+        showAll: false,
+        showGroup: true,
+        groupName:"group2",
+      });
+    }
+  };
+
+  dropped = (ev, groupName) => {
+
+    this.state.data.map((item: any) => {
+      if (item.groupName === groupName){
+        ev.dragData.arr.map((val: any) => {
+          item.users.push(val);
+          console.log(item)
+        })
+      }
+    })
+
+ 
+   
+    this.setState({
+     visible:true
+    });
+   
+   
+  };
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
     });
   };
 
@@ -62,20 +136,6 @@ class layout extends React.Component<IProps, Istate> {
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }
-
-    // const { onDrop } = this.props;
-    // const [{ isOver, canDrop }, drop] = useDrop({
-    //   accept: ["Colors.YELLOW, Colors.BLUE"],
-    //   drop(item: DragItem) {
-    //     onDrop(item.type);
-    //     return undefined;
-    //   },
-    //   collect: monitor => ({
-    //     isOver: monitor.isOver(),
-    //     canDrop: monitor.canDrop(),
-    //     draggingColor: monitor.getItemType() as string
-    //   })
-    // })
 
     const menu = (
       <Menu>
@@ -112,21 +172,57 @@ class layout extends React.Component<IProps, Istate> {
           onCollapse={this.onCollapse}
           breakpoint="lg"
         >
+           <Modal
+          visible={this.state.visible}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button key="ok" type="primary" onClick={this.handleOk}>
+                Ok
+            </Button>
+        ]}
+        >
+          <h3>User added successfully</h3>
+         
+        </Modal>
           {console.log(this.state.data)}
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-            <Menu.Item key="1">
+            <Menu.Item
+              key="1"
+              onClick={key => {
+                this.menuClicked(key);
+              }}
+            >
               <Icon type="user" />
               <span>
                 <Translation>{t => t("show_users")}</Translation>
               </span>
             </Menu.Item>
-            <Menu.Item>
-              <DropTarget targetKey="foo" onHit={this.dropped}
-              >
+            <Menu.Item
+              key="2"
+              onClick={key => {
+                this.menuClicked(key);
+              }}
+            >
+              <DropTarget targetKey="foo" onHit={(ev) => {this.dropped(ev, "group1")}} >
+                
+                
                 <Icon type="info" />
                 <span>Group 1</span>
               </DropTarget>
+              {this.state.dropMessage === true ? <h1>Added</h1> : null}
+            </Menu.Item>
+            <Menu.Item
+              key="3"
+              onClick={key => {
+                this.menuClicked(key);
+              }}
+            >
+              <DropTarget targetKey="foo" onHit={(ev) => {this.dropped(ev, "group2")}}>
+                <Icon type="info" />
+                <span>Group 2</span>
+              </DropTarget>
+              {this.state.dropMessage === true ? <h1>Added</h1> : null}
             </Menu.Item>
           </Menu>
         </Sider>
@@ -163,7 +259,14 @@ class layout extends React.Component<IProps, Istate> {
               minHeight: 280
             }}
           >
-            <SubSideBar />
+            {this.state.showAll === true ? (
+              <SubSideBar />
+            ) : (
+              <div>
+          {this.state.groupName === "group1" ? 
+              <SingleUser members={this.state.data[0].users} />
+              :  <SingleUser members={this.state.data[1].users} /> }
+            </div>) }
           </Content>
         </Layout>
       </Layout>
@@ -175,3 +278,17 @@ class layout extends React.Component<IProps, Istate> {
 // };
 
 export default layout;
+
+
+
+
+// data = [
+//   {
+//     groupName: "",
+//     users: []
+//   },
+//   {
+//     groupName: "",
+//     users: []
+//   },
+// ] 

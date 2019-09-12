@@ -42,7 +42,6 @@ class NewUser extends React.Component<IProps, IState> {
     phoneNumber: ""
   };
 
-
   public render(): React.ReactNode {
     return (
       <div className="mainUser">
