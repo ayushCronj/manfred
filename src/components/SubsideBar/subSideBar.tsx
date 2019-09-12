@@ -4,7 +4,7 @@ import UserDetail from "../ViewUserDetail/UserDetail";
 import NewUser from "./newuser";
 import { connect } from "react-redux";
 import { Translation } from "react-i18next";
-import { DragDropContainer, DropTarget } from "react-drag-drop-container";
+import { DragDropContainer } from "react-drag-drop-container";
 
 import "./subsidebar.scss";
 
@@ -112,45 +112,31 @@ export class SubSideBar extends React.Component<IProps, IState> {
     return (
       <div>
         <Row>
-          <Col lg={8} xs={24} sm={24}>
+          <Col lg={8} md={12} xs={24} sm={24}>
             <button className="button" onClick={this.handleClick}>
               <Translation>{t => t("addnewuser")}</Translation>
               <Icon type="plus" />
             </button>
-            {/* <Table
-            className="userTable"
-              dataSource={this.props.dataSource}
-              scroll={{ x: 200 }}
-              columns={columns}
-              pagination={{ hideOnSinglePage: true }}
-              onRow={(record, rowIndex) => {
-                return {
-                  onClick: event => {
-                    this.handleUser(rowIndex);
-                  }
-                };
-              }}
-            /> */}
             <div>
               <table id="userList">
-                {/* <tr>
-                <th></th>
-                  <th>Email</th>
-                  <th>Name</th>
-                  <th></th>
-                </tr> */}
                 <br></br>
                 <br></br>
                 {this.props.dataSource.map((item1, index1) => {
                   return (
-                    <DragDropContainer dragData={{ item1 }} targetKey="foo">
+                    <DragDropContainer
+                      dragClone="true"
+                      dragData={{ item1 }}
+                      targetKey="foo"
+                    >
                       <tr key={index1} onClick={() => this.handleUser(index1)}>
-                      <td>
+                        <td>
                           <Avatar src={item1.link} />
                         </td>
                         <td>{item1.email}</td>
                         <td>{item1.name}</td>
-                        <td><Icon type="arrow-right" /></td>                       
+                        <td>
+                          <Icon type="arrow-right" />
+                        </td>
                       </tr>
                     </DragDropContainer>
                   );
@@ -158,7 +144,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
               </table>
             </div>
           </Col>
-          <Col lg={16} xs={24} sm={24}>
+          <Col lg={16} md={12} xs={24} sm={24}>
             {this.state.showUser === true ? (
               this.state.userDetail ? (
                 <div className="userContents">

@@ -4,12 +4,9 @@ import { Redirect } from "react-router-dom";
 import { Layout, Icon, Menu, Avatar, Button, Dropdown } from "antd";
 import { Translation } from "react-i18next";
 import i18n from "../../i18n";
-import SingleUser from "../SubsideBar/singleUser"
+import SingleUser from "../SubsideBar/singleUser";
 import SubSideBar from "../SubsideBar/subSideBar";
-import { DragDropContainer, DropTarget } from "react-drag-drop-container";
-
-// import { useDrop } from "react-dnd";
-// import { DragItem } from "./interface";
+import { DropTarget } from "react-drag-drop-container";
 const { Header, Sider, Content } = Layout;
 
 interface Istate {
@@ -17,9 +14,9 @@ interface Istate {
   redirect?: boolean;
   language?: string;
   data?: any;
-  showAll:boolean;
-  showGroup:boolean;
-  dropMessage:boolean;
+  showAll: boolean;
+  showGroup: boolean;
+  dropMessage: boolean;
 }
 
 interface IProps {
@@ -31,9 +28,9 @@ class layout extends React.Component<IProps, Istate> {
     redirect: false,
     language: "Eng",
     data: [],
-    showAll:true,
-    showGroup:false,
-    dropMessage:true
+    showAll: true,
+    showGroup: false,
+    dropMessage: true
   };
 
   public componentDidMount(): void {
@@ -48,26 +45,25 @@ class layout extends React.Component<IProps, Istate> {
     this.setState({ collapsed });
   };
 
-  menuClicked = (key) =>{
-    if(key.key==="1"){
-        this.setState({
-           showAll:true,
-           showGroup:false
-        })
-    }else if(key.key==='2'){
-        this.setState({
-          showAll:false,
-          showGroup:true
-        })
+  menuClicked = key => {
+    if (key.key === "1") {
+      this.setState({
+        showAll: true,
+        showGroup: false
+      });
+    } else if (key.key === "2") {
+      this.setState({
+        showAll: false,
+        showGroup: true
+      });
     }
-  }
+  };
 
   dropped = ev => {
-    // console.log(ev.dragData);
-    alert("Added!!")
+    alert("Added!!");
     this.setState({
       data: [...this.state.data, ev.dragData],
-      dropMessage:true
+      dropMessage: true
     });
   };
 
@@ -85,20 +81,6 @@ class layout extends React.Component<IProps, Istate> {
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }
-
-    // const { onDrop } = this.props;
-    // const [{ isOver, canDrop }, drop] = useDrop({
-    //   accept: ["Colors.YELLOW, Colors.BLUE"],
-    //   drop(item: DragItem) {
-    //     onDrop(item.type);
-    //     return undefined;
-    //   },
-    //   collect: monitor => ({
-    //     isOver: monitor.isOver(),
-    //     canDrop: monitor.canDrop(),
-    //     draggingColor: monitor.getItemType() as string
-    //   })
-    // })
 
     const menu = (
       <Menu>
@@ -137,19 +119,29 @@ class layout extends React.Component<IProps, Istate> {
         >
           {console.log(this.state.data)}
           <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} >
-            <Menu.Item key="1" onClick={(key)=>{ this.menuClicked(key)}}>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+            <Menu.Item
+              key="1"
+              onClick={key => {
+                this.menuClicked(key);
+              }}
+            >
               <Icon type="user" />
               <span>
                 <Translation>{t => t("show_users")}</Translation>
               </span>
             </Menu.Item>
-            <Menu.Item key="2" onClick={(key)=>{ this.menuClicked(key)}}>
+            <Menu.Item
+              key="2"
+              onClick={key => {
+                this.menuClicked(key);
+              }}
+            >
               <DropTarget targetKey="foo" onHit={this.dropped}>
                 <Icon type="info" />
                 <span>Group 1</span>
               </DropTarget>
-              {this.state.dropMessage === true ? <h1>Added</h1>:null}
+              {this.state.dropMessage === true ? <h1>Added</h1> : null}
             </Menu.Item>
           </Menu>
         </Sider>
@@ -186,7 +178,11 @@ class layout extends React.Component<IProps, Istate> {
               minHeight: 280
             }}
           >
-            {this.state.showAll === true ?<SubSideBar /> :<SingleUser members={this.state.data}/>}    
+            {this.state.showAll === true ? (
+              <SubSideBar />
+            ) : (
+              <SingleUser members={this.state.data} />
+            )}
           </Content>
         </Layout>
       </Layout>
