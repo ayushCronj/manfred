@@ -44,7 +44,8 @@
 
 #userList td, #userList th {
   padding: 8px;
-  color:black
+  color:black;
+  width:245px
 }
 
 #userList tr:nth-child(even){background-color: #f2f2f2;}
@@ -150,6 +151,9 @@ margin-top: 50px;
     margin-left: -12px !important;
 
   }
+  #userList td, #userList th {
+    font-size: 10px !important;
+}
 }
 
 @media (max-width:375px) and (min-width:321px){

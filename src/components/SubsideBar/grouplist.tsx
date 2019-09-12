@@ -24,7 +24,6 @@ class GroupList extends React.Component<IProps, IState> {
           <h1 className="userItem">TimeZone:{" "+this.props.user.item1.TimeZone}</h1>
           <h1 className="userItem">Client: {" "+this.props.user.item1.client}</h1>
           <h1 className="userItem">Unit System:{" "+this.props.user.item1.UnitSystem}</h1>
-          {/* <h1>{this.props.user.item1.}</h1> */}
         </div>
       </div>
     );

@@ -7,12 +7,14 @@ import { Translation } from "react-i18next";
 import { DragDropContainer, DropTarget } from "react-drag-drop-container";
 
 import "./subsidebar.scss";
+import { array } from "prop-types";
 
 interface IState {
   userDetail: any;
   newUser: boolean;
   showUser: boolean;
   index: number;
+  option?: any;
 }
 interface IProps {
   dataSource: any;
@@ -47,7 +49,8 @@ export class SubSideBar extends React.Component<IProps, IState> {
     userDetail: "",
     newUser: false,
     showUser: false,
-    index: 0
+    index: 0,
+    option: [-1]
   };
 
   public componentDidMount(): void {
@@ -108,7 +111,24 @@ export class SubSideBar extends React.Component<IProps, IState> {
     });
   };
 
+  onChange(e) {
+    console.log(e.target.value);
+    const option = this.state.option;
+    // const option : string[] = [];
+    let index;
+    if (e.target.checked) {
+      option.push(+e.target.value);
+    } else {
+      index = option.indexOf(+e.target.value);
+      option.splice(index, 1);
+    }
+
+    this.setState({ option: option });
+  }
+
   render() {
+    console.log(this.state.option);
+    let arr=[] as any;
     return (
       <div>
         <Row>
@@ -117,40 +137,60 @@ export class SubSideBar extends React.Component<IProps, IState> {
               <Translation>{t => t("addnewuser")}</Translation>
               <Icon type="plus" />
             </button>
-            {/* <Table
-            className="userTable"
-              dataSource={this.props.dataSource}
-              scroll={{ x: 200 }}
-              columns={columns}
-              pagination={{ hideOnSinglePage: true }}
-              onRow={(record, rowIndex) => {
-                return {
-                  onClick: event => {
-                    this.handleUser(rowIndex);
-                  }
-                };
-              }}
-            /> */}
             <div>
+              {this.state.option.length > 1 ? (
+    
+                <div>
+                {this.props.dataSource.map((item, index) => {
+                  if(this.state.option.includes(index)){
+                    arr.push(item)
+                  }})}
+                  </div>
+              ) : null}
+              {this.state.option.length > 1 ? (
+                <div>
+                   <DragDropContainer dragData={{ arr}} targetKey="foo">
+                  <table>
+                    {this.props.dataSource.map((item, index) => {
+                      if(this.state.option.includes(index)){
+                      return (<tr key={index}>
+                        <td>
+                          <Avatar src={item.link} />
+                        </td>
+                        <td>{item.email}</td>
+                        <td>{item.name}</td>
+                        <td>
+                          <Icon type="arrow-right" />
+                        </td>
+                      </tr>)
+                      }
+                    })}
+                  </table>
+                  </DragDropContainer>
+                </div>
+              ) : null}
               <table id="userList">
-                {/* <tr>
-                <th></th>
-                  <th>Email</th>
-                  <th>Name</th>
-                  <th></th>
-                </tr> */}
                 <br></br>
                 <br></br>
                 {this.props.dataSource.map((item1, index1) => {
                   return (
                     <DragDropContainer dragData={{ item1 }} targetKey="foo">
                       <tr key={index1} onClick={() => this.handleUser(index1)}>
-                      <td>
+                        <td>
                           <Avatar src={item1.link} />
+                        </td>
+                        <td>
+                          <input
+                            type="checkbox"
+                            value={index1}
+                            onChange={this.onChange.bind(this)}
+                          />
                         </td>
                         <td>{item1.email}</td>
                         <td>{item1.name}</td>
-                        <td><Icon type="arrow-right" /></td>                       
+                        <td>
+                          <Icon type="arrow-right" />
+                        </td>
                       </tr>
                     </DragDropContainer>
                   );
