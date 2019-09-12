@@ -1,7 +1,7 @@
 import React from "react";
 import "./layout.scss";
 import { Redirect } from "react-router-dom";
-import { Layout, Icon, Menu, Avatar, Button, Dropdown } from "antd";
+import { Layout, Icon, Menu, Avatar, Button, Dropdown, Modal } from "antd";
 import { Translation } from "react-i18next";
 import i18n from "../../i18n";
 import SingleUser from "../SubsideBar/singleUser";
@@ -17,7 +17,8 @@ interface Istate {
   showAll: boolean;
   showGroup: boolean;
   dropMessage: boolean;
-  groupName:string
+  groupName: string;
+  visible: boolean;
 }
 
 class layout extends React.Component<{}, Istate> {
@@ -25,7 +26,7 @@ class layout extends React.Component<{}, Istate> {
     collapsed: false,
     redirect: false,
     language: "Eng",
-    groupName:"",
+    groupName: "",
     data: [
       {
         groupName: "group1",
@@ -38,7 +39,8 @@ class layout extends React.Component<{}, Istate> {
     ],
     showAll: true,
     showGroup: false,
-    dropMessage: true
+    dropMessage: true,
+    visible: false
   };
 
   public componentDidMount(): void {
@@ -48,6 +50,20 @@ class layout extends React.Component<{}, Istate> {
       });
     }
   }
+
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
 
   onCollapse = collapsed => {
     this.setState({ collapsed });
@@ -63,28 +79,28 @@ class layout extends React.Component<{}, Istate> {
       this.setState({
         showAll: false,
         showGroup: true,
-        groupName:"group1",
+        groupName: "group1"
       });
-    }
-    else if (key.key === "3") {
+    } else if (key.key === "3") {
       this.setState({
         showAll: false,
         showGroup: true,
-        groupName:"group2",
+        groupName: "group2"
       });
     }
   };
 
   dropped = (ev, groupName) => {
     this.state.data.map((item: any) => {
-      if (item.groupName === groupName){
+      if (item.groupName === groupName) {
         ev.dragData.arr.map((val: any) => {
           item.users.push(val);
-          console.log(item)
-        })
+        });
       }
-    })
-    alert("Added!!");
+    });
+    this.setState({
+      visible: true
+    });
   };
 
   public handlelogout = () => {
@@ -137,7 +153,17 @@ class layout extends React.Component<{}, Istate> {
           onCollapse={this.onCollapse}
           breakpoint="lg"
         >
-          {console.log(this.state.data)}
+          <Modal
+            visible={this.state.visible}
+            onCancel={this.handleCancel}
+            footer={[
+              <Button key="ok" type="primary" onClick={this.handleOk}>
+                Ok
+              </Button>
+            ]}
+          >
+            <h3> Added to Group Successfully..!! </h3>
+          </Modal>
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item
@@ -157,7 +183,12 @@ class layout extends React.Component<{}, Istate> {
                 this.menuClicked(key);
               }}
             >
-              <DropTarget targetKey="foo" onHit={(ev) => {this.dropped(ev, "group1")}}>
+              <DropTarget
+                targetKey="foo"
+                onHit={ev => {
+                  this.dropped(ev, "group1");
+                }}
+              >
                 <Icon type="info" />
                 <span>Group 1</span>
               </DropTarget>
@@ -169,7 +200,12 @@ class layout extends React.Component<{}, Istate> {
                 this.menuClicked(key);
               }}
             >
-              <DropTarget targetKey="foo" onHit={(ev) => {this.dropped(ev, "group2")}}>
+              <DropTarget
+                targetKey="foo"
+                onHit={ev => {
+                  this.dropped(ev, "group2");
+                }}
+              >
                 <Icon type="info" />
                 <span>Group 2</span>
               </DropTarget>
@@ -214,10 +250,13 @@ class layout extends React.Component<{}, Istate> {
               <SubSideBar />
             ) : (
               <div>
-          {this.state.groupName === "group1" ? 
-              <SingleUser members={this.state.data[0].users} />
-              :  <SingleUser members={this.state.data[1].users} /> }
-            </div>) }
+                {this.state.groupName === "group1" ? (
+                  <SingleUser members={this.state.data[0].users} />
+                ) : (
+                  <SingleUser members={this.state.data[1].users} />
+                )}
+              </div>
+            )}
           </Content>
         </Layout>
       </Layout>
