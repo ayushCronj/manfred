@@ -5,9 +5,7 @@ import NewUser from "./newuser";
 import { connect } from "react-redux";
 import { Translation } from "react-i18next";
 import { DragDropContainer } from "react-drag-drop-container";
-
 import "./subsidebar.scss";
-import { array } from "prop-types";
 
 interface IState {
   userDetail: any;
