@@ -137,7 +137,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
           <Col lg={8} md={12} xs={24} sm={24} className="list">
             <button className="button" onClick={this.handleClick}>
               <Translation>{t => t("addnewuser")}</Translation>
-              <Icon type="plus" />
+              <Icon type="plus" style={{marginLeft:'11px'}}/>
             </button>
             <div>
               {this.state.option.length > 1 ? (
