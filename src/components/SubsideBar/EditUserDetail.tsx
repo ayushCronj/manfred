@@ -6,7 +6,7 @@ import TimeZone from '../../utils/timezone.json'
 import units from '../../utils/unit.json'
 import { Translation } from "react-i18next";
 import "./subsidebar.scss";
-
+import { validateEmail , validatePhone} from '../../utils/validation'
 import {
   Formik,
   FormikActions,
@@ -26,12 +26,15 @@ interface IState {
   TimeZone: string;
   UnitSystem: string;
   phoneNumber: string;
+ 
 }
+
 interface IProps {
   userEditDetail: any;
   editindex: number;
   EditUser?: any;
   handleCancel:any;
+
 }
 
 class EditUserDetail extends React.Component<IProps, IState> {
@@ -44,17 +47,22 @@ class EditUserDetail extends React.Component<IProps, IState> {
     Language: "",
     TimeZone: "",
     UnitSystem: "",
-    phoneNumber: ""
+    phoneNumber: "",
+    
   };
+
   handleCloseModal=()=>{
     this.props.handleCancel()
+  
   }
+
   onkeyDown=(keyEvent)=>{
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) { keyEvent.preventDefault(); }
 
   }
 
   public render(): React.ReactNode {
+    
     return (
       <div className="mainUserEdit">
         <div className="Usercontainer1">
@@ -69,13 +77,18 @@ class EditUserDetail extends React.Component<IProps, IState> {
               Language: this.props.userEditDetail.Language,
               TimeZone: this.props.userEditDetail.TimeZone,
               UnitSystem: this.props.userEditDetail.UnitSystem,
-              phoneNumber: this.props.userEditDetail.phoneNumber
+              phoneNumber: this.props.userEditDetail.phoneNumber,
+              
             }}
-            onSubmit={(values: IState, actions: FormikActions<IState>) => {
+           
+             onSubmit={(values: IState, actions: FormikActions<IState>) => {
               actions.setSubmitting(false);
+              values["key"]=this.props.userEditDetail.key
               this.props.EditUser(values, this.props.editindex);
+              this.handleCloseModal()
             }}
             render={(formikBag: FormikProps<IState>) => (
+           
               <Form className="user-form1" onKeyDown={this.onkeyDown}>
                 <h3 className="headingEdit"><Translation>{t => t("edituser")}</Translation></h3>
                 <h3 className="editItem"><Translation>{t => t("contactinfo")}</Translation></h3>
@@ -89,9 +102,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
                         {...field}
                         placeholder="First Name"
                       />
-                      {form.touched.email &&
-                        form.errors.email &&
-                        form.errors.email}
+                     
                     </div>
                   )}
                 />
@@ -110,6 +121,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
                 />
                 <Field
                   name="email"
+                   validate={validateEmail}
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
@@ -118,11 +130,17 @@ class EditUserDetail extends React.Component<IProps, IState> {
                         {...field}
                         placeholder="Email"
                       />
+                      <div className="error-msg">
+                       {form.touched.email &&
+                        form.errors.email &&
+                        form.errors.email}
+                        </div>
                     </div>
                   )}
                 />
-                 <Field
+                  <Field
                   name="phoneNumber"
+                  validate={validatePhone}
                   render={({ field, form }: FieldProps<IState>) => (
                     <div>
                       <input
@@ -131,7 +149,13 @@ class EditUserDetail extends React.Component<IProps, IState> {
                         {...field}
                         placeholder="phoneNumber"
                       />
+                       <div className="error-msg">
+                      {form.touched.phoneNumber &&
+                        form.errors.phoneNumber &&
+                        form.errors.phoneNumber}
+                        </div>
                     </div>
+                   
                   )}
                 />
                
@@ -170,7 +194,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
                   className="select"
                   placeholder="Language"
                 >
-                 <option value="">Select Language</option>
+                 <option value="">{this.props.userEditDetail.Language}</option>
                  {languages.map(language => <option value={language.name}>{language.name}</option>)}
                 </Field>
                 <Field
@@ -179,7 +203,7 @@ class EditUserDetail extends React.Component<IProps, IState> {
                   className="select"
                   placeholder="Language"
                 >
-                   <option value="">Select Timezone</option>
+                   <option value="">{this.props.userEditDetail.TimeZone}</option>
                    {TimeZone.map(timeZone => <option value={timeZone.abbr}>{timeZone.abbr}</option>)}         
                 </Field>
                 <Field
@@ -188,17 +212,18 @@ class EditUserDetail extends React.Component<IProps, IState> {
                   className="select"
                   placeholder="Unit System"
                 >
-                 <option value="">Select Unit</option>
+                 <option value="" >{this.props.userEditDetail.UnitSystem}</option>
                  {units.map(unit => <option value={unit.unit}>{unit.unit}</option>)}
                 </Field>
                 <br></br>
                 <br></br>
                
-                <button type="submit" className="submit"  onClick={this.handleCloseModal}>
+                <button type="submit" className="submit-btn" >
                 <Translation>{t => t("submit")}</Translation>
                 </button>
               </Form>
             )}
+        
           />
         </div>
       </div>

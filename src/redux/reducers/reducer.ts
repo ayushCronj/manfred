@@ -137,7 +137,7 @@ export default function aois(
   state: IState = initialState,
   action: any
 ): IState {
-  const { type, payload } = action;
+  const { type } = action;
 
   switch (type) {
     case "DELETE_USER": {

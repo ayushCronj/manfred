@@ -27,7 +27,7 @@ class layout extends React.Component<{}, Istate> {
     collapsed: false,
     redirect: false,
     language: "Eng",
-    groupName: "",
+    groupName:"",
     data: [
       {
         groupName: "group1",
@@ -53,15 +53,19 @@ class layout extends React.Component<{}, Istate> {
     }
   }
 
+  onCollapse = collapsed => {
+    this.setState({ collapsed });
+  };
+
   handleOk = e => {
     this.setState({
-      visible: false
+      visible: false,
     });
   };
 
   handleCancel = e => {
     this.setState({
-      visible: false
+      visible: false,
     });
   };
 
@@ -77,10 +81,6 @@ class layout extends React.Component<{}, Istate> {
     });
   };
 
-  onCollapse = collapsed => {
-    this.setState({ collapsed });
-  };
-
   menuClicked = key => {
     if (key.key === "1") {
       this.setState({
@@ -91,20 +91,21 @@ class layout extends React.Component<{}, Istate> {
       this.setState({
         showAll: false,
         showGroup: true,
-        groupName: "group1"
+        groupName:"group1",
       });
-    } else if (key.key === "3") {
+    }
+    else if (key.key === "3") {
       this.setState({
         showAll: false,
         showGroup: true,
-        groupName: "group2"
+        groupName:"group2",
       });
     }
   };
 
   dropped = (ev, groupName) => {
     this.state.data.map((item: any) => {
-      if (item.groupName === groupName) {
+      if (item.groupName === groupName){
         ev.dragData.arr.map((val: any) => {
           if (item.users.find(x => x.key === val.key) === undefined) {
             item.users.push(val);
@@ -172,10 +173,10 @@ class layout extends React.Component<{}, Istate> {
           breakpoint="lg"
         >
           <Modal
-            visible={this.state.visible}
-            onCancel={this.handleCancel}
-            footer={[
-              <Button key="ok" type="primary" onClick={this.handleOk}>
+          visible={this.state.visible}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button key="ok" type="primary" onClick={this.handleOk}>
                 Ok
               </Button>
             ]}
@@ -220,14 +221,11 @@ class layout extends React.Component<{}, Istate> {
                 this.menuClicked(key);
               }}
             >
-              <DropTarget
-                targetKey="foo"
-                onHit={ev => {
-                  this.dropped(ev, "group1");
-                }}
-              >
+              <DropTarget targetKey="foo" onHit={(ev) => {this.dropped(ev, "group1")}}>
                 <Icon type="info" />
+                <span>
                 <Translation>{t => t("group1")}</Translation>
+                </span>
               </DropTarget>
             </Menu.Item>
             <Menu.Item
@@ -236,14 +234,11 @@ class layout extends React.Component<{}, Istate> {
                 this.menuClicked(key);
               }}
             >
-              <DropTarget
-                targetKey="foo"
-                onHit={ev => {
-                  this.dropped(ev, "group2");
-                }}
-              >
+              <DropTarget targetKey="foo" onHit={(ev) => {this.dropped(ev, "group2")}}>
                 <Icon type="info" />
+                <span>
                 <Translation>{t => t("group2")}</Translation>
+                </span>
               </DropTarget>
             </Menu.Item>
           </Menu>
@@ -285,13 +280,10 @@ class layout extends React.Component<{}, Istate> {
               <SubSideBar />
             ) : (
               <div>
-                {this.state.groupName === "group1" ? (
-                  <SingleUser members={this.state.data[0].users} />
-                ) : (
-                  <SingleUser members={this.state.data[1].users} />
-                )}
-              </div>
-            )}
+          {this.state.groupName === "group1" ? 
+              <SingleUser members={this.state.data[0].users} />
+              :  <SingleUser members={this.state.data[1].users} /> }
+            </div>) }
           </Content>
         </Layout>
       </Layout>

@@ -9,6 +9,7 @@ interface IProps {
   userEditDetail: any;
   editindex: number;
   EditUser?: any;
+ 
 }
 
 class EditModal extends React.Component<IProps, IState> {
@@ -26,7 +27,8 @@ class EditModal extends React.Component<IProps, IState> {
     this.setState({
       visible: false
     });
-  };
+
+}
 
   render() {
     return (
@@ -35,8 +37,7 @@ class EditModal extends React.Component<IProps, IState> {
         <Modal
           visible={this.state.visible}
           onCancel={this.handleCancel}
-          footer={null}
-         
+          footer={null} 
         >
          <EditUserDetail userEditDetail={this.props.userEditDetail} editindex={this.props.editindex} handleCancel={this.handleCancel}/>
           </Modal>
