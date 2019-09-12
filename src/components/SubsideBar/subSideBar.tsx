@@ -217,8 +217,8 @@ export class SubSideBar extends React.Component<IProps, IState> {
                         <td>
                           <Avatar src="/avatar.png" />
                         </td>
-                        <td>{item1.email}</td>
                         <td>{item1.name}</td>
+                        <td>{item1.email}</td>
                         <td>
                           <Icon type="arrow-right" />
                         </td>
