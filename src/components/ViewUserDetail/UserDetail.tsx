@@ -68,7 +68,6 @@ class UserDetail extends React.Component<IProps, {}> {
           </div>
         </div>
         <hr />
-
         <div>
           <span className="spanItem">
             <Icon type="contacts" />
