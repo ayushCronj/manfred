@@ -36,23 +36,24 @@
 .user-form1{
   margin-left: 95px;
 }
-#userList {
+.userList {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-#userList td, #userList th {
+.userList td, .userList th {
   padding: 8px;
   color:black;
-  width:245px
+  width:245px;
+  // border:1px solid black;
 }
 
-#userList tr:nth-child(even){background-color: #f2f2f2;}
+.userList tr:nth-child(even){background-color: #f2f2f2;}
 
-#userLists tr:hover {background-color: #ddd;}
+.userList tr:hover {background-color: #ddd;}
 
-#userList th {
+.userList th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -144,15 +145,16 @@ margin-top: 50px;
     border:none !important;
     width:320px !important;
   }
-  #userList{
+  .userList{
     margin-left: -44px !important;
   }
   .card{
     margin-left: -12px !important;
 
   }
-  #userList td, #userList th {
+  .userList td, .userList th {
     font-size: 10px !important;
+    // border:1px solid black;
 }
 }
 

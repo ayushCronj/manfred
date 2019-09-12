@@ -132,7 +132,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
     return (
       <div>
         <Row>
-          <Col lg={8} xs={24} sm={24}>
+          <Col lg={8} xs={24} sm={24} style={{paddingRight:'22px'}}>
             <button className="button" onClick={this.handleClick}>
               <Translation>{t => t("addnewuser")}</Translation>
               <Icon type="plus" />
@@ -149,13 +149,13 @@ export class SubSideBar extends React.Component<IProps, IState> {
               ) : null}
               {this.state.option.length > 1 ? (
                 <div>
-                   <DragDropContainer dragData={{ arr}} targetKey="foo">
-                  <table>
+                   <DragDropContainer dragData={{ arr}} targetKey="foo" dragClone ="true">
+                  <table className="userList">
                     {this.props.dataSource.map((item, index) => {
                       if(this.state.option.includes(index)){
-                      return (<tr key={index}>
+                      return (<tr key={index} style={{border:'1px solid black', backgroundColor:'skyblue'}}>
                         <td>
-                          <Avatar src={item.link} />
+                          <Avatar src="avatar.png" />
                         </td>
                         <td>{item.email}</td>
                         <td>{item.name}</td>
@@ -169,30 +169,30 @@ export class SubSideBar extends React.Component<IProps, IState> {
                   </DragDropContainer>
                 </div>
               ) : null}
-              <table id="userList">
+              <table className="userList">
                 <br></br>
                 <br></br>
                 {this.props.dataSource.map((item1, index1) => {
                   return (
-                    <DragDropContainer dragData={{ item1 }} targetKey="foo">
-                      <tr key={index1} onClick={() => this.handleUser(index1)}>
-                        <td>
-                          <Avatar src={item1.link} />
-                        </td>
-                        <td>
+                    // <DragDropContainer dragData={{ item1 }} targetKey="foo">
+                      <tr key={index1} onClick={() => this.handleUser(index1)} style={{border:'1px solid black'}}>
+                          <td>
                           <input
                             type="checkbox"
                             value={index1}
                             onChange={this.onChange.bind(this)}
                           />
+                        </td><td>
+                          <Avatar src="/avatar.png" />
                         </td>
+            
                         <td>{item1.email}</td>
                         <td>{item1.name}</td>
                         <td>
                           <Icon type="arrow-right" />
                         </td>
                       </tr>
-                    </DragDropContainer>
+                    // </DragDropContainer>
                   );
                 })}
               </table>
