@@ -58,6 +58,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
     }
   }
 
+  //view detail of selected user
   private handleUser = value => {
     this.props.dataSource.map((item, index) => {
       if (value === index) {

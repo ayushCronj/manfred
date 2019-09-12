@@ -5,6 +5,7 @@ import EditUserDetail from "./SubsideBar/EditUserDetail";
 interface IState {
   visible: boolean;
 }
+
 interface IProps {
   userEditDetail: any;
   editindex: number;

@@ -103,6 +103,7 @@ class layout extends React.Component<{}, Istate> {
     }
   };
 
+  //drops the dragged the data
   dropped = (ev, groupName) => {
     this.state.data.map((item: any) => {
       if (item.groupName === groupName){
@@ -122,6 +123,7 @@ class layout extends React.Component<{}, Istate> {
     });
   };
 
+  //for log out
   public handlelogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("pass");

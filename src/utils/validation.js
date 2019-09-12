@@ -1,3 +1,5 @@
+
+//validating email address
 function validateEmail(value) {
   let error;
   if (!value) {
@@ -8,6 +10,7 @@ function validateEmail(value) {
   return error;
 }
 
+//validating phone number
 function validatePhone(value) {
   let error;
   if (!value) {

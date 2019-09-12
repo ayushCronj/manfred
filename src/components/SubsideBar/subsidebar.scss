@@ -46,7 +46,7 @@
   padding: 8px;
   color:black;
   width:300px;
-  // border:1px solid black;
+  
 }
 
 .error-msg{
@@ -90,6 +90,12 @@ width:400px;
 height:100px;
 margin-left:50px;
 margin-top: 50px;
+}
+
+@media(max-width:768px) and (min-width:425px){
+  .user-form{
+    margin-left: 9px !important;
+  }
 }
 
 .userItem{
@@ -170,7 +176,9 @@ margin-top: 50px;
   }
   .userList td, .userList th {
     font-size: 10px !important;
-    // border:1px solid black;
+}
+.list{
+  width: 206px !important;
 }
 }
 
@@ -274,9 +282,9 @@ margin-top: 50px;
   }
 }
 
-@media(max-width:1024) and (min-width:767px){
+@media(max-width:1024px) and (min-width:769px){
   .user-form {
-    margin-left: 112px;
+    margin-left: 103px !important;
 }
 }
 
@@ -312,16 +320,7 @@ margin-top: 50px;
   border-radius: 4px;
   margin-top: 19px;
   margin-left: 12px;
-  // max-height:100px;
-  // overflow:scroll;
-  // overflow-y: scroll;
 }
-
-// .option{
-//   height:40px;
-//   overflow:scroll;
-
-// }
 
 .formItem{
   color: #85C1E9;
