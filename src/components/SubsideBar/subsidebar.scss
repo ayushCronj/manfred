@@ -96,6 +96,14 @@ margin-top: 50px;
   .user-form{
     margin-left: 9px !important;
   }
+  .hr{
+    width: 271px !important;
+    margin-top: 24px;
+    margin-left: 7px !important;
+  }
+  .heading{
+    font-size: 33px !important;
+  }
 }
 
 .userItem{
@@ -255,9 +263,10 @@ margin-top: 50px;
 }
 
 .hr{
-  width: 672px;
-  margin-top: 23px;
-  margin-left: -175px;
+  width: 500px;
+  margin-top: 24px;
+  margin-left: -105px;
+
 }
 
 .heading {
@@ -271,21 +280,16 @@ margin-top: 50px;
   margin-left: 120px;
 }
 
-@media(max-width:1024px) and (min-width:768px){
+@media(max-width:1024px) and (min-width:769px){
   .user-form{
-    margin-left: 45px;
+    margin-left: 33px !important;
+  
   }
   .hr{
-    width: 488px !important;
+    width: 327px;
     margin-top: 23px;
-    margin-left: -102px !important;
+    margin-left: 1px !important;
   }
-}
-
-@media(max-width:1024px) and (min-width:769px){
-  .user-form {
-    margin-left: 103px !important;
-}
 }
 
 .button {
