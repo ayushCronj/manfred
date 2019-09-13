@@ -1,7 +1,8 @@
+/* eslint-disable array-callback-return */
 import { Row, Col, Icon, Avatar } from "antd";
 import * as React from "react";
-import UserDetail from "../ViewUserDetail/UserDetail";
-import NewUser from "./newuser";
+import UserDetail from "../UserDetails/userDetail";
+import NewUser from "../Adduser/addUser";
 import { connect } from "react-redux";
 import { Translation } from "react-i18next";
 import { DragDropContainer } from "react-drag-drop-container";
@@ -28,7 +29,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
   };
 
   public componentDidMount(): void {
-    this.props.dataSource.map((item, index) => {
+    this.props.dataSource.map((item: any, index: number) => {
       if (index === 0) {
         this.setState({
           userDetail: item,
@@ -40,9 +41,9 @@ export class SubSideBar extends React.Component<IProps, IState> {
     });
   }
 
-  public UNSAFE_componentWillReceiveProps(nextProps) {
+  public UNSAFE_componentWillReceiveProps(nextProps: IProps) {
     if (nextProps.dataSource.length > 0) {
-      nextProps.dataSource.map((item, index) => {
+      nextProps.dataSource.map((item: any, index: number) => {
         if (index === 0) {
           this.setState({
             userDetail: item,
@@ -59,8 +60,8 @@ export class SubSideBar extends React.Component<IProps, IState> {
   }
 
   //view detail of selected user
-  private handleUser = value => {
-    this.props.dataSource.map((item, index) => {
+  private handleUser = (value: number) => {
+    this.props.dataSource.map((item: any, index: number) => {
       if (value === index) {
         this.setState({
           userDetail: item,
@@ -72,14 +73,14 @@ export class SubSideBar extends React.Component<IProps, IState> {
     });
   };
 
-  private handleClick = value => {
+  private handleClick = () => {
     this.setState({
       newUser: !this.state.newUser,
       showUser: false
     });
   };
 
-  private HandleSubmit = value => {
+  private HandleSubmit = () => {
     this.setState({
       newUser: !this.state.newUser,
       showUser: true
@@ -92,9 +93,9 @@ export class SubSideBar extends React.Component<IProps, IState> {
     });
   };
 
-  onChange(e) {
+  onChange = (e: any) => {
     const option = this.state.option;
-    let index;
+    let index: any;
     if (e.target.checked) {
       option.push(+e.target.value);
     } else {
@@ -104,7 +105,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
       }
     }
     this.setState({ option: option });
-  }
+  };
 
   public render(): React.ReactNode {
     let arr = [] as any;
@@ -197,7 +198,7 @@ export class SubSideBar extends React.Component<IProps, IState> {
                               <input
                                 type="checkbox"
                                 value={index1}
-                                onChange={this.onChange.bind(this)}
+                                onChange={this.onChange}
                               />
                             </td>
                             <td>

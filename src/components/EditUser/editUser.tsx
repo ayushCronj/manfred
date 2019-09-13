@@ -1,13 +1,12 @@
 import * as React from "react";
+import { EditUser } from "../../redux/actions/userAction";
 import { connect } from "react-redux";
-import { createUser } from "../../redux/actions/userAction";
 import languages from "../../utils/language.json";
 import TimeZone from "../../utils/timezone.json";
 import units from "../../utils/unit.json";
-import { validateEmail, validatePhone } from "../../utils/validation";
-import "./subsidebar.scss";
 import { Translation } from "react-i18next";
-import uuid from 'uuidv4';
+import "./editUser.scss";
+import { validateEmail, validatePhone } from "../../utils/validation";
 import {
   Formik,
   FormikActions,
@@ -18,60 +17,76 @@ import {
 } from "formik";
 
 interface IState {
+  email: string;
   name: string;
   surname: string;
   client: string;
-  email: string;
   department: string;
+  Language: string;
   TimeZone: string;
+  UnitSystem: string;
   phoneNumber: string;
 }
 
 interface IProps {
-  createUser: any;
-  HandleSubmit: any;
+  userEditDetail: any;
+  editindex: number;
+  EditUser?: any;
+  handleCancel: any;
 }
 
-class NewUser extends React.Component<IProps, IState> {
+class EditUserDetail extends React.Component<IProps, IState> {
   state = {
+    email: "",
     name: "",
     surname: "",
     client: "",
-    email: "",
     department: "",
+    Language: "",
     TimeZone: "",
+    UnitSystem: "",
     phoneNumber: ""
+  };
+
+  handleCloseModal = () => {
+    this.props.handleCancel();
+  };
+
+  onkeyDown = (keyEvent: any) => {
+    if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
+      keyEvent.preventDefault();
+    }
   };
 
   public render(): React.ReactNode {
     return (
-      <div className="mainUser">
-        <div className="Usercontainer">
+      <div className="mainUserEdit">
+        <div className="Usercontainer1">
           <Formik
             enableReinitialize={true}
             initialValues={{
-              name: "",
-              surname: "",
-              client: "",
-              email: "",
-              department: "",
-              TimeZone: "",
-              phoneNumber: ""
+              email: this.props.userEditDetail.email,
+              surname: this.props.userEditDetail.surname,
+              name: this.props.userEditDetail.name,
+              client: this.props.userEditDetail.client,
+              department: this.props.userEditDetail.department,
+              Language: this.props.userEditDetail.Language,
+              TimeZone: this.props.userEditDetail.TimeZone,
+              UnitSystem: this.props.userEditDetail.UnitSystem,
+              phoneNumber: this.props.userEditDetail.phoneNumber
             }}
             onSubmit={(values: IState, actions: FormikActions<IState>) => {
               actions.setSubmitting(false);
-              values["key"] = uuid();
-              this.props.HandleSubmit();
-              this.props.createUser(values);
+              values["key"] = this.props.userEditDetail.key;
+              this.props.EditUser(values, this.props.editindex);
+              this.handleCloseModal();
             }}
             render={(formikBag: FormikProps<IState>) => (
-              <Form className="user-form">
-                <h3 className="heading">
-                  {" "}
-                  <Translation>{t => t("createnewuser")}</Translation>
+              <Form className="user-form1" onKeyDown={this.onkeyDown}>
+                <h3 className="headingEdit">
+                  <Translation>{t => t("edituser")}</Translation>
                 </h3>
-                <h3 className="formItem">
-                  {" "}
+                <h3 className="editItem">
                   <Translation>{t => t("contactinfo")}</Translation>
                 </h3>
                 <Field
@@ -111,9 +126,11 @@ class NewUser extends React.Component<IProps, IState> {
                         {...field}
                         placeholder="Email"
                       />
-                      {form.touched.email &&
-                        form.errors.email &&
-                        form.errors.email}
+                      <div className="error-msg">
+                        {form.touched.email &&
+                          form.errors.email &&
+                          form.errors.email}
+                      </div>
                     </div>
                   )}
                 />
@@ -126,17 +143,18 @@ class NewUser extends React.Component<IProps, IState> {
                         type="text"
                         className="field"
                         {...field}
-                        placeholder="Phone Number"
+                        placeholder="phoneNumber"
                       />
-                      {form.touched.phoneNumber &&
-                        form.errors.phoneNumber &&
-                        form.errors.phoneNumber}
+                      <div className="error-msg">
+                        {form.touched.phoneNumber &&
+                          form.errors.phoneNumber &&
+                          form.errors.phoneNumber}
+                      </div>
                     </div>
                   )}
                 />
-                <hr className="hr" />
-                <h3 className="formItem">
-                  {" "}
+
+                <h3 className="editItem">
                   <Translation>{t => t("company")}</Translation>
                 </h3>
                 <Field
@@ -165,9 +183,8 @@ class NewUser extends React.Component<IProps, IState> {
                     </div>
                   )}
                 />
-                <hr className="hr" />
-                <h3 className="formItem">
-                  {" "}
+
+                <h3 className="editItem">
                   <Translation>{t => t("language&religion")}</Translation>
                 </h3>
                 <Field
@@ -176,9 +193,11 @@ class NewUser extends React.Component<IProps, IState> {
                   className="select"
                   placeholder="Language"
                 >
-                  <option value="">Select Language</option>
-                  {languages.map((language,index) => (
-                    <option key={index} value={language.name}>{language.name}</option>
+                  <option value="">{this.props.userEditDetail.Language}</option>
+                  {languages.map((language, index) => (
+                    <option key={index} value={language.name}>
+                      {language.name}
+                    </option>
                   ))}
                 </Field>
                 <Field
@@ -187,9 +206,11 @@ class NewUser extends React.Component<IProps, IState> {
                   className="select"
                   placeholder="Language"
                 >
-                  <option value="">Select Timezone</option>
-                  {TimeZone.map((timeZone,index) => (
-                    <option key={index} value={timeZone.abbr}>{timeZone.abbr}</option>
+                  <option value="">{this.props.userEditDetail.TimeZone}</option>
+                  {TimeZone.map((timeZone, index) => (
+                    <option key={index} value={timeZone.abbr}>
+                      {timeZone.abbr}
+                    </option>
                   ))}
                 </Field>
                 <Field
@@ -198,14 +219,19 @@ class NewUser extends React.Component<IProps, IState> {
                   className="select"
                   placeholder="Unit System"
                 >
-                  <option value="">Select Unit</option>
-                  {units.map((unit,index )=> (
-                    <option  key={index} value={unit.unit}>{unit.unit}</option>
+                  <option value="">
+                    {this.props.userEditDetail.UnitSystem}
+                  </option>
+                  {units.map((unit, index) => (
+                    <option key={index} value={unit.unit}>
+                      {unit.unit}
+                    </option>
                   ))}
                 </Field>
                 <br></br>
                 <br></br>
-                <button type="submit" className="submit">
+
+                <button type="submit" className="submit-btn">
                   <Translation>{t => t("submit")}</Translation>
                 </button>
               </Form>
@@ -217,13 +243,13 @@ class NewUser extends React.Component<IProps, IState> {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    createUser: values => dispatch(createUser(values))
+    EditUser: (values: any, index: any) => dispatch(EditUser(values, index))
   };
-}
+};
 
 export default connect(
   null,
   mapDispatchToProps
-)(NewUser);
+)(EditUserDetail);

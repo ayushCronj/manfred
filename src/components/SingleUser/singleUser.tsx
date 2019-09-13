@@ -2,8 +2,6 @@ import * as React from "react";
 import { Table } from "antd";
 import { Translation } from "react-i18next";
 
-interface IState {}
-
 interface IProps {
   members: any;
 }
@@ -32,8 +30,9 @@ const columns = [
   }
 ];
 
-class Single extends React.Component<IProps, IState> {
+class SingleUser extends React.Component<IProps, {}> {
   state = {};
+  s;
   public render(): React.ReactNode {
     return (
       <div>
@@ -51,4 +50,4 @@ class Single extends React.Component<IProps, IState> {
   }
 }
 
-export default Single;
+export default SingleUser;

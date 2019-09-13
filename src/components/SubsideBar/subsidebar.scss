@@ -1,42 +1,19 @@
+.button {
+  background-color: #EBEDEF;
+  border: 2px solid #EBEDEF;
+  color: 2px black;
+  color: black;
+  font-size: 20px;
+}
+
+.list {
+  padding-right: 22px;
+  max-height:700px ;
+  overflow: auto;
+}
+
 .userlist {
   display: flex;
-}
-
-.headingEdit{
-  font-size: 38px;
-  margin-top: 35px;
-  margin-left: 64px;
-  color: #313031;
-}
-
-.submitEdit{
-  background-color: #ebedef;
-  border: 1px solid black;
-  height: 1000px;
-  margin-top: 62px;
-  
-}
-
-.mainUserEdit{
-  background-color: #ebedef;
-  border: 1px solid black;
-  margin-top: 20px;
-}
-
-.mainUser {
-  background-color:rgb(235, 237, 239);
-  border: 1px solid black;
-  height:1000px
-}
-.mainUserDetail{
-  background-color:rgb(235, 237, 239);
-  border: 1px solid black;
-  height:714px
-}
-.user-form1{
-  margin-left: 95px;
-}
-.userList {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 300px;
@@ -46,13 +23,11 @@
   padding: 8px;
   color:black;
   width:300px;
-  
 }
 
-.error-msg{
-  margin-left: 17px;
+.userList tr:hover {
+  background-color: #ddd;
 }
-.userList tr:hover {background-color: #ddd;}
 
 .userList th {
   padding-top: 12px;
@@ -61,275 +36,43 @@
   background-color: #ddd;
   color:black
 }
-.submit-btn{
-  width: 91px;
-    background-color: skyblue;
-    border-radius: 11px;
-    border: 1px solid grey;
-    margin-left: 80px;
-    margin-bottom:22px;
-}
 
-.dropTr{
-  border:1px solid grey;
-   background-color:rgb(45, 163, 241)
-}
-
-.details{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  margin-top: 50px;
+.userContents {
   border: 1px solid black;
-  width: 1000px;
-  height:300px
-}
-
-.card{
-width:400px;
-height:100px;
-margin-left:50px;
-margin-top: 50px;
-}
-
-@media(max-width:768px) and (min-width:425px){
-  .user-form{
-    margin-left: 9px !important;
-  }
-}
-
-.userItem{
-  margin-top: 20px;
-  font-size:19px
-}
-
-.company{
-  margin-left: 260px;
-  margin-top: -166px;
-}
-
-.editItem{
-  color: #85C1E9;
-    margin-left: 60px;
-    margin-top: 32px;
-    font-size: 18px;
+  padding: 24px; 
 }
 
 @media (max-width:320px) and (max-width:425px){
-  .field{
-    width: 170px !important
-  }
-  .select{
-    width: 170px !important
-  }
-  .Usercontainer{
-    margin-left: -36px !important
-  }
-  .heading {
-    font-size: 22px !important;
-  }
-  .submit {
-    margin-left: 40px !important;
-  }
-  .user-form{
-    margin-left: 28px !important;
-  }
-  .mainUser {
-    background-color:rgb(235, 237, 239);
-    border: 0.5px solid rgb(235, 237, 239) !important;
-    height:1000px
-  }
- 
-  .userContents{
+  .userContents {
     border: 0.5px solid rgb(235, 237, 239) !important;
     margin-left: -21px;
     padding: 0px!important;
-}
-  .user-form1{
-    margin-left: 36px !important
   }
-  .headingEdit{
-    font-size: 28px !important;
-    margin-left: 35px !important;
-  }
-  .mainUserEdit{
-    height: 937px !important;
-  }
-  .editItem{
-    color: #85C1E9;
-    margin-left: 23px !important;
-    margin-top: 32px;
-    font-size: 16px !important;
-  }
-  .details{
-    flex-wrap:wrap !important;
-    height:700px !important;
-    border:none !important;
-    width:320px !important;
-  }
-  .userList{
+
+  .userList {
     margin-left: -44px !important;
   }
-  .card{
-    margin-left: -12px !important;
 
+  .card {
+    margin-left: -12px !important;
   }
+
   .userList td, .userList th {
     font-size: 10px !important;
-}
-.list{
-  width: 206px !important;
-}
+  }
+
+  .list {
+    width: 206px !important;
+  }
 }
 
 @media (max-width:375px) and (min-width:321px){
-  .field{
-    width: 259px !important
-  }
-  .editicon{
-    margin-bottom: 10px;
-    margin-left: 242px;
-  }
-  .select{
-    width: 259px !important
-  }
-  .user-form{
-    margin-left: -29px !important;
-  }
-  .heading {
-    font-size: 24px !important;
-    margin-left: 44px !important;
-  }
-  
-  .submit {
-    margin-left: 78px !important;
-  }
-  .mainUser {
+  .userContents {
     border: 0.5px solid rgb(235, 237, 239) !important;
   }
-  .userContents{
-    border: 0.5px solid rgb(235, 237, 239) !important;
-  }
-  .user-form1{
-    margin-left: 18px !important;
-  }
-  .editItem{
-    margin-left: 56px !important;
-  }
-  .userList{
+
+  .userList {
     margin-left: -43px !important;
   }
   
-}
-
-@media (max-width:425px) and (min-width:376px){
-  .field{
-    width: 259px !important
-  }
-  .select{
-    width: 259px !important
-  }
- .user-form{
-  margin-left: -9px !important;
- }
-  .heading {
-    font-size: 29px !important;
-    margin-left: 30px !important;
-  }
-  .submit {
-    margin-left: 78px !important;
-  }
-  .mainUser {
-    border: 0.5px solid rgb(235, 237, 239) !important;
-  }
-  .user-form1{
-    margin-left: 36px !important;
-  }
-  .editItem{
-    margin-left: 62px !important;
-  }
-}
-
-.userTable{
- margin-top:20px
-}
-
-.hr{
-  width: 672px;
-  margin-top: 23px;
-  margin-left: -175px;
-}
-
-.heading {
-  font-size: 38px;
-  margin-top: 35px;
-  margin-left: 13px;
-  color: #313031;
-}
-
-.user-form {
-  margin-left: 120px;
-}
-
-@media(max-width:1024px) and (min-width:768px){
-  .user-form{
-    margin-left: 45px;
-  }
-  .hr{
-    width: 488px !important;
-    margin-top: 23px;
-    margin-left: -102px !important;
-  }
-}
-
-@media(max-width:1024px) and (min-width:769px){
-  .user-form {
-    margin-left: 103px !important;
-}
-}
-
-.button {
-  background-color: #EBEDEF;
-  border: 2px solid #EBEDEF;
-  color: 2px black;
-  color: black;
-  font-size: 20px;
-}
-
-.field {
-  width: 271px;
-  height: 36px;
-  border: 1px solid #ebedef !important;
-  background-color: white !important;
-  border-radius: 4px;
-  margin-top: 19px;
-  margin-left: 12px;
-  padding: 13px;
-}
-
-.list{
-  padding-right: 22px;
-   max-height:700px ;
-   overflow: auto;
-  }
-.select {
-  width: 271px;
-  height: 36px;
-  border: 1px solid #ebedef !important;
-  background-color: white !important;
-  border-radius: 4px;
-  margin-top: 19px;
-  margin-left: 12px;
-}
-
-.formItem{
-  color: #85C1E9;
-  margin-left: 37px;
-  margin-top: 32px;
-  font-size: 22px;
-}
-
-.userContents{
-  border: 1px solid black;
-   padding: 24px; 
 }

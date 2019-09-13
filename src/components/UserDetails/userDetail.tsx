@@ -1,11 +1,10 @@
 import * as React from "react";
-import "./ViewUserDetail.scss";
+import "./userDetail.scss";
 import { Icon } from "antd";
 import { Translation } from "react-i18next";
 import { connect } from "react-redux";
 import { deleteUser } from "../../redux/actions/userAction";
-import EditModal from "../EditModal";
-
+import EditModal from "../EditUserModal/editUserModal";
 
 interface IProps {
   name?: string;
@@ -35,9 +34,8 @@ class UserDetail extends React.Component<IProps, {}> {
             onClick={() => this.props.deleteUser(this.props.index)}
           />
           <div>
-            <img style={{ height: "100px" }} src="/avatar.png" alt="Avatar"/>
+            <img style={{ height: "100px" }} src="/avatar.png" alt="Avatar" />
             <h2>
-              {" "}
               &nbsp;{this.props.user.name}&nbsp;{this.props.user.surname}
             </h2>
           </div>
@@ -71,7 +69,7 @@ class UserDetail extends React.Component<IProps, {}> {
         <div>
           <span className="spanItem">
             <Icon type="contacts" />
-            <Translation>{t => t("company")}</Translation>{" "}
+            <Translation>{t => t("company")}</Translation>
           </span>
           <p> </p>
           <div className="client">
@@ -101,7 +99,7 @@ class UserDetail extends React.Component<IProps, {}> {
         <div>
           <span className="spanItem">
             <Icon type="info" />
-            <Translation>{t => t("language&religion")}</Translation>{" "}
+            <Translation>{t => t("language&religion")}</Translation>
           </span>
           <p> </p>
           <div className="system">
