@@ -4,6 +4,10 @@
   height:1000px
 }
 
+.submit{
+  margin-top: 0px !important;
+}
+
 .user-form {
   margin-left: 120px;
 }
@@ -34,16 +38,17 @@
 }
 
 .hr {
-  width: 672px;
-  margin-top: 23px;
-  margin-left: -175px;
+ 
+  margin-left: -119px !important;
+  margin-top: 32px !important
+
 }
 
 .formItem {
   color: #85C1E9;
   margin-left: 37px;
   margin-top: 32px;
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .select {
@@ -59,6 +64,10 @@
 @media(max-width:768px) and (min-width:425px){
   .user-form {
     margin-left: 9px !important;
+  }
+  .hr{
+    margin-left:-3px !important;
+
   }
 }
 
@@ -76,7 +85,7 @@
   }
 
   .heading {
-    font-size: 22px !important;
+    font-size: 19px !important;
   }
 
   .submit {
@@ -91,6 +100,9 @@
     background-color:rgb(235, 237, 239);
     border: 0.5px solid rgb(235, 237, 239) !important;
     height:1000px
+  }
+  .hr{
+    margin-left:-4px !important;
   }
 }
 
@@ -118,6 +130,10 @@
 
   .mainUser {
     border: 0.5px solid rgb(235, 237, 239) !important;
+  }
+  .hr{
+    margin-left:-47px !important;
+    width:325px !important;
   }
 }
 
@@ -148,14 +164,14 @@
   }
 }
 
-@media(max-width:1024px) and (min-width:768px){
+@media(max-width:1024px) and (min-width:769px){
   .user-form {
     margin-left: 45px;
   }
 
   .hr {
-    width: 488px !important;
+    width: 358px !important;
     margin-top: 23px;
-    margin-left: -102px !important;
+    margin-left: -41px !important;
   }
 }
